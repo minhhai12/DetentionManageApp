@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|c:\\users\\0179\\documents\\personal project\\detentionmanageapp\\formdanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:formdanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\formnhaplieu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:formnhaplieu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\formdanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:formdanhsach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\formdanhsach.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:formdanhsach.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\formnhaplieu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E59AD4FA-1410-48E9-8836-1B64DDF0F075}|DetentionManageApp.csproj|solutionrelative:formnhaplieu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 667,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormDanhSach.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.Designer.cs",
+              "RelativeDocumentMoniker": "FormDanhSach.Designer.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.Designer.cs",
+              "RelativeToolTip": "FormDanhSach.Designer.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAnwBwAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T04:32:06.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAuwCUAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T03:23:39.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormDanhSach.cs",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.cs",
+              "RelativeDocumentMoniker": "FormDanhSach.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.cs",
+              "RelativeToolTip": "FormDanhSach.cs",
+              "ViewState": "AQIAAJ0AAAAAAAAAAAAcwLUAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T03:08:40.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormDanhSach.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.cs",
+              "RelativeDocumentMoniker": "FormDanhSach.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormDanhSach.cs [Design]",
+              "RelativeToolTip": "FormDanhSach.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T03:07:58.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormNhapLieu.cs",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormNhapLieu.cs",
+              "RelativeDocumentMoniker": "FormNhapLieu.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormNhapLieu.cs",
+              "RelativeToolTip": "FormNhapLieu.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCAAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T02:38:35.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormNhapLieu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormNhapLieu.cs",
+              "RelativeDocumentMoniker": "FormNhapLieu.cs",
+              "ToolTip": "C:\\Users\\0179\\Documents\\Personal Project\\DetentionManageApp\\FormNhapLieu.cs [Design]",
+              "RelativeToolTip": "FormNhapLieu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-04T02:38:17.08Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 54,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
