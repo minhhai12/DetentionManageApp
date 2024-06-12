@@ -1,6 +1,6 @@
 ﻿namespace DetentionManageApp
 {
-    partial class FormDanhSach
+    partial class FormList
     {
         /// <summary>
         /// Required designer variable.

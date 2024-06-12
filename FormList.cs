@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace DetentionManageApp
 {
-    public partial class FormDanhSach : Form
+    public partial class FormList : Form
     {
         private string excelFilePath;
 
-        public FormDanhSach()
+        public FormList()
         {
             InitializeComponent();
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -118,12 +118,18 @@ namespace DetentionManageApp
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormNhapLieu formNhapLieu = new FormNhapLieu();
-            if (formNhapLieu.ShowDialog() == DialogResult.OK)
+            FormCreateEdit createEditForm = new FormCreateEdit();
+            if (createEditForm.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    SaveDataToExcel(formNhapLieu.VehicleData);
+                    if (CheckMaTamGiamExist(createEditForm.VehicleData))
+                    {
+                        MessageBox.Show("MaTamGiam đã tồn tại trong file Excel.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    SaveDataToExcel(createEditForm.VehicleData);
                     LoadDataFromExcel();
                     MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -134,17 +140,42 @@ namespace DetentionManageApp
             }
         }
 
+        private bool CheckMaTamGiamExist(DataTable newData)
+        {
+            var existingMaTamGiams = dataGridView1.Rows.Cast<DataGridViewRow>()
+                .Select(row => row.Cells["MaTamGiam"].Value.ToString())
+                .ToList();
+
+            foreach (DataRow row in newData.Rows)
+            {
+                if (existingMaTamGiams.Contains(row["MaTamGiam"].ToString()))
+                    return true;
+            }
+
+            return false;
+        }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
-                FormNhapLieu formNhapLieu = new FormNhapLieu(selectedRow);
-                if (formNhapLieu.ShowDialog() == DialogResult.OK)
+                string originalMaTamGiam = selectedRow.Cells["MaTamGiam"].Value.ToString();
+                FormCreateEdit createEditForm = new FormCreateEdit(selectedRow);
+                if (createEditForm.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        SaveDataToExcel(formNhapLieu.VehicleData);
+                        if (isMaTamGiamChanged(createEditForm.VehicleData, originalMaTamGiam))
+                        {
+                            if (CheckMaTamGiamExist(createEditForm.VehicleData))
+                            {
+                                MessageBox.Show("MaTamGiam đã tồn tại trong file Excel.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+
+                        SaveDataToExcel(createEditForm.VehicleData);
                         LoadDataFromExcel();
                         MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -154,6 +185,11 @@ namespace DetentionManageApp
                     }
                 }
             }
+        }
+
+        private bool isMaTamGiamChanged(DataTable newData, string originalMaTamGiam)
+        {
+            return originalMaTamGiam != newData.Rows[0]["MaTamGiam"].ToString();
         }
 
         private void SaveDataToExcel(DataTable newData)

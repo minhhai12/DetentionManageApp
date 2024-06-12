@@ -1,6 +1,6 @@
 ﻿namespace DetentionManageApp
 {
-    partial class FormNhapLieu
+    partial class FormCreateEdit
     {
         /// <summary>
         /// Required designer variable.

@@ -50,11 +50,11 @@ C:\Users\0179\Documents\Personal Project\DetentionManageApp\bin\Debug\System.Tex
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\bin\Debug\System.ValueTuple.xml
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.csproj.AssemblyReference.cache
-C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.FormDanhSach.resources
-C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.FormNhapLieu.resources
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.Properties.Resources.resources
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.csproj.GenerateResource.cache
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.csproj.CoreCompileInputs.cache
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\Detentio.9714EBF8.Up2Date
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.exe
 C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.pdb
+C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.FormList.resources
+C:\Users\0179\Documents\Personal Project\DetentionManageApp\obj\Debug\DetentionManageApp.FormCreateEdit.resources

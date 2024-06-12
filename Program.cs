@@ -20,7 +20,7 @@ namespace DetentionManageApp
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
             CheckVehicleEndDates();
-            Application.Run(new FormDanhSach());
+            Application.Run(new FormList());
         }
 
         private static void CheckVehicleEndDates()

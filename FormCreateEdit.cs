@@ -11,19 +11,27 @@ using System.Windows.Forms;
 
 namespace DetentionManageApp
 {
-    public partial class FormNhapLieu : Form
+    public partial class FormCreateEdit : Form
     {
         public DataTable VehicleData { get; private set; }
+        private bool isEditMode;
+        private string existingMaTamGiam;
 
-        public FormNhapLieu()
+        public FormCreateEdit()
         {
             InitializeComponent();
+            isEditMode = false;
+            txtMaTamGiam.ReadOnly = true;  // MaTamGiam is read-only
+            GenerateMaTamGiam();
         }
 
-        public FormNhapLieu(DataGridViewRow selectedRow)
+        public FormCreateEdit(DataGridViewRow selectedRow)
         {
             InitializeComponent();
             LoadData(selectedRow);
+            isEditMode = true;
+            existingMaTamGiam = txtMaTamGiam.Text;
+            txtMaTamGiam.ReadOnly = true;
         }
 
         private void LoadData(DataGridViewRow selectedRow)
@@ -39,6 +47,31 @@ namespace DetentionManageApp
             dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["NgayKetThucTamGiam"].Value.ToString());
         }
 
+        private void GenerateMaTamGiam()
+        {
+            var filePath = "path_to_your_excel_file.xlsx";  // Replace with the path to your Excel file
+            using (var package = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(filePath)))
+            {
+                var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                if (worksheet == null)
+                {
+                    txtMaTamGiam.Text = "MTG00001";
+                    return;
+                }
+
+                int lastRow = worksheet.Dimension.End.Row;
+                if (lastRow < 2)  // No data rows
+                {
+                    txtMaTamGiam.Text = "MTG00001";
+                    return;
+                }
+
+                var lastMaTamGiam = worksheet.Cells[lastRow, 2].Value.ToString();  // Assuming MaTamGiam is in the 2nd column
+                int newMaTamGiam = int.Parse(lastMaTamGiam.Substring(3)) + 1; // Extract the numeric part and increment
+                txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -48,7 +81,7 @@ namespace DetentionManageApp
 
                 if (ngayBatDau >= ngayKetThuc)
                 {
-                    MessageBox.Show("[Ngày bắt đầu tạm giam] phải nhỏ hơn hoặc bằng [Ngày kết thúc tạm giam]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("[Ngày bắt đầu tạm giam] phải nhỏ hơn [Ngày kết thúc tạm giam]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -78,6 +111,7 @@ namespace DetentionManageApp
                 row["NgayKetThucTamGiam"] = dtpNgayKetThucTamGiam.Value.ToString("yyyy-MM-dd");
 
                 VehicleData.Rows.Add(row);
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
