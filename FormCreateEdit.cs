@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,68 +10,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DetentionManageApp.FormCreateEdit;
 
 namespace DetentionManageApp
 {
     public partial class FormCreateEdit : Form
     {
-        public DataTable VehicleData { get; private set; }
-        private bool isEditMode;
-        private string existingMaTamGiam;
+        public DataTable detentionData { get; private set; }
+        private readonly FormMode formMode;
 
-        public FormCreateEdit()
+        public enum FormMode
         {
-            InitializeComponent();
-            isEditMode = false;
-            txtMaTamGiam.ReadOnly = true;  // MaTamGiam is read-only
-            GenerateMaTamGiam();
+            Create,
+            Edit
         }
 
-        public FormCreateEdit(DataGridViewRow selectedRow)
+        public FormCreateEdit(FormMode mode)
         {
             InitializeComponent();
+            formMode = mode;
+            if (formMode == FormMode.Create)
+            {
+                GenerateMaTamGiam();
+            }
+            btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Chỉnh sửa";
+            btnCancel.Text = "Hủy bỏ";
+            txtMaTamGiam.Enabled = false;
+        }
+
+        public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
+        {
             LoadData(selectedRow);
-            isEditMode = true;
-            existingMaTamGiam = txtMaTamGiam.Text;
-            txtMaTamGiam.ReadOnly = true;
         }
 
         private void LoadData(DataGridViewRow selectedRow)
         {
-            txtMaTamGiam.Text = selectedRow.Cells["MaTamGiam"].Value.ToString();
-            txtHo.Text = selectedRow.Cells["Ho"].Value.ToString();
-            txtTen.Text = selectedRow.Cells["Ten"].Value.ToString();
+            txtMaTamGiam.Text = selectedRow.Cells["Mã tạm giam"].Value.ToString();
+            txtHo.Text = selectedRow.Cells["Họ"].Value.ToString();
+            txtTen.Text = selectedRow.Cells["Tên"].Value.ToString();
             txtCCCD.Text = selectedRow.Cells["CCCD"].Value.ToString();
-            txtSDT.Text = selectedRow.Cells["SDT"].Value.ToString();
-            txtDiaChi.Text = selectedRow.Cells["DiaChi"].Value.ToString();
-            txtBienSoXe.Text = selectedRow.Cells["BienSo"].Value.ToString();
-            dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["NgayBatDauTamGiam"].Value.ToString());
-            dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["NgayKetThucTamGiam"].Value.ToString());
+            txtSDT.Text = selectedRow.Cells["SĐT"].Value.ToString();
+            txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
+            dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
+            dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày kết thúc"].Value.ToString());
         }
 
         private void GenerateMaTamGiam()
         {
-            var filePath = "path_to_your_excel_file.xlsx";  // Replace with the path to your Excel file
-            using (var package = new OfficeOpenXml.ExcelPackage(new System.IO.FileInfo(filePath)))
+            string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+            string filePath = "";
+            if (File.Exists(jsonFilePath))
+            {
+                string jsonContent = File.ReadAllText(jsonFilePath);
+                dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+                filePath = jsonData.ExcelFilePath;
+            }
+
+            var existingNumbers = new HashSet<int>();
+
+            using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
                 var worksheet = package.Workbook.Worksheets.FirstOrDefault();
-                if (worksheet == null)
+                if (worksheet == null || worksheet.Dimension == null)
                 {
                     txtMaTamGiam.Text = "MTG00001";
                     return;
                 }
 
-                int lastRow = worksheet.Dimension.End.Row;
-                if (lastRow < 2)  // No data rows
+                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                 {
-                    txtMaTamGiam.Text = "MTG00001";
-                    return;
+                    var cellValue = worksheet.Cells[row, 2].Value?.ToString();
+                    if (cellValue != null && cellValue.StartsWith("MTG"))
+                    {
+                        if (int.TryParse(cellValue.Substring(3), out int number))
+                        {
+                            existingNumbers.Add(number);
+                        }
+                    }
                 }
-
-                var lastMaTamGiam = worksheet.Cells[lastRow, 2].Value.ToString();  // Assuming MaTamGiam is in the 2nd column
-                int newMaTamGiam = int.Parse(lastMaTamGiam.Substring(3)) + 1; // Extract the numeric part and increment
-                txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
             }
+
+            // Tìm số thiếu đầu tiên
+            int newMaTamGiam = 1;
+            while (existingNumbers.Contains(newMaTamGiam))
+            {
+                newMaTamGiam++;
+            }
+
+            txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -79,40 +107,38 @@ namespace DetentionManageApp
                 DateTime ngayBatDau = dtpNgayBatDauTamGiam.Value;
                 DateTime ngayKetThuc = dtpNgayKetThucTamGiam.Value;
 
-                if (ngayBatDau >= ngayKetThuc)
+                if (ngayBatDau > ngayKetThuc)
                 {
-                    MessageBox.Show("[Ngày bắt đầu tạm giam] phải nhỏ hơn [Ngày kết thúc tạm giam]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("[Ngày bắt đầu tạm giam] phải nhỏ hơn hoặc bằng [Ngày kết thúc tạm giam]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Collect data and close form
-                VehicleData = new DataTable();
-                VehicleData.Columns.Add("NgayNhapThongTin");
-                VehicleData.Columns.Add("MaTamGiam");
-                VehicleData.Columns.Add("Ho");
-                VehicleData.Columns.Add("Ten");
-                VehicleData.Columns.Add("CCCD");
-                VehicleData.Columns.Add("SDT");
-                VehicleData.Columns.Add("DiaChi");
-                VehicleData.Columns.Add("BienSo");
-                VehicleData.Columns.Add("NgayBatDauTamGiam");
-                VehicleData.Columns.Add("NgayKetThucTamGiam");
+                detentionData = new DataTable();
+                detentionData.Columns.Add("Ngày nhập");
+                detentionData.Columns.Add("Mã tạm giam");
+                detentionData.Columns.Add("Họ");
+                detentionData.Columns.Add("Tên");
+                detentionData.Columns.Add("CCCD");
+                detentionData.Columns.Add("SĐT");
+                detentionData.Columns.Add("Địa chỉ");
+                detentionData.Columns.Add("Ngày bắt đầu");
+                detentionData.Columns.Add("Ngày kết thúc");
 
-                DataRow row = VehicleData.NewRow();
-                row["NgayNhapThongTin"] = DateTime.Now.ToString("yyyy-MM-dd");
-                row["MaTamGiam"] = txtMaTamGiam.Text;
-                row["Ho"] = txtHo.Text;
-                row["Ten"] = txtTen.Text;
+                DataRow row = detentionData.NewRow();
+                row["Ngày nhập"] = DateTime.Now.ToString("yyyy-MM-dd");
+                row["Mã tạm giam"] = txtMaTamGiam.Text;
+                row["Họ"] = txtHo.Text;
+                row["Tên"] = txtTen.Text;
                 row["CCCD"] = txtCCCD.Text;
-                row["SDT"] = txtSDT.Text;
-                row["DiaChi"] = txtDiaChi.Text;
-                row["BienSo"] = txtBienSoXe.Text;
-                row["NgayBatDauTamGiam"] = dtpNgayBatDauTamGiam.Value.ToString("yyyy-MM-dd");
-                row["NgayKetThucTamGiam"] = dtpNgayKetThucTamGiam.Value.ToString("yyyy-MM-dd");
+                row["SĐT"] = txtSDT.Text;
+                row["Địa chỉ"] = txtDiaChi.Text;
+                row["Ngày bắt đầu"] = dtpNgayBatDauTamGiam.Value.ToString("yyyy-MM-dd");
+                row["Ngày kết thúc"] = dtpNgayKetThucTamGiam.Value.ToString("yyyy-MM-dd");
 
-                VehicleData.Rows.Add(row);
+                detentionData.Rows.Add(row);
 
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
@@ -123,9 +149,10 @@ namespace DetentionManageApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 
 }
