@@ -32,7 +32,8 @@
             this.btnChooseFile = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.lblDanhSach = new System.Windows.Forms.Label();
+            this.lblTitleDanhSach = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,6 @@
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1093, 519);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // btnChooseFile
             // 
@@ -76,26 +76,37 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // lblDanhSach
+            // lblTitleDanhSach
             // 
-            this.lblDanhSach.AutoSize = true;
-            this.lblDanhSach.Location = new System.Drawing.Point(481, 33);
-            this.lblDanhSach.Name = "lblDanhSach";
-            this.lblDanhSach.Size = new System.Drawing.Size(212, 12);
-            this.lblDanhSach.TabIndex = 2;
-            this.lblDanhSach.Text = "DANH SACH PHUONG TIEN TAM GIAM";
+            this.lblTitleDanhSach.AutoSize = true;
+            this.lblTitleDanhSach.Location = new System.Drawing.Point(481, 33);
+            this.lblTitleDanhSach.Name = "lblTitleDanhSach";
+            this.lblTitleDanhSach.Size = new System.Drawing.Size(212, 12);
+            this.lblTitleDanhSach.TabIndex = 2;
+            this.lblTitleDanhSach.Text = "DANH SACH PHUONG TIEN TAM GIAM";
             // 
-            // FormDanhSach
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(1124, 321);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 77);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Edit";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // FormList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 601);
-            this.Controls.Add(this.lblDanhSach);
+            this.Controls.Add(this.lblTitleDanhSach);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnChooseFile);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "FormDanhSach";
+            this.Name = "FormList";
             this.Text = "FormDanhSach";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -109,6 +120,7 @@
         private System.Windows.Forms.Button btnChooseFile;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Label lblDanhSach;
+        private System.Windows.Forms.Label lblTitleDanhSach;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
