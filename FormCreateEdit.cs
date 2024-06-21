@@ -33,9 +33,14 @@ namespace DetentionManageApp
             {
                 GenerateMaTamGiam();
             }
-            btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Chỉnh sửa";
+            btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Cập nhật";
+            lblTitleThongTin.Text = formMode == FormMode.Create ? "Tạo mới thông tin" : "Chỉnh sửa thông tin";
             btnCancel.Text = "Hủy bỏ";
             txtMaTamGiam.Enabled = false;
+
+            // Thêm các giá trị cho ComboBox Giới Tính
+            cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ", "Khác" });
+            cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
         }
 
         public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
@@ -49,6 +54,8 @@ namespace DetentionManageApp
             txtHo.Text = selectedRow.Cells["Họ"].Value.ToString();
             txtTen.Text = selectedRow.Cells["Tên"].Value.ToString();
             txtCCCD.Text = selectedRow.Cells["CCCD"].Value.ToString();
+            dtpNgaySinh.Value = DateTime.Parse(selectedRow.Cells["Ngày sinh"].Value.ToString());
+            cbGioiTinh.SelectedItem = selectedRow.Cells["Giới tính"].Value.ToString();
             txtSDT.Text = selectedRow.Cells["SĐT"].Value.ToString();
             txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
             dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
@@ -120,6 +127,8 @@ namespace DetentionManageApp
                 detentionData.Columns.Add("Họ");
                 detentionData.Columns.Add("Tên");
                 detentionData.Columns.Add("CCCD");
+                detentionData.Columns.Add("Ngày sinh");
+                detentionData.Columns.Add("Giới tính");
                 detentionData.Columns.Add("SĐT");
                 detentionData.Columns.Add("Địa chỉ");
                 detentionData.Columns.Add("Ngày bắt đầu");
@@ -131,6 +140,8 @@ namespace DetentionManageApp
                 row["Họ"] = txtHo.Text;
                 row["Tên"] = txtTen.Text;
                 row["CCCD"] = txtCCCD.Text;
+                row["Ngày sinh"] = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
+                row["Giới tính"] = cbGioiTinh.SelectedItem.ToString();
                 row["SĐT"] = txtSDT.Text;
                 row["Địa chỉ"] = txtDiaChi.Text;
                 row["Ngày bắt đầu"] = dtpNgayBatDauTamGiam.Value.ToString("yyyy-MM-dd");
@@ -152,7 +163,6 @@ namespace DetentionManageApp
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
     }
 
 }
