@@ -48,17 +48,15 @@ namespace DetentionManageApp
                     return;
                 }
 
-                var nearEndVehicles = worksheet.Cells[2, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column]
+                var nearEndCount = worksheet.Cells[2, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column]
                     .Where(cell => cell.Start.Column == worksheet.Dimension.End.Column &&
                                    DateTime.TryParse(cell.Text, out DateTime endDate) &&
                                    (endDate - DateTime.Now).TotalDays < 5)
-                    .Select(cell => worksheet.Cells[cell.Start.Row, 1, cell.Start.Row, worksheet.Dimension.End.Column].Select(c => c.Text).ToList())
-                    .ToList();
+                    .Count();
 
-                if (nearEndVehicles.Any())
+                if (nearEndCount > 0)
                 {
-                    string message = "Các phương tiện sau đây có ngày kết thúc tạm giam dưới 5 ngày:\n" +
-                                     string.Join("\n", nearEndVehicles.Select(v => string.Join(", ", v)));
+                    string message = $"Có [ {nearEndCount} ] Mã tạm giam có ngày kết thúc tạm giam dưới 5 ngày.";
                     MessageBox.Show(message, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }

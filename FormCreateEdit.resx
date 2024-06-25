@@ -117,4 +117,664 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblMaTamGiam.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblMaTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblMaTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 72</value>
+  </data>
+  <data name="lblMaTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="lblMaTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblMaTamGiam.Text" xml:space="preserve">
+    <value>Mã tạm giam</value>
+  </data>
+  <data name="&gt;&gt;lblMaTamGiam.Name" xml:space="preserve">
+    <value>lblMaTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblMaTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMaTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblMaTamGiam.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="txtMaTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtMaTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 100</value>
+  </data>
+  <data name="txtMaTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="txtMaTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtMaTamGiam.Name" xml:space="preserve">
+    <value>txtMaTamGiam</value>
+  </data>
+  <data name="&gt;&gt;txtMaTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMaTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtMaTamGiam.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="lblHo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblHo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblHo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 151</value>
+  </data>
+  <data name="lblHo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 22</value>
+  </data>
+  <data name="lblHo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblHo.Text" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="&gt;&gt;lblHo.Name" xml:space="preserve">
+    <value>lblHo</value>
+  </data>
+  <data name="&gt;&gt;lblHo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblHo.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="txtHo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtHo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 179</value>
+  </data>
+  <data name="txtHo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="txtHo.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtHo.Name" xml:space="preserve">
+    <value>txtHo</value>
+  </data>
+  <data name="&gt;&gt;txtHo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtHo.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="lblTen.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTen.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblTen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 151</value>
+  </data>
+  <data name="lblTen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 22</value>
+  </data>
+  <data name="lblTen.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTen.Text" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="&gt;&gt;lblTen.Name" xml:space="preserve">
+    <value>lblTen</value>
+  </data>
+  <data name="&gt;&gt;lblTen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblTen.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="txtTen.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtTen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 179</value>
+  </data>
+  <data name="txtTen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="txtTen.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtTen.Name" xml:space="preserve">
+    <value>txtTen</value>
+  </data>
+  <data name="&gt;&gt;txtTen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtTen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtTen.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="lblSDT.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSDT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblSDT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 315</value>
+  </data>
+  <data name="lblSDT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 22</value>
+  </data>
+  <data name="lblSDT.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblSDT.Text" xml:space="preserve">
+    <value>SĐT</value>
+  </data>
+  <data name="&gt;&gt;lblSDT.Name" xml:space="preserve">
+    <value>lblSDT</value>
+  </data>
+  <data name="&gt;&gt;lblSDT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSDT.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblSDT.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="txtSDT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtSDT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 343</value>
+  </data>
+  <data name="txtSDT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="txtSDT.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;txtSDT.Name" xml:space="preserve">
+    <value>txtSDT</value>
+  </data>
+  <data name="&gt;&gt;txtSDT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSDT.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtSDT.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lblCCCD.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCCCD.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblCCCD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 232</value>
+  </data>
+  <data name="lblCCCD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 22</value>
+  </data>
+  <data name="lblCCCD.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblCCCD.Text" xml:space="preserve">
+    <value>CCCD</value>
+  </data>
+  <data name="&gt;&gt;lblCCCD.Name" xml:space="preserve">
+    <value>lblCCCD</value>
+  </data>
+  <data name="&gt;&gt;lblCCCD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCCCD.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblCCCD.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtCCCD.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtCCCD.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 260</value>
+  </data>
+  <data name="txtCCCD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="txtCCCD.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtCCCD.Name" xml:space="preserve">
+    <value>txtCCCD</value>
+  </data>
+  <data name="&gt;&gt;txtCCCD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCCCD.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtCCCD.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 489</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgayBatDauTamGiam.Text" xml:space="preserve">
+    <value>Ngày bắt đầu tạm giam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauTamGiam.Name" xml:space="preserve">
+    <value>lblNgayBatDauTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauTamGiam.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 489</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 22</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgayKetThucTamGiam.Text" xml:space="preserve">
+    <value>Ngày kết thúc tạm giam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayKetThucTamGiam.Name" xml:space="preserve">
+    <value>lblNgayKetThucTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayKetThucTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgayKetThucTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblNgayKetThucTamGiam.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="lblDiaChi.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDiaChi.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblDiaChi.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 400</value>
+  </data>
+  <data name="lblDiaChi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 22</value>
+  </data>
+  <data name="lblDiaChi.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDiaChi.Text" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="&gt;&gt;lblDiaChi.Name" xml:space="preserve">
+    <value>lblDiaChi</value>
+  </data>
+  <data name="&gt;&gt;lblDiaChi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDiaChi.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblDiaChi.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtDiaChi.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtDiaChi.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 428</value>
+  </data>
+  <data name="txtDiaChi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>485, 29</value>
+  </data>
+  <data name="txtDiaChi.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;txtDiaChi.Name" xml:space="preserve">
+    <value>txtDiaChi</value>
+  </data>
+  <data name="&gt;&gt;txtDiaChi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDiaChi.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtDiaChi.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="dtpNgayBatDauTamGiam.CustomFormat" xml:space="preserve">
+    <value>dd-MM-yyyy</value>
+  </data>
+  <data name="dtpNgayBatDauTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpNgayBatDauTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 518</value>
+  </data>
+  <data name="dtpNgayBatDauTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="dtpNgayBatDauTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauTamGiam.Name" xml:space="preserve">
+    <value>dtpNgayBatDauTamGiam</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauTamGiam.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="dtpNgayKetThucTamGiam.CustomFormat" xml:space="preserve">
+    <value>dd-MM-yyyy</value>
+  </data>
+  <data name="dtpNgayKetThucTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpNgayKetThucTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 518</value>
+  </data>
+  <data name="dtpNgayKetThucTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="dtpNgayKetThucTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayKetThucTamGiam.Name" xml:space="preserve">
+    <value>dtpNgayKetThucTamGiam</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayKetThucTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayKetThucTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayKetThucTamGiam.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnSave.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 612</value>
+  </data>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 50</value>
+  </data>
+  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
+    <value>btnSave</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>339, 612</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 50</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblTitleThongTin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTitleThongTin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 21.75pt, style=Bold</value>
+  </data>
+  <data name="lblTitleThongTin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 23</value>
+  </data>
+  <data name="lblTitleThongTin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 32</value>
+  </data>
+  <data name="lblTitleThongTin.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTitleThongTin.Text" xml:space="preserve">
+    <value>TITLE THÔNG TIN</value>
+  </data>
+  <data name="&gt;&gt;lblTitleThongTin.Name" xml:space="preserve">
+    <value>lblTitleThongTin</value>
+  </data>
+  <data name="&gt;&gt;lblTitleThongTin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTitleThongTin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblTitleThongTin.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="lblNgaySinh.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgaySinh.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgaySinh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 232</value>
+  </data>
+  <data name="lblNgaySinh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 22</value>
+  </data>
+  <data name="lblNgaySinh.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgaySinh.Text" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="&gt;&gt;lblNgaySinh.Name" xml:space="preserve">
+    <value>lblNgaySinh</value>
+  </data>
+  <data name="&gt;&gt;lblNgaySinh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgaySinh.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblNgaySinh.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="dtpNgaySinh.CustomFormat" xml:space="preserve">
+    <value>dd-MM-yyyy</value>
+  </data>
+  <data name="dtpNgaySinh.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpNgaySinh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>305, 260</value>
+  </data>
+  <data name="dtpNgaySinh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="dtpNgaySinh.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;dtpNgaySinh.Name" xml:space="preserve">
+    <value>dtpNgaySinh</value>
+  </data>
+  <data name="&gt;&gt;dtpNgaySinh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpNgaySinh.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtpNgaySinh.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbGioiTinh.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cbGioiTinh.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="cbGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 343</value>
+  </data>
+  <data name="cbGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 29</value>
+  </data>
+  <data name="cbGioiTinh.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;cbGioiTinh.Name" xml:space="preserve">
+    <value>cbGioiTinh</value>
+  </data>
+  <data name="&gt;&gt;cbGioiTinh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbGioiTinh.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbGioiTinh.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblGioiTinh.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblGioiTinh.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 315</value>
+  </data>
+  <data name="lblGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 22</value>
+  </data>
+  <data name="lblGioiTinh.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblGioiTinh.Text" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="&gt;&gt;lblGioiTinh.Name" xml:space="preserve">
+    <value>lblGioiTinh</value>
+  </data>
+  <data name="&gt;&gt;lblGioiTinh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblGioiTinh.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblGioiTinh.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>584, 691</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Tạo mới ・ Chỉnh sửa</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormCreateEdit</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

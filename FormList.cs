@@ -17,6 +17,7 @@ namespace DetentionManageApp
     public partial class FormList : Form
     {
         private string excelFilePath;
+        private DataTable dataTable;
         private BindingSource bindingSource = new BindingSource();
 
         public FormList()
@@ -46,26 +47,40 @@ namespace DetentionManageApp
 
         private void btnChooseFile_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    excelFilePath = openFileDialog.FileName;
-                    SaveExcelFilePath();
-                    LoadDataFromExcel();
+                    openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        excelFilePath = openFileDialog.FileName;
+                        SaveExcelFilePath();
+                        LoadDataFromExcel();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void LoadExcelFilePath()
         {
-            string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
-            if (File.Exists(jsonFilePath))
+            try
             {
-                string jsonContent = File.ReadAllText(jsonFilePath);
-                dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
-                excelFilePath = jsonData.ExcelFilePath;
+                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                if (File.Exists(jsonFilePath))
+                {
+                    string jsonContent = File.ReadAllText(jsonFilePath);
+                    dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+                    excelFilePath = jsonData.ExcelFilePath;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy Excel file path: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -90,7 +105,7 @@ namespace DetentionManageApp
                         return;
                     }
 
-                    var dataTable = new DataTable();
+                    dataTable = new DataTable();
 
                     foreach (var firstRowCell in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
                     {
@@ -124,26 +139,35 @@ namespace DetentionManageApp
                     // Sort and highlight rows
                     dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc"], ListSortDirection.Ascending);
                     HighlightRows();
+                    dataGridView1.ClearSelection();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu từ Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void HighlightRows()
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            try
             {
-                var cellValue = row.Cells["Ngày kết thúc"].Value;
-                if (cellValue != null && DateTime.TryParse(cellValue.ToString(), out DateTime endDate))
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if ((endDate - DateTime.Now).TotalDays < 5)
+                    var cellValue = row.Cells["Ngày kết thúc"].Value;
+                    if (cellValue != null && DateTime.TryParse(cellValue.ToString(), out DateTime endDate))
                     {
-                        row.DefaultCellStyle.BackColor = Color.Red;
+                        if ((endDate - DateTime.Now).TotalDays < 5)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Red;
+                            row.DefaultCellStyle.ForeColor = Color.White;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi kiểm tra Ngày kết thúc: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -221,68 +245,82 @@ namespace DetentionManageApp
 
         private void CreateNewDataToExcel(DataTable newData)
         {
-            using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
+            try
             {
-                var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("Sheet1");
-
-                // Nếu không có dữ liệu trong file, thêm tiêu đề
-                if (worksheet.Dimension == null)
+                using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
                 {
-                    for (int col = 1; col <= newData.Columns.Count; col++)
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("Sheet1");
+
+                    // Nếu không có dữ liệu trong file, thêm tiêu đề
+                    if (worksheet.Dimension == null)
                     {
-                        worksheet.Cells[1, col].Value = newData.Columns[col - 1].ColumnName;
+                        for (int col = 1; col <= newData.Columns.Count; col++)
+                        {
+                            worksheet.Cells[1, col].Value = newData.Columns[col - 1].ColumnName;
+                        }
                     }
-                }
 
-                // Tìm dòng cuối cùng trong file
-                int lastUsedRow = worksheet.Dimension?.End.Row ?? 0;
+                    // Tìm dòng cuối cùng trong file
+                    int lastUsedRow = worksheet.Dimension?.End.Row ?? 0;
 
-                // Thêm dữ liệu mới vào từ dòng tiếp theo
-                for (int row = 0; row < newData.Rows.Count; row++)
-                {
-                    for (int col = 0; col < newData.Columns.Count; col++)
+                    // Thêm dữ liệu mới vào từ dòng tiếp theo
+                    for (int row = 0; row < newData.Rows.Count; row++)
                     {
-                        worksheet.Cells[lastUsedRow + row + 1, col + 1].Value = newData.Rows[row][col];
+                        for (int col = 0; col < newData.Columns.Count; col++)
+                        {
+                            worksheet.Cells[lastUsedRow + row + 1, col + 1].Value = newData.Rows[row][col];
+                        }
                     }
-                }
 
-                package.Save();
+                    package.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
         private void UpdateDataInExcel(DataTable updatedData)
         {
-            using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
+            try
             {
-                var worksheet = package.Workbook.Worksheets.FirstOrDefault();
-                if (worksheet == null)
+                using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
                 {
-                    throw new Exception("Không tìm thấy worksheet.");
-                }
-
-                string maTamGiam = updatedData.Rows[0]["Mã tạm giam"].ToString();
-                int rowIndex = -1;
-
-                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
-                {
-                    if (worksheet.Cells[row, 2].Value.ToString() == maTamGiam)
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (worksheet == null)
                     {
-                        rowIndex = row;
-                        break;
+                        throw new Exception("Không tìm thấy worksheet.");
                     }
-                }
 
-                if (rowIndex == -1)
-                {
-                    throw new Exception("Không tìm thấy Mã tạm giam để cập nhật.");
-                }
+                    string maTamGiam = updatedData.Rows[0]["Mã tạm giam"].ToString();
+                    int rowIndex = -1;
 
-                for (int col = 1; col <= updatedData.Columns.Count; col++)
-                {
-                    worksheet.Cells[rowIndex, col].Value = updatedData.Rows[0][col - 1];
-                }
+                    for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        if (worksheet.Cells[row, 2].Value.ToString() == maTamGiam)
+                        {
+                            rowIndex = row;
+                            break;
+                        }
+                    }
 
-                package.Save();
+                    if (rowIndex == -1)
+                    {
+                        throw new Exception("Không tìm thấy Mã tạm giam để cập nhật.");
+                    }
+
+                    for (int col = 1; col <= updatedData.Columns.Count; col++)
+                    {
+                        worksheet.Cells[rowIndex, col].Value = updatedData.Rows[0][col - 1];
+                    }
+
+                    package.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -323,36 +361,98 @@ namespace DetentionManageApp
             }
             catch (Exception ex)
             {
-                throw new Exception("Lỗi khi xóa dữ liệu: " + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
         private bool CheckMaTamGiamExist(DataTable newData)
         {
-            string newMaTamGiam = newData.Rows[0]["Mã tạm giam"].ToString();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            try
             {
-                var cellValue = row.Cells["Mã tạm giam"].Value;
-                if (cellValue != null && cellValue.ToString() == newMaTamGiam)
+                string newMaTamGiam = newData.Rows[0]["Mã tạm giam"].ToString();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    return true;
+                    var cellValue = row.Cells["Mã tạm giam"].Value;
+                    if (cellValue != null && cellValue.ToString() == newMaTamGiam)
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            catch (Exception ex) 
+            { 
+                throw new Exception(ex.Message); 
+            }
         }
 
 
         private void SaveExcelFilePath()
         {
-            string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
-            dynamic jsonData = new { ExcelFilePath = excelFilePath };
-            string jsonContent = JsonConvert.SerializeObject(jsonData);
-            File.WriteAllText(jsonFilePath, jsonContent);
+            try
+            {
+                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                dynamic jsonData = new { ExcelFilePath = excelFilePath };
+                string jsonContent = JsonConvert.SerializeObject(jsonData);
+                File.WriteAllText(jsonFilePath, jsonContent);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         private void FormList_Resize(object sender, EventArgs e)
         {
             lblTitleDanhSach.Location = new Point((this.ClientSize.Width - lblTitleDanhSach.Width) / 2, 30);
+        }
+
+        private void FormList_Load(object sender, EventArgs e)
+        {
+            HighlightRows();
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            HighlightRows();
+            dataGridView1.ClearSelection();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            FilterData(txtSearch.Text);
+        }
+
+        private void FilterData(string searchText)
+        {
+            if (dataTable == null)
+                return;
+
+            var filteredTable = dataTable.Clone();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    if (row[col].ToString().IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        filteredTable.ImportRow(row);
+                        break;
+                    }
+                }
+            }
+            dataGridView1.DataSource = filteredTable;
+
+            // Sort and highlight rows
+            dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc"], ListSortDirection.Ascending);
+            HighlightRows();
+            dataGridView1.ClearSelection();
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            LoadDataFromExcel();
         }
     }
 }
