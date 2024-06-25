@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateEdit));
             this.lblMaTamGiam = new System.Windows.Forms.Label();
             this.txtMaTamGiam = new System.Windows.Forms.TextBox();
             this.lblHo = new System.Windows.Forms.Label();
@@ -55,228 +56,137 @@
             // 
             // lblMaTamGiam
             // 
-            this.lblMaTamGiam.AutoSize = true;
-            this.lblMaTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaTamGiam.Location = new System.Drawing.Point(51, 72);
+            resources.ApplyResources(this.lblMaTamGiam, "lblMaTamGiam");
             this.lblMaTamGiam.Name = "lblMaTamGiam";
-            this.lblMaTamGiam.Size = new System.Drawing.Size(119, 22);
-            this.lblMaTamGiam.TabIndex = 0;
-            this.lblMaTamGiam.Text = "Mã tạm giam";
             // 
             // txtMaTamGiam
             // 
-            this.txtMaTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaTamGiam.Location = new System.Drawing.Point(50, 100);
+            resources.ApplyResources(this.txtMaTamGiam, "txtMaTamGiam");
             this.txtMaTamGiam.Name = "txtMaTamGiam";
-            this.txtMaTamGiam.Size = new System.Drawing.Size(230, 29);
-            this.txtMaTamGiam.TabIndex = 1;
             // 
             // lblHo
             // 
-            this.lblHo.AutoSize = true;
-            this.lblHo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHo.Location = new System.Drawing.Point(51, 151);
+            resources.ApplyResources(this.lblHo, "lblHo");
             this.lblHo.Name = "lblHo";
-            this.lblHo.Size = new System.Drawing.Size(34, 22);
-            this.lblHo.TabIndex = 0;
-            this.lblHo.Text = "Họ";
             // 
             // txtHo
             // 
-            this.txtHo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHo.Location = new System.Drawing.Point(50, 179);
+            resources.ApplyResources(this.txtHo, "txtHo");
             this.txtHo.Name = "txtHo";
-            this.txtHo.Size = new System.Drawing.Size(230, 29);
-            this.txtHo.TabIndex = 2;
             // 
             // lblTen
             // 
-            this.lblTen.AutoSize = true;
-            this.lblTen.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTen.Location = new System.Drawing.Point(306, 151);
+            resources.ApplyResources(this.lblTen, "lblTen");
             this.lblTen.Name = "lblTen";
-            this.lblTen.Size = new System.Drawing.Size(42, 22);
-            this.lblTen.TabIndex = 0;
-            this.lblTen.Text = "Tên";
             // 
             // txtTen
             // 
-            this.txtTen.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTen.Location = new System.Drawing.Point(305, 179);
+            resources.ApplyResources(this.txtTen, "txtTen");
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(230, 29);
-            this.txtTen.TabIndex = 3;
             // 
             // lblSDT
             // 
-            this.lblSDT.AutoSize = true;
-            this.lblSDT.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSDT.Location = new System.Drawing.Point(306, 315);
+            resources.ApplyResources(this.lblSDT, "lblSDT");
             this.lblSDT.Name = "lblSDT";
-            this.lblSDT.Size = new System.Drawing.Size(48, 22);
-            this.lblSDT.TabIndex = 0;
-            this.lblSDT.Text = "SĐT";
             // 
             // txtSDT
             // 
-            this.txtSDT.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(305, 343);
+            resources.ApplyResources(this.txtSDT, "txtSDT");
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(230, 29);
-            this.txtSDT.TabIndex = 5;
             // 
             // lblCCCD
             // 
-            this.lblCCCD.AutoSize = true;
-            this.lblCCCD.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCCCD.Location = new System.Drawing.Point(51, 232);
+            resources.ApplyResources(this.lblCCCD, "lblCCCD");
             this.lblCCCD.Name = "lblCCCD";
-            this.lblCCCD.Size = new System.Drawing.Size(66, 22);
-            this.lblCCCD.TabIndex = 0;
-            this.lblCCCD.Text = "CCCD";
             // 
             // txtCCCD
             // 
-            this.txtCCCD.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCCCD.Location = new System.Drawing.Point(50, 260);
+            resources.ApplyResources(this.txtCCCD, "txtCCCD");
             this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(230, 29);
-            this.txtCCCD.TabIndex = 4;
             // 
             // lblNgayBatDauTamGiam
             // 
-            this.lblNgayBatDauTamGiam.AutoSize = true;
-            this.lblNgayBatDauTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgayBatDauTamGiam.Location = new System.Drawing.Point(51, 489);
+            resources.ApplyResources(this.lblNgayBatDauTamGiam, "lblNgayBatDauTamGiam");
             this.lblNgayBatDauTamGiam.Name = "lblNgayBatDauTamGiam";
-            this.lblNgayBatDauTamGiam.Size = new System.Drawing.Size(200, 22);
-            this.lblNgayBatDauTamGiam.TabIndex = 0;
-            this.lblNgayBatDauTamGiam.Text = "Ngày bắt đầu tạm giam";
             // 
             // lblNgayKetThucTamGiam
             // 
-            this.lblNgayKetThucTamGiam.AutoSize = true;
-            this.lblNgayKetThucTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgayKetThucTamGiam.Location = new System.Drawing.Point(306, 489);
+            resources.ApplyResources(this.lblNgayKetThucTamGiam, "lblNgayKetThucTamGiam");
             this.lblNgayKetThucTamGiam.Name = "lblNgayKetThucTamGiam";
-            this.lblNgayKetThucTamGiam.Size = new System.Drawing.Size(205, 22);
-            this.lblNgayKetThucTamGiam.TabIndex = 0;
-            this.lblNgayKetThucTamGiam.Text = "Ngày kết thúc tạm giam";
             // 
             // lblDiaChi
             // 
-            this.lblDiaChi.AutoSize = true;
-            this.lblDiaChi.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiaChi.Location = new System.Drawing.Point(51, 400);
+            resources.ApplyResources(this.lblDiaChi, "lblDiaChi");
             this.lblDiaChi.Name = "lblDiaChi";
-            this.lblDiaChi.Size = new System.Drawing.Size(68, 22);
-            this.lblDiaChi.TabIndex = 0;
-            this.lblDiaChi.Text = "Địa chỉ";
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiaChi.Location = new System.Drawing.Point(50, 428);
+            resources.ApplyResources(this.txtDiaChi, "txtDiaChi");
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(485, 29);
-            this.txtDiaChi.TabIndex = 7;
             // 
             // dtpNgayBatDauTamGiam
             // 
-            this.dtpNgayBatDauTamGiam.CustomFormat = "dd-MM-yyyy";
-            this.dtpNgayBatDauTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNgayBatDauTamGiam.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayBatDauTamGiam, "dtpNgayBatDauTamGiam");
             this.dtpNgayBatDauTamGiam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayBatDauTamGiam.Location = new System.Drawing.Point(50, 518);
             this.dtpNgayBatDauTamGiam.Name = "dtpNgayBatDauTamGiam";
-            this.dtpNgayBatDauTamGiam.Size = new System.Drawing.Size(230, 29);
-            this.dtpNgayBatDauTamGiam.TabIndex = 8;
             // 
             // dtpNgayKetThucTamGiam
             // 
-            this.dtpNgayKetThucTamGiam.CustomFormat = "dd-MM-yyyy";
-            this.dtpNgayKetThucTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNgayKetThucTamGiam.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayKetThucTamGiam, "dtpNgayKetThucTamGiam");
             this.dtpNgayKetThucTamGiam.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgayKetThucTamGiam.Location = new System.Drawing.Point(305, 518);
             this.dtpNgayKetThucTamGiam.Name = "dtpNgayKetThucTamGiam";
-            this.dtpNgayKetThucTamGiam.Size = new System.Drawing.Size(230, 29);
-            this.dtpNgayKetThucTamGiam.TabIndex = 9;
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(89, 612);
+            resources.ApplyResources(this.btnSave, "btnSave");
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(150, 50);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(339, 612);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 50);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblTitleThongTin
             // 
-            this.lblTitleThongTin.AutoSize = true;
-            this.lblTitleThongTin.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleThongTin.Location = new System.Drawing.Point(187, 23);
+            resources.ApplyResources(this.lblTitleThongTin, "lblTitleThongTin");
             this.lblTitleThongTin.Name = "lblTitleThongTin";
-            this.lblTitleThongTin.Size = new System.Drawing.Size(266, 32);
-            this.lblTitleThongTin.TabIndex = 0;
-            this.lblTitleThongTin.Text = "TITLE THÔNG TIN";
             // 
             // lblNgaySinh
             // 
-            this.lblNgaySinh.AutoSize = true;
-            this.lblNgaySinh.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNgaySinh.Location = new System.Drawing.Point(306, 232);
+            resources.ApplyResources(this.lblNgaySinh, "lblNgaySinh");
             this.lblNgaySinh.Name = "lblNgaySinh";
-            this.lblNgaySinh.Size = new System.Drawing.Size(91, 22);
-            this.lblNgaySinh.TabIndex = 0;
-            this.lblNgaySinh.Text = "Ngày sinh";
             // 
             // dtpNgaySinh
             // 
-            this.dtpNgaySinh.CustomFormat = "dd-MM-yyyy";
-            this.dtpNgaySinh.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNgaySinh.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgaySinh, "dtpNgaySinh");
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpNgaySinh.Location = new System.Drawing.Point(305, 260);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(230, 29);
-            this.dtpNgaySinh.TabIndex = 8;
             // 
             // cbGioiTinh
             // 
-            this.cbGioiTinh.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGioiTinh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbGioiTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbGioiTinh, "cbGioiTinh");
             this.cbGioiTinh.FormattingEnabled = true;
-            this.cbGioiTinh.Location = new System.Drawing.Point(50, 343);
             this.cbGioiTinh.Name = "cbGioiTinh";
-            this.cbGioiTinh.Size = new System.Drawing.Size(230, 29);
-            this.cbGioiTinh.TabIndex = 12;
             // 
             // lblGioiTinh
             // 
-            this.lblGioiTinh.AutoSize = true;
-            this.lblGioiTinh.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGioiTinh.Location = new System.Drawing.Point(51, 315);
+            resources.ApplyResources(this.lblGioiTinh, "lblGioiTinh");
             this.lblGioiTinh.Name = "lblGioiTinh";
-            this.lblGioiTinh.Size = new System.Drawing.Size(82, 22);
-            this.lblGioiTinh.TabIndex = 0;
-            this.lblGioiTinh.Text = "Giới tính";
             // 
             // FormCreateEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 691);
+            this.ControlBox = false;
             this.Controls.Add(this.cbGioiTinh);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -300,9 +210,10 @@
             this.Controls.Add(this.txtMaTamGiam);
             this.Controls.Add(this.lblTitleThongTin);
             this.Controls.Add(this.lblMaTamGiam);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormCreateEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tạo mới ・ Chỉnh sửa";
             this.ResumeLayout(false);
             this.PerformLayout();
 

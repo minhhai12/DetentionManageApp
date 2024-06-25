@@ -41,6 +41,9 @@ namespace DetentionManageApp
             // Thêm các giá trị cho ComboBox Giới Tính
             cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ", "Khác" });
             cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
+
+            // Đặt giá trị mặc định cho dtpNgaySinh
+            dtpNgaySinh.Value = new DateTime(1990, 1, 1);
         }
 
         public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
@@ -50,61 +53,75 @@ namespace DetentionManageApp
 
         private void LoadData(DataGridViewRow selectedRow)
         {
-            txtMaTamGiam.Text = selectedRow.Cells["Mã tạm giam"].Value.ToString();
-            txtHo.Text = selectedRow.Cells["Họ"].Value.ToString();
-            txtTen.Text = selectedRow.Cells["Tên"].Value.ToString();
-            txtCCCD.Text = selectedRow.Cells["CCCD"].Value.ToString();
-            dtpNgaySinh.Value = DateTime.Parse(selectedRow.Cells["Ngày sinh"].Value.ToString());
-            cbGioiTinh.SelectedItem = selectedRow.Cells["Giới tính"].Value.ToString();
-            txtSDT.Text = selectedRow.Cells["SĐT"].Value.ToString();
-            txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
-            dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
-            dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày kết thúc"].Value.ToString());
+            try
+            {
+                txtMaTamGiam.Text = selectedRow.Cells["Mã tạm giam"].Value.ToString();
+                txtHo.Text = selectedRow.Cells["Họ"].Value.ToString();
+                txtTen.Text = selectedRow.Cells["Tên"].Value.ToString();
+                txtCCCD.Text = selectedRow.Cells["CCCD"].Value.ToString();
+                dtpNgaySinh.Value = DateTime.Parse(selectedRow.Cells["Ngày sinh"].Value.ToString());
+                cbGioiTinh.SelectedItem = selectedRow.Cells["Giới tính"].Value.ToString();
+                txtSDT.Text = selectedRow.Cells["SĐT"].Value.ToString();
+                txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
+                dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
+                dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày kết thúc"].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void GenerateMaTamGiam()
         {
-            string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
-            string filePath = "";
-            if (File.Exists(jsonFilePath))
-            {
-                string jsonContent = File.ReadAllText(jsonFilePath);
-                dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
-                filePath = jsonData.ExcelFilePath;
-            }
-
-            var existingNumbers = new HashSet<int>();
-
-            using (var package = new ExcelPackage(new FileInfo(filePath)))
-            {
-                var worksheet = package.Workbook.Worksheets.FirstOrDefault();
-                if (worksheet == null || worksheet.Dimension == null)
+            try 
+            { 
+                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                string filePath = "";
+                if (File.Exists(jsonFilePath))
                 {
-                    txtMaTamGiam.Text = "MTG00001";
-                    return;
+                    string jsonContent = File.ReadAllText(jsonFilePath);
+                    dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+                    filePath = jsonData.ExcelFilePath;
                 }
 
-                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                var existingNumbers = new HashSet<int>();
+
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
                 {
-                    var cellValue = worksheet.Cells[row, 2].Value?.ToString();
-                    if (cellValue != null && cellValue.StartsWith("MTG"))
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (worksheet == null || worksheet.Dimension == null)
                     {
-                        if (int.TryParse(cellValue.Substring(3), out int number))
+                        txtMaTamGiam.Text = "MTG00001";
+                        return;
+                    }
+
+                    for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        var cellValue = worksheet.Cells[row, 2].Value?.ToString();
+                        if (cellValue != null && cellValue.StartsWith("MTG"))
                         {
-                            existingNumbers.Add(number);
+                            if (int.TryParse(cellValue.Substring(3), out int number))
+                            {
+                                existingNumbers.Add(number);
+                            }
                         }
                     }
                 }
-            }
 
-            // Tìm số thiếu đầu tiên
-            int newMaTamGiam = 1;
-            while (existingNumbers.Contains(newMaTamGiam))
+                // Tìm số thiếu đầu tiên
+                int newMaTamGiam = 1;
+                while (existingNumbers.Contains(newMaTamGiam))
+                {
+                    newMaTamGiam++;
+                }
+
+                txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
+            }
+            catch (Exception ex)
             {
-                newMaTamGiam++;
+                MessageBox.Show("Lỗi khi tạo Mã tạm giam: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -116,7 +133,7 @@ namespace DetentionManageApp
 
                 if (ngayBatDau > ngayKetThuc)
                 {
-                    MessageBox.Show("[Ngày bắt đầu tạm giam] phải nhỏ hơn hoặc bằng [Ngày kết thúc tạm giam]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("[ Ngày bắt đầu tạm giam ] phải nhỏ hơn [ Ngày kết thúc tạm giam ]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
