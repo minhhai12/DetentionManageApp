@@ -17,9 +17,9 @@ namespace DetentionManageApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            //OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-            CheckVehicleEndDates();
+            //CheckVehicleEndDates();
             Application.Run(new FormList());
         }
 
