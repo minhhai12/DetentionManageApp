@@ -73,6 +73,7 @@
             // 
             resources.ApplyResources(this.txtHo, "txtHo");
             this.txtHo.Name = "txtHo";
+            this.txtHo.Leave += new System.EventHandler(this.txtHo_Leave);
             // 
             // lblTen
             // 
@@ -83,6 +84,7 @@
             // 
             resources.ApplyResources(this.txtTen, "txtTen");
             this.txtTen.Name = "txtTen";
+            this.txtTen.Leave += new System.EventHandler(this.txtTen_Leave);
             // 
             // lblSDT
             // 
