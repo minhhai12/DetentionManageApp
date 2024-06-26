@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace DetentionManageApp
         private DataTable dataTable;
         private BindingSource bindingSource = new BindingSource();
 
+        /// <summary>
+        /// Initialization function
+        /// </summary>
         public FormList()
         {
             InitializeComponent();
@@ -31,41 +35,9 @@ namespace DetentionManageApp
             LoadDataFromExcel();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                btnEdit.Enabled = true;
-                btnDelete.Enabled = true;
-            }
-            else
-            {
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
-            }
-        }
-
-        private void btnChooseFile_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                {
-                    openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        excelFilePath = openFileDialog.FileName;
-                        SaveExcelFilePath();
-                        LoadDataFromExcel();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        /// <summary>
+        /// Load Excel file path from json file
+        /// </summary>
         private void LoadExcelFilePath()
         {
             try
@@ -84,6 +56,28 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Save excel file path to json file
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        private void SaveExcelFilePath()
+        {
+            try
+            {
+                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                dynamic jsonData = new { ExcelFilePath = excelFilePath };
+                string jsonContent = JsonConvert.SerializeObject(jsonData);
+                File.WriteAllText(jsonFilePath, jsonContent);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Load data from excel file to show on gridview
+        /// </summary>
         private void LoadDataFromExcel()
         {
             try
@@ -112,6 +106,9 @@ namespace DetentionManageApp
                         dataTable.Columns.Add(firstRowCell.Text);
                     }
 
+                    // Thêm cột tạm thời để lưu trữ DateTime cho việc sắp xếp
+                    dataTable.Columns.Add("Ngày kết thúc (For calculate and sort)", typeof(DateTime));
+
                     for (var rowNumber = 2; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                     {
                         var row = worksheet.Cells[rowNumber, 1, rowNumber, worksheet.Dimension.End.Column];
@@ -120,6 +117,13 @@ namespace DetentionManageApp
                         {
                             newRow[cell.Start.Column - 1] = cell.Text;
                         }
+
+                        // Chuyển đổi "Ngày kết thúc" thành DateTime
+                        if (DateTime.TryParseExact(newRow["Ngày kết thúc"].ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
+                        {
+                            newRow["Ngày kết thúc (For calculate and sort)"] = endDate;
+                        }
+
                         dataTable.Rows.Add(newRow);
                     }
 
@@ -137,17 +141,27 @@ namespace DetentionManageApp
                     dataGridView1.DataSource = dataTable;
 
                     // Sort and highlight rows
-                    dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc"], ListSortDirection.Ascending);
+                    dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"], ListSortDirection.Ascending);
                     HighlightRows();
                     dataGridView1.ClearSelection();
+
+                    // Ẩn cột tạm thời
+                    dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
+                // Xóa dữ liệu từ BindingSource
+                bindingSource.DataSource = null;
+                dataGridView1.DataSource = bindingSource;
+
                 MessageBox.Show("Lỗi dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Set highlight for row that has NgayKetThuc < 5
+        /// </summary>
         private void HighlightRows()
         {
             try
@@ -155,11 +169,11 @@ namespace DetentionManageApp
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     var cellValue = row.Cells["Ngày kết thúc"].Value;
-                    if (cellValue != null && DateTime.TryParse(cellValue.ToString(), out DateTime endDate))
+                    if (cellValue != null && DateTime.TryParseExact(cellValue.ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
                     {
                         if ((endDate - DateTime.Now).TotalDays < 5)
                         {
-                            row.DefaultCellStyle.BackColor = Color.Red;
+                            row.DefaultCellStyle.BackColor = Color.DarkRed;
                             row.DefaultCellStyle.ForeColor = Color.White;
                         }
                     }
@@ -171,78 +185,11 @@ namespace DetentionManageApp
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create);
-            if (createEditForm.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if (!CheckMaTamGiamExist(createEditForm.detentionData))
-                    {
-                        CreateNewDataToExcel(createEditForm.detentionData);
-                        MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataFromExcel();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mã tạm giam đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tạo mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                var selectedRow = dataGridView1.SelectedRows[0];
-                FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, selectedRow);
-                if (createEditForm.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        UpdateDataInExcel(createEditForm.detentionData);
-                        MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataFromExcel();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi sửa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa các dòng đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    try
-                    {
-                        DeleteDataFromExcel();
-                        MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataFromExcel();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi xóa dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn ít nhất một dòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
+        /// <summary>
+        /// Create new data for Create function
+        /// </summary>
+        /// <param name="newData"></param>
+        /// <exception cref="Exception"></exception>
         private void CreateNewDataToExcel(DataTable newData)
         {
             try
@@ -268,7 +215,15 @@ namespace DetentionManageApp
                     {
                         for (int col = 0; col < newData.Columns.Count; col++)
                         {
-                            worksheet.Cells[lastUsedRow + row + 1, col + 1].Value = newData.Rows[row][col];
+                            if (newData.Columns[col].DataType == typeof(DateTime))
+                            {
+                                DateTime dateValue = DateTime.Parse(newData.Rows[row][col].ToString());
+                                worksheet.Cells[lastUsedRow + row + 1, col + 1].Value = dateValue.ToString("dd/MM/yyyy");
+                            }
+                            else
+                            {
+                                worksheet.Cells[lastUsedRow + row + 1, col + 1].Value = newData.Rows[row][col];
+                            }
                         }
                     }
 
@@ -281,6 +236,11 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Update data for Edit function
+        /// </summary>
+        /// <param name="updatedData"></param>
+        /// <exception cref="Exception"></exception>
         private void UpdateDataInExcel(DataTable updatedData)
         {
             try
@@ -312,7 +272,15 @@ namespace DetentionManageApp
 
                     for (int col = 1; col <= updatedData.Columns.Count; col++)
                     {
-                        worksheet.Cells[rowIndex, col].Value = updatedData.Rows[0][col - 1];
+                        if (updatedData.Columns[col - 1].DataType == typeof(DateTime))
+                        {
+                            DateTime dateValue = DateTime.Parse(updatedData.Rows[0][col - 1].ToString());
+                            worksheet.Cells[rowIndex, col].Value = dateValue.ToString("dd/MM/yyyy");
+                        }
+                        else
+                        {
+                            worksheet.Cells[rowIndex, col].Value = updatedData.Rows[0][col - 1];
+                        }
                     }
 
                     package.Save();
@@ -324,6 +292,10 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Delete data for Delete function
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private void DeleteDataFromExcel()
         {
             try
@@ -365,6 +337,12 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Check MaTamGiam exist or not in excel file
+        /// </summary>
+        /// <param name="newData"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private bool CheckMaTamGiamExist(DataTable newData)
         {
             try
@@ -380,50 +358,16 @@ namespace DetentionManageApp
                 }
                 return false;
             }
-            catch (Exception ex) 
-            { 
-                throw new Exception(ex.Message); 
-            }
-        }
-
-
-        private void SaveExcelFilePath()
-        {
-            try
-            {
-                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
-                dynamic jsonData = new { ExcelFilePath = excelFilePath };
-                string jsonContent = JsonConvert.SerializeObject(jsonData);
-                File.WriteAllText(jsonFilePath, jsonContent);
-            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
 
-        private void FormList_Resize(object sender, EventArgs e)
-        {
-            lblTitleDanhSach.Location = new Point((this.ClientSize.Width - lblTitleDanhSach.Width) / 2, 30);
-        }
-
-        private void FormList_Load(object sender, EventArgs e)
-        {
-            HighlightRows();
-            dataGridView1.ClearSelection();
-        }
-
-        private void dataGridView1_Sorted(object sender, EventArgs e)
-        {
-            HighlightRows();
-            dataGridView1.ClearSelection();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            FilterData(txtSearch.Text);
-        }
-
+        /// <summary>
+        /// Filter data for Search func
+        /// </summary>
+        /// <param name="searchText"></param>
         private void FilterData(string searchText)
         {
             if (dataTable == null)
@@ -444,15 +388,177 @@ namespace DetentionManageApp
             dataGridView1.DataSource = filteredTable;
 
             // Sort and highlight rows
-            dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc"], ListSortDirection.Ascending);
+            dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"], ListSortDirection.Ascending);
             HighlightRows();
             dataGridView1.ClearSelection();
+
+            // Ẩn cột tạm thời
+            dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"].Visible = false;
         }
 
+        /// <summary>
+        /// Choose File button Click Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChooseFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        excelFilePath = openFileDialog.FileName;
+                        SaveExcelFilePath();
+                        LoadDataFromExcel();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Clear text in Search box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
             LoadDataFromExcel();
+        }
+
+        /// <summary>
+        /// Create button Click Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create);
+            if (createEditForm.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (!CheckMaTamGiamExist(createEditForm.detentionData))
+                    {
+                        CreateNewDataToExcel(createEditForm.detentionData);
+                        MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataFromExcel();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mã tạm giam đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tạo mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Edit button Click Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView1.SelectedRows[0];
+                FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, selectedRow);
+                if (createEditForm.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        UpdateDataInExcel(createEditForm.detentionData);
+                        MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataFromExcel();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi sửa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete button Click Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa các dòng đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        DeleteDataFromExcel();
+                        MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataFromExcel();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xóa dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một dòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Set Edit and Delete button is disable when has no row is choose
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+            else
+            {
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+        }
+
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            HighlightRows();
+            dataGridView1.ClearSelection();
+        }
+
+        private void FormList_Resize(object sender, EventArgs e)
+        {
+            lblTitleDanhSach.Location = new Point((this.ClientSize.Width - lblTitleDanhSach.Width) / 2, 30);
+        }
+
+        private void FormList_Load(object sender, EventArgs e)
+        {
+            HighlightRows();
+            dataGridView1.ClearSelection();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            FilterData(txtSearch.Text);
         }
     }
 }

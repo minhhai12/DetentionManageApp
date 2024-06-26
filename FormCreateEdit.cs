@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,32 +26,10 @@ namespace DetentionManageApp
             Edit
         }
 
-        public FormCreateEdit(FormMode mode)
-        {
-            InitializeComponent();
-            formMode = mode;
-            if (formMode == FormMode.Create)
-            {
-                GenerateMaTamGiam();
-            }
-            btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Cập nhật";
-            lblTitleThongTin.Text = formMode == FormMode.Create ? "Tạo mới thông tin" : "Chỉnh sửa thông tin";
-            btnCancel.Text = "Hủy bỏ";
-            txtMaTamGiam.Enabled = false;
-
-            // Thêm các giá trị cho ComboBox Giới Tính
-            cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ", "Khác" });
-            cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
-
-            // Đặt giá trị mặc định cho dtpNgaySinh
-            dtpNgaySinh.Value = new DateTime(1990, 1, 1);
-        }
-
-        public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
-        {
-            LoadData(selectedRow);
-        }
-
+        /// <summary>
+        /// Load data after select on edit mode
+        /// </summary>
+        /// <param name="selectedRow"></param>
         private void LoadData(DataGridViewRow selectedRow)
         {
             try
@@ -72,10 +51,13 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Generate new MaTamGiam
+        /// </summary>
         private void GenerateMaTamGiam()
         {
-            try 
-            { 
+            try
+            {
                 string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
                 string filePath = "";
                 if (File.Exists(jsonFilePath))
@@ -124,62 +106,130 @@ namespace DetentionManageApp
             }
         }
 
+        /// <summary>
+        /// Show Create or Edit form base on mode
+        /// </summary>
+        /// <param name="mode"></param>
+        public FormCreateEdit(FormMode mode)
+        {
+            InitializeComponent();
+            formMode = mode;
+            if (formMode == FormMode.Create)
+            {
+                GenerateMaTamGiam();
+            }
+            btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Cập nhật";
+            lblTitleThongTin.Text = formMode == FormMode.Create ? "Tạo mới thông tin" : "Chỉnh sửa thông tin";
+            btnCancel.Text = "Hủy bỏ";
+            txtMaTamGiam.Enabled = false;
+
+            // Thêm các giá trị cho ComboBox Giới Tính
+            cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ", "Khác" });
+            cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
+
+            // Đặt giá trị mặc định cho dtpNgaySinh
+            dtpNgaySinh.Value = new DateTime(1990, 1, 1);
+        }
+
+        public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
+        {
+            LoadData(selectedRow);
+        }
+
+        /// <summary>
+        /// Save button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                DateTime ngayBatDau = dtpNgayBatDauTamGiam.Value;
-                DateTime ngayKetThuc = dtpNgayKetThucTamGiam.Value;
-
-                if (ngayBatDau > ngayKetThuc)
+                try
                 {
-                    MessageBox.Show("[ Ngày bắt đầu tạm giam ] phải nhỏ hơn [ Ngày kết thúc tạm giam ]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    DateTime ngayBatDau = dtpNgayBatDauTamGiam.Value;
+                    DateTime ngayKetThuc = dtpNgayKetThucTamGiam.Value;
+
+                    if (ngayBatDau > ngayKetThuc)
+                    {
+                        MessageBox.Show("[ Ngày bắt đầu tạm giam ] phải nhỏ hơn [ Ngày kết thúc tạm giam ]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Collect data and close form
+                    detentionData = new DataTable();
+                    detentionData.Columns.Add("Ngày nhập");
+                    detentionData.Columns.Add("Mã tạm giam");
+                    detentionData.Columns.Add("Họ");
+                    detentionData.Columns.Add("Tên");
+                    detentionData.Columns.Add("CCCD");
+                    detentionData.Columns.Add("Ngày sinh");
+                    detentionData.Columns.Add("Giới tính");
+                    detentionData.Columns.Add("SĐT");
+                    detentionData.Columns.Add("Địa chỉ");
+                    detentionData.Columns.Add("Ngày bắt đầu");
+                    detentionData.Columns.Add("Ngày kết thúc");
+
+                    DataRow row = detentionData.NewRow();
+                    row["Ngày nhập"] = DateTime.Now.ToString("dd/MM/yyyy");
+                    row["Mã tạm giam"] = txtMaTamGiam.Text.Trim();
+                    row["Họ"] = txtHo.Text.Trim();
+                    row["Tên"] = txtTen.Text.Trim();
+                    row["CCCD"] = txtCCCD.Text.Trim();
+                    row["Ngày sinh"] = dtpNgaySinh.Value.ToString("dd/MM/yyyy");
+                    row["Giới tính"] = cbGioiTinh.SelectedItem.ToString();
+                    row["SĐT"] = txtSDT.Text.Trim();
+                    row["Địa chỉ"] = txtDiaChi.Text.Trim();
+                    row["Ngày bắt đầu"] = dtpNgayBatDauTamGiam.Value.ToString("dd/MM/yyyy");
+                    row["Ngày kết thúc"] = dtpNgayKetThucTamGiam.Value.ToString("dd/MM/yyyy");
+
+                    detentionData.Rows.Add(row);
+
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-
-                // Collect data and close form
-                detentionData = new DataTable();
-                detentionData.Columns.Add("Ngày nhập");
-                detentionData.Columns.Add("Mã tạm giam");
-                detentionData.Columns.Add("Họ");
-                detentionData.Columns.Add("Tên");
-                detentionData.Columns.Add("CCCD");
-                detentionData.Columns.Add("Ngày sinh");
-                detentionData.Columns.Add("Giới tính");
-                detentionData.Columns.Add("SĐT");
-                detentionData.Columns.Add("Địa chỉ");
-                detentionData.Columns.Add("Ngày bắt đầu");
-                detentionData.Columns.Add("Ngày kết thúc");
-
-                DataRow row = detentionData.NewRow();
-                row["Ngày nhập"] = DateTime.Now.ToString("yyyy-MM-dd");
-                row["Mã tạm giam"] = txtMaTamGiam.Text;
-                row["Họ"] = txtHo.Text;
-                row["Tên"] = txtTen.Text;
-                row["CCCD"] = txtCCCD.Text;
-                row["Ngày sinh"] = dtpNgaySinh.Value.ToString("yyyy-MM-dd");
-                row["Giới tính"] = cbGioiTinh.SelectedItem.ToString();
-                row["SĐT"] = txtSDT.Text;
-                row["Địa chỉ"] = txtDiaChi.Text;
-                row["Ngày bắt đầu"] = dtpNgayBatDauTamGiam.Value.ToString("yyyy-MM-dd");
-                row["Ngày kết thúc"] = dtpNgayKetThucTamGiam.Value.ToString("yyyy-MM-dd");
-
-                detentionData.Rows.Add(row);
-
-                DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi lưu thông tin: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi lưu thông tin: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
+        /// <summary>
+        /// Cancel button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        /// <summary>
+        /// Capitalize Each Word
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private string CapitalizeEachWord(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
+        }
+
+        private void txtHo_Leave(object sender, EventArgs e)
+        {
+            txtHo.Text = CapitalizeEachWord(txtHo.Text);
+        }
+
+        private void txtTen_Leave(object sender, EventArgs e)
+        {
+            txtTen.Text = CapitalizeEachWord(txtTen.Text);
+        }
+
     }
 
 }

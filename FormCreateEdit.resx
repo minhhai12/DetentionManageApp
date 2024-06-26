@@ -504,7 +504,7 @@
     <value>6</value>
   </data>
   <data name="dtpNgayBatDauTamGiam.CustomFormat" xml:space="preserve">
-    <value>dd-MM-yyyy</value>
+    <value>dd/MM/yyyy</value>
   </data>
   <data name="dtpNgayBatDauTamGiam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
@@ -531,7 +531,7 @@
     <value>5</value>
   </data>
   <data name="dtpNgayKetThucTamGiam.CustomFormat" xml:space="preserve">
-    <value>dd-MM-yyyy</value>
+    <value>dd/MM/yyyy</value>
   </data>
   <data name="dtpNgayKetThucTamGiam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
@@ -672,7 +672,7 @@
     <value>8</value>
   </data>
   <data name="dtpNgaySinh.CustomFormat" xml:space="preserve">
-    <value>dd-MM-yyyy</value>
+    <value>dd/MM/yyyy</value>
   </data>
   <data name="dtpNgaySinh.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
