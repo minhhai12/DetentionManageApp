@@ -54,11 +54,10 @@ namespace DetentionManageApp
         /// <summary>
         /// Generate new MaTamGiam
         /// </summary>
-        private void GenerateMaTamGiam()
+        private void GenerateMaTamGiam(string jsonFilePath)
         {
             try
             {
-                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
                 string filePath = "";
                 if (File.Exists(jsonFilePath))
                 {
@@ -110,13 +109,13 @@ namespace DetentionManageApp
         /// Show Create or Edit form base on mode
         /// </summary>
         /// <param name="mode"></param>
-        public FormCreateEdit(FormMode mode)
+        public FormCreateEdit(FormMode mode, string jsonFilePath)
         {
             InitializeComponent();
             formMode = mode;
             if (formMode == FormMode.Create)
             {
-                GenerateMaTamGiam();
+                GenerateMaTamGiam(jsonFilePath);
             }
             btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Cập nhật";
             lblTitleThongTin.Text = formMode == FormMode.Create ? "Tạo mới thông tin" : "Chỉnh sửa thông tin";
@@ -131,7 +130,7 @@ namespace DetentionManageApp
             dtpNgaySinh.Value = new DateTime(1990, 1, 1);
         }
 
-        public FormCreateEdit(FormMode mode, DataGridViewRow selectedRow) : this(mode)
+        public FormCreateEdit(FormMode mode, string jsonFilePath, DataGridViewRow selectedRow) : this(mode, jsonFilePath)
         {
             LoadData(selectedRow);
         }

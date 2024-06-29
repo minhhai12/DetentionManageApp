@@ -35,6 +35,16 @@ namespace DetentionManageApp
             LoadDataFromExcel();
         }
 
+        string GetJsonFilePath()
+        {
+            string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DetentionManage");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            return Path.Combine(folderPath, "excelFilePath.json");
+        }
+
         /// <summary>
         /// Load Excel file path from json file
         /// </summary>
@@ -42,7 +52,7 @@ namespace DetentionManageApp
         {
             try
             {
-                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                string jsonFilePath = GetJsonFilePath();
                 if (File.Exists(jsonFilePath))
                 {
                     string jsonContent = File.ReadAllText(jsonFilePath);
@@ -64,7 +74,7 @@ namespace DetentionManageApp
         {
             try
             {
-                string jsonFilePath = Path.Combine(Application.StartupPath, "excelFilePath.json");
+                string jsonFilePath = GetJsonFilePath();
                 dynamic jsonData = new { ExcelFilePath = excelFilePath };
                 string jsonContent = JsonConvert.SerializeObject(jsonData);
                 File.WriteAllText(jsonFilePath, jsonContent);
@@ -440,7 +450,8 @@ namespace DetentionManageApp
         /// <param name="e"></param>
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create);
+            string jsonFilePath = GetJsonFilePath();
+            FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create, jsonFilePath);
             if (createEditForm.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -470,10 +481,11 @@ namespace DetentionManageApp
         /// <param name="e"></param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            string jsonFilePath = GetJsonFilePath();
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
-                FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, selectedRow);
+                FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, jsonFilePath, selectedRow);
                 if (createEditForm.ShowDialog() == DialogResult.OK)
                 {
                     try
