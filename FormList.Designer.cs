@@ -81,7 +81,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(1360, 685);
+            this.dataGridView1.Size = new System.Drawing.Size(1160, 585);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
@@ -90,7 +90,7 @@
             // 
             this.btnChooseFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChooseFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChooseFile.Location = new System.Drawing.Point(1252, 12);
+            this.btnChooseFile.Location = new System.Drawing.Point(1052, 12);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(120, 50);
             this.btnChooseFile.TabIndex = 1;
@@ -100,13 +100,14 @@
             // 
             // btnCreate
             // 
+            this.btnCreate.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCreate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreate.Location = new System.Drawing.Point(17, 98);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 50);
             this.btnCreate.TabIndex = 2;
             this.btnCreate.Text = "Tạo mới";
-            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnEdit
@@ -125,7 +126,7 @@
             // 
             this.lblTitleDanhSach.AutoSize = true;
             this.lblTitleDanhSach.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleDanhSach.Location = new System.Drawing.Point(488, 30);
+            this.lblTitleDanhSach.Location = new System.Drawing.Point(388, 20);
             this.lblTitleDanhSach.Name = "lblTitleDanhSach";
             this.lblTitleDanhSach.Size = new System.Drawing.Size(423, 40);
             this.lblTitleDanhSach.TabIndex = 2;
@@ -147,7 +148,7 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(989, 109);
+            this.txtSearch.Location = new System.Drawing.Point(789, 109);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(330, 29);
             this.txtSearch.TabIndex = 4;
@@ -157,7 +158,7 @@
             // 
             this.btnClearSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearSearch.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearSearch.Location = new System.Drawing.Point(1325, 109);
+            this.btnClearSearch.Location = new System.Drawing.Point(1125, 109);
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(47, 29);
             this.btnClearSearch.TabIndex = 5;
@@ -170,7 +171,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1384, 861);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.Controls.Add(this.btnClearSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblTitleDanhSach);

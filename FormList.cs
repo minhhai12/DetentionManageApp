@@ -29,10 +29,17 @@ namespace DetentionManageApp
             InitializeComponent();
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            btnEdit.Enabled = false;
-            btnDelete.Enabled = false;
+            btnEdit.Visible = false;
+            btnDelete.Visible = false;
             LoadExcelFilePath();
             LoadDataFromExcel();
+            btnChooseFile.BackColor = Color.LightGray;
+            btnCreate.BackColor = Color.DarkGreen;
+            btnEdit.BackColor = Color.DarkBlue;
+            btnDelete.BackColor = Color.DarkRed;
+            btnCreate.ForeColor = Color.White;
+            btnEdit.ForeColor = Color.White;
+            btnDelete.ForeColor = Color.White;
         }
 
         string GetJsonFilePath()
@@ -117,7 +124,7 @@ namespace DetentionManageApp
                     }
 
                     // Thêm cột tạm thời để lưu trữ DateTime cho việc sắp xếp
-                    dataTable.Columns.Add("Ngày kết thúc (For calculate and sort)", typeof(DateTime));
+                    dataTable.Columns.Add("Ngày hết hạn (For calculate and sort)", typeof(DateTime));
 
                     for (var rowNumber = 2; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                     {
@@ -128,10 +135,10 @@ namespace DetentionManageApp
                             newRow[cell.Start.Column - 1] = cell.Text;
                         }
 
-                        // Chuyển đổi "Ngày kết thúc" thành DateTime
-                        if (DateTime.TryParseExact(newRow["Ngày kết thúc"].ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
+                        // Chuyển đổi "Ngày hết hạn" thành DateTime
+                        if (DateTime.TryParseExact(newRow["Ngày hết hạn"].ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
                         {
-                            newRow["Ngày kết thúc (For calculate and sort)"] = endDate;
+                            newRow["Ngày hết hạn (For calculate and sort)"] = endDate;
                         }
 
                         dataTable.Rows.Add(newRow);
@@ -151,12 +158,12 @@ namespace DetentionManageApp
                     dataGridView1.DataSource = dataTable;
 
                     // Sort and highlight rows
-                    dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"], ListSortDirection.Ascending);
+                    dataGridView1.Sort(dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"], ListSortDirection.Ascending);
                     HighlightRows();
                     dataGridView1.ClearSelection();
 
                     // Ẩn cột tạm thời
-                    dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"].Visible = false;
+                    dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -170,7 +177,7 @@ namespace DetentionManageApp
         }
 
         /// <summary>
-        /// Set highlight for row that has NgayKetThuc < 5
+        /// Set highlight for row that has NgayKetThuc < 7
         /// </summary>
         private void HighlightRows()
         {
@@ -178,10 +185,10 @@ namespace DetentionManageApp
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    var cellValue = row.Cells["Ngày kết thúc"].Value;
+                    var cellValue = row.Cells["Ngày hết hạn"].Value;
                     if (cellValue != null && DateTime.TryParseExact(cellValue.ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
                     {
-                        if ((endDate - DateTime.Now).TotalDays < 5)
+                        if ((endDate - DateTime.Now).TotalDays < 7)
                         {
                             row.DefaultCellStyle.BackColor = Color.DarkRed;
                             row.DefaultCellStyle.ForeColor = Color.White;
@@ -191,7 +198,7 @@ namespace DetentionManageApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi kiểm tra Ngày kết thúc: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi kiểm tra Ngày hết hạn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -263,12 +270,12 @@ namespace DetentionManageApp
                         throw new Exception("Không tìm thấy worksheet.");
                     }
 
-                    string maTamGiam = updatedData.Rows[0]["Mã tạm giam"].ToString();
+                    string soThuLy = updatedData.Rows[0]["Số thụ lý"].ToString();
                     int rowIndex = -1;
 
                     for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                     {
-                        if (worksheet.Cells[row, 2].Value.ToString() == maTamGiam)
+                        if (worksheet.Cells[row, 2].Value.ToString() == soThuLy)
                         {
                             rowIndex = row;
                             break;
@@ -277,7 +284,7 @@ namespace DetentionManageApp
 
                     if (rowIndex == -1)
                     {
-                        throw new Exception("Không tìm thấy Mã tạm giam để cập nhật.");
+                        throw new Exception("Không tìm thấy Số thụ lý để cập nhật.");
                     }
 
                     for (int col = 1; col <= updatedData.Columns.Count; col++)
@@ -320,12 +327,12 @@ namespace DetentionManageApp
 
                     foreach (DataGridViewRow selectedRow in dataGridView1.SelectedRows)
                     {
-                        string maTamGiam = selectedRow.Cells["Mã tạm giam"].Value.ToString();
+                        string soThuLy = selectedRow.Cells["Số thụ lý"].Value.ToString();
                         int rowIndex = -1;
 
                         for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                         {
-                            if (worksheet.Cells[row, 2].Value.ToString() == maTamGiam)
+                            if (worksheet.Cells[row, 2].Value.ToString() == soThuLy)
                             {
                                 rowIndex = row;
                                 break;
@@ -347,32 +354,6 @@ namespace DetentionManageApp
             }
         }
 
-        /// <summary>
-        /// Check MaTamGiam exist or not in excel file
-        /// </summary>
-        /// <param name="newData"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        private bool CheckMaTamGiamExist(DataTable newData)
-        {
-            try
-            {
-                string newMaTamGiam = newData.Rows[0]["Mã tạm giam"].ToString();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    var cellValue = row.Cells["Mã tạm giam"].Value;
-                    if (cellValue != null && cellValue.ToString() == newMaTamGiam)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
 
         /// <summary>
         /// Filter data for Search func
@@ -398,12 +379,12 @@ namespace DetentionManageApp
             dataGridView1.DataSource = filteredTable;
 
             // Sort and highlight rows
-            dataGridView1.Sort(dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"], ListSortDirection.Ascending);
+            dataGridView1.Sort(dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"], ListSortDirection.Ascending);
             HighlightRows();
             dataGridView1.ClearSelection();
 
             // Ẩn cột tạm thời
-            dataGridView1.Columns["Ngày kết thúc (For calculate and sort)"].Visible = false;
+            dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"].Visible = false;
         }
 
         /// <summary>
@@ -456,16 +437,9 @@ namespace DetentionManageApp
             {
                 try
                 {
-                    if (!CheckMaTamGiamExist(createEditForm.detentionData))
-                    {
-                        CreateNewDataToExcel(createEditForm.detentionData);
-                        MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataFromExcel();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mã tạm giam đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    CreateNewDataToExcel(createEditForm.detentionData);
+                    MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataFromExcel();
                 }
                 catch (Exception ex)
                 {
@@ -541,13 +515,13 @@ namespace DetentionManageApp
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                btnEdit.Enabled = true;
-                btnDelete.Enabled = true;
+                btnEdit.Visible = true;
+                btnDelete.Visible = true;
             }
             else
             {
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
             }
         }
 
