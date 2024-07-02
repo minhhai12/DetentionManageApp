@@ -70,7 +70,7 @@ namespace DetentionManageApp
 
                 if (nearEndCount > 0 || overEndCount > 0)
                 {
-                    string message = $"Có [ {nearEndCount} ] người có Ngày hết hạn tạm giam còn lại dưới 7 ngày.\n Và có [ {overEndCount} ] người có Ngày hết hạn tạm giam quá hạn hôm nay.";
+                    string message = $"Có [ {nearEndCount} ] người có Ngày hết hạn tạm giam dưới 7 ngày.\n Và [ {overEndCount} ] người có Ngày hết hạn tạm giam quá hạn.";
                     MessageBox.Show(message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
