@@ -19,6 +19,7 @@ namespace DetentionManageApp
     {
         public DataTable detentionData { get; private set; }
         private readonly FormMode formMode;
+        string jsonFilePath;
 
         public enum FormMode
         {
@@ -34,16 +35,19 @@ namespace DetentionManageApp
         {
             try
             {
-                txtMaTamGiam.Text = selectedRow.Cells["Mã tạm giam"].Value.ToString();
-                txtHo.Text = selectedRow.Cells["Họ"].Value.ToString();
-                txtTen.Text = selectedRow.Cells["Tên"].Value.ToString();
-                txtCCCD.Text = selectedRow.Cells["CCCD"].Value.ToString();
-                dtpNgaySinh.Value = DateTime.Parse(selectedRow.Cells["Ngày sinh"].Value.ToString());
+                txtStt.Text = selectedRow.Cells["STT"].Value.ToString();
+                txtSoThuLy.Text = selectedRow.Cells["Số thụ lý"].Value.ToString();
+                txtNgayThuLy.Text = selectedRow.Cells["Ngày thụ lý"].Value.ToString();
+                txtHoVaTen.Text = selectedRow.Cells["Họ và tên"].Value.ToString();
+                txtNamSinh.Text = selectedRow.Cells["Năm sinh"].Value.ToString();
                 cbGioiTinh.SelectedItem = selectedRow.Cells["Giới tính"].Value.ToString();
-                txtSDT.Text = selectedRow.Cells["SĐT"].Value.ToString();
+                txtToiDanh.Text = selectedRow.Cells["Tội danh"].Value.ToString();
+                txtSoGiam.Text = selectedRow.Cells["Số giam"].Value.ToString();
+                txtNgayQuyetDinh.Text = selectedRow.Cells["Ngày quyết định"].Value.ToString();
+                txtThoiHanTamGiam.Text = selectedRow.Cells["Thời hạn tạm giam"].Value.ToString();
                 txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
-                dtpNgayBatDauTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
-                dtpNgayKetThucTamGiam.Value = DateTime.Parse(selectedRow.Cells["Ngày kết thúc"].Value.ToString());
+                dtpNgayBatDau.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
+                dtpNgayHetHan.Value = DateTime.Parse(selectedRow.Cells["Ngày hết hạn"].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -52,9 +56,9 @@ namespace DetentionManageApp
         }
 
         /// <summary>
-        /// Generate new MaTamGiam
+        /// Generate new STT
         /// </summary>
-        private void GenerateMaTamGiam(string jsonFilePath)
+        private void GenerateSTT()
         {
             try
             {
@@ -73,64 +77,120 @@ namespace DetentionManageApp
                     var worksheet = package.Workbook.Worksheets.FirstOrDefault();
                     if (worksheet == null || worksheet.Dimension == null)
                     {
-                        txtMaTamGiam.Text = "MTG00001";
+                        txtStt.Text = "1";
                         return;
                     }
 
                     for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                     {
-                        var cellValue = worksheet.Cells[row, 2].Value?.ToString();
-                        if (cellValue != null && cellValue.StartsWith("MTG"))
+                        var cellValue = worksheet.Cells[row, 1].Value?.ToString();
+                        if (cellValue != null)
                         {
-                            if (int.TryParse(cellValue.Substring(3), out int number))
-                            {
-                                existingNumbers.Add(number);
-                            }
+                            int.TryParse(cellValue, out int number);
+                            existingNumbers.Add(number);
                         }
                     }
                 }
 
                 // Tìm số thiếu đầu tiên
-                int newMaTamGiam = 1;
-                while (existingNumbers.Contains(newMaTamGiam))
+                int newSTT = 1;
+                while (existingNumbers.Contains(newSTT))
                 {
-                    newMaTamGiam++;
+                    newSTT++;
                 }
 
-                txtMaTamGiam.Text = "MTG" + newMaTamGiam.ToString("D5");
+                txtStt.Text = newSTT.ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tạo Mã tạm giam: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi tạo mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Check SoThuLy exist or not in excel file
+        /// </summary>
+        /// <param name="soThuLy"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public bool CheckSoThuLyExist(string soThuLy)
+        {
+            try
+            {
+                string filePath = "";
+                if (File.Exists(jsonFilePath))
+                {
+                    string jsonContent = File.ReadAllText(jsonFilePath);
+                    dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+                    filePath = jsonData.ExcelFilePath;
+                }
+
+                if(string.IsNullOrEmpty(filePath))
+                {
+                    return false;
+                }
+
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
+                {
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (worksheet == null || worksheet.Dimension == null)
+                    {
+                        return false;
+                    }
+
+                    for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        if (worksheet.Cells[row, 2].Value?.ToString() == soThuLy)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi kiểm tra Số thụ lý: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
         }
 
         /// <summary>
         /// Show Create or Edit form base on mode
         /// </summary>
         /// <param name="mode"></param>
-        public FormCreateEdit(FormMode mode, string jsonFilePath)
+        public FormCreateEdit(FormMode mode, string jsonFilePathFromFormList)
         {
             InitializeComponent();
             formMode = mode;
+            jsonFilePath = jsonFilePathFromFormList;
+
             if (formMode == FormMode.Create)
             {
-                GenerateMaTamGiam(jsonFilePath);
+                GenerateSTT();
             }
+
             btnSave.Text = formMode == FormMode.Create ? "Tạo mới" : "Cập nhật";
             lblTitleThongTin.Text = formMode == FormMode.Create ? "Tạo mới thông tin" : "Chỉnh sửa thông tin";
             btnCancel.Text = "Hủy bỏ";
-            txtMaTamGiam.Enabled = false;
+            txtStt.Enabled = false;
+            txtSoThuLy.Enabled = formMode == FormMode.Create ? true : false;
 
             // Thêm các giá trị cho ComboBox Giới Tính
-            cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ", "Khác" });
+            cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ" });
             cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
 
-            // Đặt giá trị mặc định cho dtpNgaySinh
-            dtpNgaySinh.Value = new DateTime(1990, 1, 1);
+            // Đặt giá trị mặc định cho dtpNgayThuLy
+            dtpNgayBatDau.Value = DateTime.Now;
+            dtpNgayHetHan.Value = dtpNgayBatDau.Value.AddDays(1);
+
+            // Add color for button
+            btnSave.BackColor = formMode == FormMode.Create ? Color.DarkGreen : Color.DarkBlue;
+            btnSave.ForeColor = Color.White;
+            btnCancel.BackColor = Color.LightGray;
         }
 
-        public FormCreateEdit(FormMode mode, string jsonFilePath, DataGridViewRow selectedRow) : this(mode, jsonFilePath)
+        public FormCreateEdit(FormMode mode, string jsonFilePathFromFormList, DataGridViewRow selectedRow) : this(mode, jsonFilePathFromFormList)
         {
             LoadData(selectedRow);
         }
@@ -147,41 +207,55 @@ namespace DetentionManageApp
             {
                 try
                 {
-                    DateTime ngayBatDau = dtpNgayBatDauTamGiam.Value;
-                    DateTime ngayKetThuc = dtpNgayKetThucTamGiam.Value;
+                    DateTime ngayBatDau = dtpNgayBatDau.Value;
+                    DateTime ngayHetHan = dtpNgayHetHan.Value;
 
-                    if (ngayBatDau > ngayKetThuc)
+                    if (ngayBatDau > ngayHetHan)
                     {
-                        MessageBox.Show("[ Ngày bắt đầu tạm giam ] phải nhỏ hơn [ Ngày kết thúc tạm giam ]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("[ Ngày bắt đầu tạm giam ] phải nhỏ hơn [ Ngày hết hạn tạm giam ]", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+
+                    if(formMode == FormMode.Create)
+                    {
+                        if (CheckSoThuLyExist(txtSoThuLy.Text))
+                        {
+                            MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtSoThuLy.Focus();
+                            return;
+                        }
                     }
 
                     // Collect data and close form
                     detentionData = new DataTable();
-                    detentionData.Columns.Add("Ngày nhập");
-                    detentionData.Columns.Add("Mã tạm giam");
-                    detentionData.Columns.Add("Họ");
-                    detentionData.Columns.Add("Tên");
-                    detentionData.Columns.Add("CCCD");
-                    detentionData.Columns.Add("Ngày sinh");
+                    detentionData.Columns.Add("STT");
+                    detentionData.Columns.Add("Số thụ lý");
+                    detentionData.Columns.Add("Ngày thụ lý");
+                    detentionData.Columns.Add("Họ và tên");
+                    detentionData.Columns.Add("Năm sinh");
                     detentionData.Columns.Add("Giới tính");
-                    detentionData.Columns.Add("SĐT");
+                    detentionData.Columns.Add("Tội danh");
+                    detentionData.Columns.Add("Số giam");
+                    detentionData.Columns.Add("Ngày quyết định");
+                    detentionData.Columns.Add("Thời hạn tạm giam");
                     detentionData.Columns.Add("Địa chỉ");
                     detentionData.Columns.Add("Ngày bắt đầu");
-                    detentionData.Columns.Add("Ngày kết thúc");
+                    detentionData.Columns.Add("Ngày hết hạn");
 
                     DataRow row = detentionData.NewRow();
-                    row["Ngày nhập"] = DateTime.Now.ToString("dd/MM/yyyy");
-                    row["Mã tạm giam"] = txtMaTamGiam.Text.Trim();
-                    row["Họ"] = txtHo.Text.Trim();
-                    row["Tên"] = txtTen.Text.Trim();
-                    row["CCCD"] = txtCCCD.Text.Trim();
-                    row["Ngày sinh"] = dtpNgaySinh.Value.ToString("dd/MM/yyyy");
+                    row["STT"] = txtStt.Text;
+                    row["Số thụ lý"] = txtSoThuLy.Text.Trim();
+                    row["Ngày thụ lý"] = txtNgayThuLy.Text.Trim();
+                    row["Họ và tên"] = txtHoVaTen.Text.Trim();
+                    row["Năm sinh"] = txtNamSinh.Text.Trim();
                     row["Giới tính"] = cbGioiTinh.SelectedItem.ToString();
-                    row["SĐT"] = txtSDT.Text.Trim();
+                    row["Tội danh"] = txtToiDanh.Text.Trim();
+                    row["Số giam"] = txtSoGiam.Text.Trim();
+                    row["Ngày quyết định"] = txtNgayQuyetDinh.Text.Trim();
+                    row["Thời hạn tạm giam"] = txtThoiHanTamGiam.Text.Trim();
                     row["Địa chỉ"] = txtDiaChi.Text.Trim();
-                    row["Ngày bắt đầu"] = dtpNgayBatDauTamGiam.Value.ToString("dd/MM/yyyy");
-                    row["Ngày kết thúc"] = dtpNgayKetThucTamGiam.Value.ToString("dd/MM/yyyy");
+                    row["Ngày bắt đầu"] = dtpNgayBatDau.Value.ToString("dd/MM/yyyy");
+                    row["Ngày hết hạn"] = dtpNgayHetHan.Value.ToString("dd/MM/yyyy");
 
                     detentionData.Rows.Add(row);
 
@@ -219,14 +293,21 @@ namespace DetentionManageApp
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
         }
 
-        private void txtHo_Leave(object sender, EventArgs e)
+        private void txtHoVaTen_Leave(object sender, EventArgs e)
         {
-            txtHo.Text = CapitalizeEachWord(txtHo.Text);
+            txtHoVaTen.Text = CapitalizeEachWord(txtHoVaTen.Text);
         }
 
-        private void txtTen_Leave(object sender, EventArgs e)
+        private void txtSoThuLy_Leave(object sender, EventArgs e)
         {
-            txtTen.Text = CapitalizeEachWord(txtTen.Text);
+            if (formMode == FormMode.Create)
+            {
+                if (CheckSoThuLyExist(txtSoThuLy.Text))
+                {
+                    MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtSoThuLy.Focus();
+                }
+            }
         }
 
     }
