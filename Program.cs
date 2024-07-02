@@ -53,15 +53,24 @@ namespace DetentionManageApp
                     return;
                 }
 
-                var nearEndCount = worksheet.Cells[2, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column]
+                var nearEndCount = 0;
+                var overEndCount = 0;
+
+                nearEndCount = worksheet.Cells[2, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column]
                     .Where(cell => cell.Start.Column == worksheet.Dimension.End.Column &&
                                    DateTime.TryParse(cell.Text, out DateTime endDate) &&
-                                   (endDate - DateTime.Now).TotalDays < 7)
+                                   (endDate >= DateTime.Today && endDate < DateTime.Today.AddDays(7)))
                     .Count();
 
-                if (nearEndCount > 0)
+                overEndCount = worksheet.Cells[2, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column]
+                    .Where(cell => cell.Start.Column == worksheet.Dimension.End.Column &&
+                                   DateTime.TryParse(cell.Text, out DateTime endDate) &&
+                                   (endDate < DateTime.Today))
+                    .Count();
+
+                if (nearEndCount > 0 || overEndCount > 0)
                 {
-                    string message = $"Có [ {nearEndCount} ] Số thụ lý có Ngày hết hạn tạm giam dưới 7 ngày.";
+                    string message = $"Có [ {nearEndCount} ] người có Ngày hết hạn tạm giam còn lại dưới 7 ngày.\n Và có [ {overEndCount} ] người có Ngày hết hạn tạm giam quá hạn hôm nay.";
                     MessageBox.Show(message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
