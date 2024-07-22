@@ -281,6 +281,7 @@ namespace DetentionManageApp
                     // Thực hiện việc tô màu
                     ApplyConditionalFormatting(worksheet, sortedDataTable);
 
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                     package.Save();
                 }
             }
@@ -370,6 +371,7 @@ namespace DetentionManageApp
                         }
                     }
 
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                     package.Save();
                 }
             }
@@ -396,12 +398,12 @@ namespace DetentionManageApp
                         throw new Exception("Không tìm thấy worksheet.");
                     }
 
-                    string soThuLy = updatedData.Rows[0]["Số thụ lý"].ToString();
+                    string sTT = updatedData.Rows[0]["STT"].ToString();
                     int rowIndex = -1;
 
                     for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                     {
-                        if (worksheet.Cells[row, 2].Value.ToString() == soThuLy)
+                        if (worksheet.Cells[row, 1].Value.ToString() == sTT)
                         {
                             rowIndex = row;
                             break;
@@ -410,7 +412,7 @@ namespace DetentionManageApp
 
                     if (rowIndex == -1)
                     {
-                        throw new Exception("Không tìm thấy Số thụ lý để cập nhật.");
+                        throw new Exception("Không tìm thấy STT để cập nhật.");
                     }
 
                     for (int col = 1; col <= updatedData.Columns.Count; col++)
@@ -426,6 +428,7 @@ namespace DetentionManageApp
                         }
                     }
 
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                     package.Save();
                 }
             }
@@ -453,12 +456,12 @@ namespace DetentionManageApp
 
                     foreach (DataGridViewRow selectedRow in dataGridView1.SelectedRows)
                     {
-                        string soThuLy = selectedRow.Cells["Số thụ lý"].Value.ToString();
+                        string sTT = selectedRow.Cells["STT"].Value.ToString();
                         int rowIndex = -1;
 
                         for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                         {
-                            if (worksheet.Cells[row, 2].Value.ToString() == soThuLy)
+                            if (worksheet.Cells[row, 1].Value.ToString() == sTT)
                             {
                                 rowIndex = row;
                                 break;
@@ -471,6 +474,7 @@ namespace DetentionManageApp
                         }
                     }
 
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                     package.Save();
                 }
             }
