@@ -216,15 +216,17 @@ namespace DetentionManageApp
                         return;
                     }
 
-                    if(formMode == FormMode.Create)
-                    {
-                        if (CheckSoThuLyExist(txtSoThuLy.Text))
-                        {
-                            MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            txtSoThuLy.Focus();
-                            return;
-                        }
-                    }
+                    // 20240722 Update
+                    // Số thụ lý có thể trùng nhau nên không cần kiểm tra
+                    //if(formMode == FormMode.Create)
+                    //{
+                    //    if (CheckSoThuLyExist(txtSoThuLy.Text))
+                    //    {
+                    //        MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        txtSoThuLy.Focus();
+                    //        return;
+                    //    }
+                    //}
 
                     // Collect data and close form
                     detentionData = new DataTable();
@@ -300,14 +302,16 @@ namespace DetentionManageApp
 
         private void txtSoThuLy_Leave(object sender, EventArgs e)
         {
-            if (formMode == FormMode.Create)
-            {
-                if (CheckSoThuLyExist(txtSoThuLy.Text))
-                {
-                    MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtSoThuLy.Focus();
-                }
-            }
+            // 20240722 Update
+            // Số thụ lý có thể trùng nhau nên không cần kiểm tra
+            //if (formMode == FormMode.Create)
+            //{
+            //    if (CheckSoThuLyExist(txtSoThuLy.Text))
+            //    {
+            //        MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        txtSoThuLy.Focus();
+            //    }
+            //}
         }
 
     }
