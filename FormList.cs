@@ -193,6 +193,9 @@ namespace DetentionManageApp
 
                     dataGridView1.DataSource = dataTable;
 
+                    // Customize column width
+                    CustomizeGridView();
+
                     // Sort and highlight rows
                     dataGridView1.Sort(dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"], ListSortDirection.Ascending);
                     HighlightRows();
@@ -241,6 +244,14 @@ namespace DetentionManageApp
             {
                 MessageBox.Show("Lỗi khi kiểm tra Ngày hết hạn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void CustomizeGridView()
+        {
+            // Gán tên cột theo index hoặc theo tên
+            dataGridView1.Columns["STT"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Họ và tên"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Ngày bắt đầu"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Ngày hết hạn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
         }
 
         private void SaveSortedDataToExcel()
@@ -562,20 +573,31 @@ namespace DetentionManageApp
         private void btnCreate_Click(object sender, EventArgs e)
         {
             string jsonFilePath = GetJsonFilePath();
-            FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create, jsonFilePath);
-            if (createEditForm.ShowDialog() == DialogResult.OK)
+            using (var createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Create, jsonFilePath))
             {
-                try
+                createEditForm.TrySaveCallback = (data) =>
                 {
-                    
-                    CreateNewDataToExcel(createEditForm.detentionData);
-                    MessageBox.Show("Tạo mới thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDataFromExcel();
-                    SaveSortedDataToExcel();
-                }
-                catch (Exception ex)
+                    try
+                    {
+
+                        CreateNewDataToExcel(createEditForm.detentionData);
+                        LoadDataFromExcel();
+                        SaveSortedDataToExcel();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lưu ý: Cần phải đóng file excel trước khi thêm mới hoặc sửa.\nLỗi khi tạo mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                };
+
+                // Show dialog and check result
+                var dr = createEditForm.ShowDialog();
+                if (dr == DialogResult.OK)
                 {
-                    MessageBox.Show("Lỗi khi tạo mới: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tạo mới thành công.", "Thông báo",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -591,19 +613,29 @@ namespace DetentionManageApp
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
-                FormCreateEdit createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, jsonFilePath, selectedRow);
-                if (createEditForm.ShowDialog() == DialogResult.OK)
+                using (var createEditForm = new FormCreateEdit(FormCreateEdit.FormMode.Edit, jsonFilePath, selectedRow))
                 {
-                    try
+                    createEditForm.TrySaveCallback = (data) =>
                     {
-                        UpdateDataInExcel(createEditForm.detentionData);
+                        try
+                        {
+                            UpdateDataInExcel(createEditForm.detentionData);
+                            LoadDataFromExcel();
+                            SaveSortedDataToExcel();
+                            return true;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lưu ý: Cần phải đóng file excel trước khi thêm mới hoặc sửa.\nLỗi khi sửa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                    };
+
+                    // Show dialog and check result
+                    var dr = createEditForm.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
                         MessageBox.Show("Sửa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataFromExcel();
-                        SaveSortedDataToExcel();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi sửa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
