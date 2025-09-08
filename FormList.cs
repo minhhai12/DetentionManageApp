@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using OfficeOpenXml;
-using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,16 +8,18 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Packaging;
+using OpenXmlPowerTools;
+using Color = System.Drawing.Color;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace DetentionManageApp
 {
     public partial class FormList : Form
     {
         private string excelFilePath;
+        private string templateFilePath;
         private DataTable dataTable;
         private BindingSource bindingSource = new BindingSource();
 
@@ -42,15 +43,21 @@ namespace DetentionManageApp
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             btnEdit.Visible = false;
             btnDelete.Visible = false;
-            LoadExcelFilePath();
+            btnFileExport.Visible = false;
+            LoadFilePath();
             LoadDataFromExcel();
-            btnChooseFile.BackColor = Color.LightGray;
-            btnCreate.BackColor = Color.DarkGreen;
-            btnEdit.BackColor = Color.DarkBlue;
-            btnDelete.BackColor = Color.DarkRed;
-            btnCreate.ForeColor = Color.White;
-            btnEdit.ForeColor = Color.White;
-            btnDelete.ForeColor = Color.White;
+            //btnChooseFile.BackColor = Color.Green;
+            //btnChooseWordFile.BackColor = Color.RoyalBlue;
+            //btnCreate.BackColor = Color.DarkGreen;
+            //btnEdit.BackColor = Color.DarkBlue;
+            //btnDelete.BackColor = Color.DarkRed;
+            //btnFileExport.BackColor = Color.DarkGoldenrod;
+            //btnChooseFile.ForeColor = Color.White;
+            //btnChooseWordFile.ForeColor = Color.White;
+            //btnCreate.ForeColor = Color.White;
+            //btnEdit.ForeColor = Color.White;
+            //btnDelete.ForeColor = Color.White;
+            //btnFileExport.ForeColor = Color.White;
         }
 
         string GetJsonFilePath()
@@ -60,13 +67,13 @@ namespace DetentionManageApp
             {
                 Directory.CreateDirectory(folderPath);
             }
-            return Path.Combine(folderPath, "excelFilePath.json");
+            return Path.Combine(folderPath, "data.json");
         }
 
         /// <summary>
-        /// Load Excel file path from json file
+        /// Load data from json file
         /// </summary>
-        private void LoadExcelFilePath()
+        private void LoadFilePath()
         {
             try
             {
@@ -76,11 +83,12 @@ namespace DetentionManageApp
                     string jsonContent = File.ReadAllText(jsonFilePath);
                     dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
                     excelFilePath = jsonData.ExcelFilePath;
+                    templateFilePath = jsonData.WordTemplateFilePath;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lấy Excel file path: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi lấy file path: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -88,12 +96,12 @@ namespace DetentionManageApp
         /// Save excel file path to json file
         /// </summary>
         /// <exception cref="Exception"></exception>
-        private void SaveExcelFilePath()
+        private void SaveFilePath()
         {
             try
             {
                 string jsonFilePath = GetJsonFilePath();
-                dynamic jsonData = new { ExcelFilePath = excelFilePath };
+                dynamic jsonData = new { ExcelFilePath = String.IsNullOrEmpty(excelFilePath) ? "":excelFilePath, WordTemplateFilePath = String.IsNullOrEmpty(templateFilePath) ? "":templateFilePath };
                 string jsonContent = JsonConvert.SerializeObject(jsonData);
                 File.WriteAllText(jsonFilePath, jsonContent);
             }
@@ -249,7 +257,13 @@ namespace DetentionManageApp
         {
             // Gán tên cột theo index hoặc theo tên
             dataGridView1.Columns["STT"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Số thụ lý"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Ngày thụ lý"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Họ và tên"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Năm sinh"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Giới tính"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Số giam"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            dataGridView1.Columns["Ngày quyết định"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày bắt đầu"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày hết hạn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
         }
@@ -539,11 +553,12 @@ namespace DetentionManageApp
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
+                    openFileDialog.InitialDirectory = string.IsNullOrEmpty(excelFilePath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Path.GetDirectoryName(excelFilePath);
                     openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         excelFilePath = openFileDialog.FileName;
-                        SaveExcelFilePath();
+                        SaveFilePath();
                         LoadDataFromExcel();
                     }
                 }
@@ -551,6 +566,56 @@ namespace DetentionManageApp
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnChooseWordFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = string.IsNullOrEmpty(templateFilePath) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Path.GetDirectoryName(templateFilePath);
+                    openFileDialog.Filter = "Word Document (*.doc;*.docx)|*.doc;*.docx";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedPath = openFileDialog.FileName;
+
+                        if (Path.GetExtension(selectedPath).ToLower() == ".doc")
+                        {
+                            // Tạo file .docx cùng vị trí
+                            string newPath = Path.ChangeExtension(selectedPath, ".docx");
+                            ConvertDocToDocx(selectedPath, newPath);
+                            templateFilePath = newPath;
+                            MessageBox.Show($"File word .doc đã được chuyển thành .docx để phù hợp với ứng dụng.\nĐường dẫn file: {newPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            templateFilePath = selectedPath;
+                            MessageBox.Show($"Đã chọn file word mẫu.\nĐường dẫn file: {selectedPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        SaveFilePath();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ConvertDocToDocx(string inputFile, string outputFile)
+        {
+            Word.Application wordApp = new Word.Application();
+            try
+            {
+                Word.Document doc = wordApp.Documents.Open(inputFile);
+                doc.SaveAs2(outputFile, Word.WdSaveFormat.wdFormatXMLDocument); // lưu thành .docx
+                doc.Close();
+            }
+            finally
+            {
+                wordApp.Quit();
             }
         }
 
@@ -650,7 +715,7 @@ namespace DetentionManageApp
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa các dòng đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa {dataGridView1.SelectedRows.Count} dòng đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     try
@@ -672,6 +737,121 @@ namespace DetentionManageApp
             }
         }
 
+        private void btnFileExport_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(templateFilePath))
+            {
+                MessageBox.Show("Bạn chưa chọn file mẫu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Hãy chọn ít nhất 1 dòng trong danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Nếu chỉ chọn 1 row
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var row = dataGridView1.SelectedRows[0];
+
+                string rawName = row.Cells["Số thụ lý"].Value?.ToString() ?? "Exported";
+                string safeName = string.Concat(rawName.Split(Path.GetInvalidFileNameChars()));
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Word Document (*.docx)|*.docx";
+                sfd.FileName = $"{safeName}.docx";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string exportPath = sfd.FileName;
+                    try
+                    {
+                        ExportDataToWord(templateFilePath, exportPath, row);
+                        MessageBox.Show($"Xuất file word thành công.\nĐường dẫn file: {exportPath}", "Thành công",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file word: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                // Nếu chọn nhiều row
+                DialogResult confirm = MessageBox.Show(
+                    $"Bạn có chắc chắn muốn xuất {dataGridView1.SelectedRows.Count} file word?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+                    {
+                        if (fbd.ShowDialog() == DialogResult.OK)
+                        {
+                            string folderPath = fbd.SelectedPath;
+                            int successCount = 0;
+                            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                            {
+                                try
+                                {
+                                    string rawName = row.Cells["Số thụ lý"].Value?.ToString() ?? "Exported";
+                                    string safeName = string.Concat(rawName.Split(Path.GetInvalidFileNameChars()));
+                                    string exportPath = Path.Combine(folderPath, $"{safeName}.docx");
+
+                                    ExportDataToWord(templateFilePath, exportPath, row);
+                                    successCount++;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+
+                            MessageBox.Show($"Xuất thành công {successCount}/{dataGridView1.SelectedRows.Count} file word.\nThư mục: {folderPath}",
+                                "Kết quả",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ExportDataToWord(string templatePath, string exportPath, DataGridViewRow row)
+        {
+            var mapping = new Dictionary<string, string>
+            {
+                { "{{sogiam}}", row.Cells["Số giam"].Value.ToString() },
+                { "{{ngayquyetdinh}}", row.Cells["Ngày quyết định"].Value.ToString() },
+                { "{{sothuly}}", row.Cells["Số thụ lý"].Value.ToString() },
+                { "{{ngaythuly}}", row.Cells["Ngày thụ lý"].Value.ToString() },
+                { "{{hovaten}}", row.Cells["Họ và tên"].Value.ToString() },
+                { "{{namsinh}}", row.Cells["Năm sinh"].Value.ToString() },
+                { "{{gioitinh}}", row.Cells["Giới tính"].Value.ToString() },
+                { "{{diachi}}", row.Cells["Địa chỉ"].Value.ToString() },
+                { "{{toidanh}}", row.Cells["Tội danh"].Value.ToString() },
+                { "{{thoihantamgiam}}", row.Cells["Thời hạn tạm giam"].Value.ToString() },
+                { "{{ngaybatdau}}", row.Cells["Ngày bắt đầu"].Value.ToString() },
+                { "{{ngayhethan}}", row.Cells["Ngày hết hạn"].Value.ToString() }
+            };
+
+            File.Copy(templatePath, exportPath, true);
+
+            using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(exportPath, true))
+            {
+                foreach (var pair in mapping)
+                {
+                    TextReplacer.SearchAndReplace(wordDoc, pair.Key, pair.Value, false);
+                }
+            }
+        }
+
         /// <summary>
         /// Set Edit and Delete button is disable when has no row is choose
         /// </summary>
@@ -683,11 +863,13 @@ namespace DetentionManageApp
             {
                 btnEdit.Visible = true;
                 btnDelete.Visible = true;
+                btnFileExport.Visible = true;
             }
             else
             {
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;
+                btnFileExport.Visible = false;
             }
         }
 
@@ -805,5 +987,12 @@ namespace DetentionManageApp
             column.HeaderCell.SortGlyphDirection = sortOrder == SortOrderEnum.Ascending ? SortOrder.Ascending : SortOrder.Descending;
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                btnEdit_Click(sender, EventArgs.Empty);
+            }
+        }
     }
 }
