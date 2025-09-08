@@ -19,11 +19,11 @@ namespace DetentionManageApp
 
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-            CheckVehicleEndDates();
+            CheckDetentionEndDates();
             Application.Run(new FormList());
         }
 
-        private static void CheckVehicleEndDates()
+        private static void CheckDetentionEndDates()
         {
             string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DetentionManage");
             if (!Directory.Exists(folderPath))
@@ -32,7 +32,7 @@ namespace DetentionManageApp
             }
 
             string excelFilePath = "";
-            string jsonFilePath = Path.Combine(folderPath, "excelFilePath.json");
+            string jsonFilePath = Path.Combine(folderPath, "data.json");
             if (File.Exists(jsonFilePath))
             {
                 string jsonContent = File.ReadAllText(jsonFilePath);
