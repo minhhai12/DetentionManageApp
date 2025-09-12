@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetentionManageApp", "Deten
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DetentionManageSetup", "..\DetentionManageSetup\DetentionManageSetup.vdproj", "{087567DD-0427-42CB-87CF-A8D49448C197}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DetentionManageSetupv2", "..\DetentionManageSetupv2\DetentionManageSetupv2.vdproj", "{BD26D4F1-AED8-430E-2E21-41761F550CD9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +19,7 @@ Global
 		{E59AD4FA-1410-48E9-8836-1B64DDF0F075}.Release|Any CPU.Build.0 = Release|Any CPU
 		{087567DD-0427-42CB-87CF-A8D49448C197}.Debug|Any CPU.ActiveCfg = Debug
 		{087567DD-0427-42CB-87CF-A8D49448C197}.Release|Any CPU.ActiveCfg = Release
-		{BD26D4F1-AED8-430E-2E21-41761F550CD9}.Debug|Any CPU.ActiveCfg = Debug
-		{BD26D4F1-AED8-430E-2E21-41761F550CD9}.Release|Any CPU.ActiveCfg = Release
+		{087567DD-0427-42CB-87CF-A8D49448C197}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

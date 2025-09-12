@@ -17,6 +17,8 @@ namespace DetentionManageApp
         private readonly FormMode formMode;
         string jsonFilePath;
 
+        bool isSoThuLyExist = false;
+
         public Func<DataTable, bool> TrySaveCallback { get; set; }
 
         public enum FormMode
@@ -324,16 +326,19 @@ namespace DetentionManageApp
 
         private void txtSoThuLy_Leave(object sender, EventArgs e)
         {
-            // 20240722 Update
-            // Số thụ lý có thể trùng nhau nên không cần kiểm tra
-            //if (formMode == FormMode.Create)
-            //{
-            //    if (CheckSoThuLyExist(txtSoThuLy.Text))
-            //    {
-            //        MessageBox.Show("Số thụ lý đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        txtSoThuLy.Focus();
-            //    }
-            //}
+            // 20250912 Update
+            // Số thụ lý có thể trùng nhau nên cần xác nhận trước khi tiếp tục
+            if (formMode == FormMode.Create)
+            {
+                if (CheckSoThuLyExist(txtSoThuLy.Text))
+                {
+                    DialogResult rs1 = MessageBox.Show("Số thụ lý này đã có.\n Bạn vẫn muốn tiếp tục?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (rs1 != DialogResult.Yes)
+                    {
+                        txtSoThuLy.Focus();
+                    }
+                }
+            }
         }
 
     }
