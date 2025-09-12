@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/obj/Debug/DetentionManageApp.csproj.AssemblyReference.cache
+/obj/Debug/DetentionManageApp.csproj.FileListAbsolute.txt
+/obj/Debug/DetentionManageApp.csproj.GenerateResource.cache
+/obj/Debug/DetentionManageApp.exe
+/obj/Debug/DetentionManageApp.pdb
+/.vs/DetentionManageApp/v17/.suo
+/.vs/DetentionManageApp/v17/DocumentLayout.json
+/bin/Debug/DetentionManageApp.exe
+/bin/Debug/DetentionManageApp.pdb
