@@ -126,7 +126,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblStt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 67</value>
+    <value>51, 73</value>
   </data>
   <data name="lblStt.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 22</value>
@@ -153,7 +153,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtStt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 95</value>
+    <value>50, 101</value>
   </data>
   <data name="txtStt.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 29</value>
@@ -184,7 +184,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblSoThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 67</value>
+    <value>247, 73</value>
   </data>
   <data name="lblSoThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 22</value>
@@ -211,7 +211,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtSoThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 95</value>
+    <value>245, 101</value>
   </data>
   <data name="txtSoThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 29</value>
@@ -241,7 +241,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNamSinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 145</value>
+    <value>442, 151</value>
   </data>
   <data name="lblNamSinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 22</value>
@@ -268,7 +268,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtNamSinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 173</value>
+    <value>440, 179</value>
   </data>
   <data name="txtNamSinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 29</value>
@@ -298,7 +298,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblToiDanh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 223</value>
+    <value>51, 229</value>
   </data>
   <data name="lblToiDanh.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 22</value>
@@ -325,7 +325,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtToiDanh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 251</value>
+    <value>50, 257</value>
   </data>
   <data name="txtToiDanh.Size" type="System.Drawing.Size, System.Drawing">
     <value>746, 29</value>
@@ -352,7 +352,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblHoVaTen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 145</value>
+    <value>51, 151</value>
   </data>
   <data name="lblHoVaTen.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 22</value>
@@ -379,7 +379,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtHoVaTen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 173</value>
+    <value>50, 179</value>
   </data>
   <data name="txtHoVaTen.Size" type="System.Drawing.Size, System.Drawing">
     <value>361, 29</value>
@@ -406,7 +406,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayBatDau.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 460</value>
+    <value>51, 466</value>
   </data>
   <data name="lblNgayBatDau.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 22</value>
@@ -436,7 +436,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 460</value>
+    <value>442, 466</value>
   </data>
   <data name="lblNgayHetHan.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
@@ -466,7 +466,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblSoGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 301</value>
+    <value>51, 307</value>
   </data>
   <data name="lblSoGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 22</value>
@@ -493,7 +493,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtSoGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 329</value>
+    <value>50, 335</value>
   </data>
   <data name="txtSoGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 29</value>
@@ -523,7 +523,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayBatDau.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 489</value>
+    <value>50, 495</value>
   </data>
   <data name="dtpNgayBatDau.Size" type="System.Drawing.Size, System.Drawing">
     <value>361, 29</value>
@@ -541,7 +541,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dtpNgayBatDau.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="dtpNgayHetHan.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -550,7 +550,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 489</value>
+    <value>440, 495</value>
   </data>
   <data name="dtpNgayHetHan.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 29</value>
@@ -568,13 +568,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dtpNgayHetHan.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="btnSave.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 557</value>
+    <value>186, 11</value>
   </data>
   <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 50</value>
@@ -592,16 +592,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel2</value>
   </data>
   <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="btnCancel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>480, 557</value>
+    <value>468, 11</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 50</value>
@@ -619,10 +619,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel2</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="lblTitleThongTin.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -631,7 +631,7 @@
     <value>Times New Roman, 21.75pt, style=Bold</value>
   </data>
   <data name="lblTitleThongTin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 15</value>
+    <value>294, 9</value>
   </data>
   <data name="lblTitleThongTin.Size" type="System.Drawing.Size, System.Drawing">
     <value>266, 32</value>
@@ -661,7 +661,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>442, 67</value>
+    <value>442, 73</value>
   </data>
   <data name="lblNgayThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 22</value>
@@ -691,7 +691,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="cbGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>636, 173</value>
+    <value>636, 179</value>
   </data>
   <data name="cbGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 29</value>
@@ -709,7 +709,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbGioiTinh.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="lblGioiTinh.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -718,7 +718,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>637, 145</value>
+    <value>637, 151</value>
   </data>
   <data name="lblGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 22</value>
@@ -751,7 +751,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblNgayQuyetDinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 301</value>
+    <value>276, 307</value>
   </data>
   <data name="lblNgayQuyetDinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
@@ -784,7 +784,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiaChi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 381</value>
+    <value>51, 387</value>
   </data>
   <data name="lblDiaChi.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 22</value>
@@ -811,7 +811,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtDiaChi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 409</value>
+    <value>50, 415</value>
   </data>
   <data name="txtDiaChi.Size" type="System.Drawing.Size, System.Drawing">
     <value>746, 29</value>
@@ -829,7 +829,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtDiaChi.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="lblThoiHanTamGiam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -841,7 +841,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblThoiHanTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>594, 301</value>
+    <value>594, 307</value>
   </data>
   <data name="lblThoiHanTamGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
@@ -862,13 +862,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblThoiHanTamGiam.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="txtThoiHanTamGiam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtThoiHanTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 329</value>
+    <value>593, 335</value>
   </data>
   <data name="txtThoiHanTamGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 29</value>
@@ -889,13 +889,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtThoiHanTamGiam.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="txtNgayThuLy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtNgayThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 95</value>
+    <value>440, 101</value>
   </data>
   <data name="txtNgayThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 29</value>
@@ -922,7 +922,7 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtNgayQuyetDinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 329</value>
+    <value>274, 335</value>
   </data>
   <data name="txtNgayQuyetDinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 29</value>
@@ -943,7 +943,112 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtNgayQuyetDinh.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
+  </data>
+  <data name="lblDiaDiem.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDiaDiem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblDiaDiem.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDiaDiem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 549</value>
+  </data>
+  <data name="lblDiaDiem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 22</value>
+  </data>
+  <data name="lblDiaDiem.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDiaDiem.Text" xml:space="preserve">
+    <value>Địa điểm</value>
+  </data>
+  <data name="&gt;&gt;lblDiaDiem.Name" xml:space="preserve">
+    <value>lblDiaDiem</value>
+  </data>
+  <data name="&gt;&gt;lblDiaDiem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDiaDiem.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblDiaDiem.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cbLocation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="cbLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 576</value>
+  </data>
+  <data name="cbLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>746, 29</value>
+  </data>
+  <data name="cbLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;cbLocation.Name" xml:space="preserve">
+    <value>cbLocation</value>
+  </data>
+  <data name="&gt;&gt;cbLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbLocation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbLocation.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 56</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>823, 571</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 633</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>823, 73</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>30</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -952,7 +1057,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>847, 624</value>
+    <value>847, 718</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

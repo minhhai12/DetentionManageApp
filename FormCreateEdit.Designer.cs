@@ -58,6 +58,11 @@
             this.txtThoiHanTamGiam = new System.Windows.Forms.TextBox();
             this.txtNgayThuLy = new System.Windows.Forms.TextBox();
             this.txtNgayQuyetDinh = new System.Windows.Forms.TextBox();
+            this.lblDiaDiem = new System.Windows.Forms.Label();
+            this.cbLocation = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblStt
@@ -219,20 +224,47 @@
             resources.ApplyResources(this.txtNgayQuyetDinh, "txtNgayQuyetDinh");
             this.txtNgayQuyetDinh.Name = "txtNgayQuyetDinh";
             // 
+            // lblDiaDiem
+            // 
+            resources.ApplyResources(this.lblDiaDiem, "lblDiaDiem");
+            this.lblDiaDiem.Name = "lblDiaDiem";
+            // 
+            // cbLocation
+            // 
+            this.cbLocation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbLocation, "cbLocation");
+            this.cbLocation.FormattingEnabled = true;
+            this.cbLocation.Name = "cbLocation";
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Name = "panel1";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Name = "panel2";
+            // 
             // FormCreateEdit
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
+            this.Controls.Add(this.cbLocation);
             this.Controls.Add(this.cbGioiTinh);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dtpNgayHetHan);
             this.Controls.Add(this.dtpNgayBatDau);
             this.Controls.Add(this.txtNgayQuyetDinh);
             this.Controls.Add(this.txtThoiHanTamGiam);
             this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.lblThoiHanTamGiam);
+            this.Controls.Add(this.lblDiaDiem);
             this.Controls.Add(this.txtSoGiam);
             this.Controls.Add(this.lblDiaChi);
             this.Controls.Add(this.lblSoGiam);
@@ -253,10 +285,13 @@
             this.Controls.Add(this.txtStt);
             this.Controls.Add(this.lblTitleThongTin);
             this.Controls.Add(this.lblStt);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCreateEdit";
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +328,10 @@
         private System.Windows.Forms.TextBox txtThoiHanTamGiam;
         private System.Windows.Forms.TextBox txtNgayThuLy;
         private System.Windows.Forms.TextBox txtNgayQuyetDinh;
+        private System.Windows.Forms.Label lblDiaDiem;
+        private System.Windows.Forms.ComboBox cbLocation;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

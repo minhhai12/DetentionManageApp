@@ -26,6 +26,8 @@ namespace DetentionManageApp
         SortOrderEnum sortOrderCustomDate_NgayBatDau = SortOrderEnum.None;
         SortOrderEnum sortOrderCustomDate_NgayHetHan = SortOrderEnum.None;
 
+        private string placeholderText = "Nhập từ khóa tìm kiếm...";
+
         public enum SortOrderEnum
         {
             None,
@@ -266,6 +268,10 @@ namespace DetentionManageApp
             dataGridView1.Columns["Ngày quyết định"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày bắt đầu"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày hết hạn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            if (dataGridView1.Columns.Contains("Địa điểm"))
+            {
+                dataGridView1.Columns["Địa điểm"].Visible = false;
+            }
         }
 
         private void SaveSortedDataToExcel()
@@ -825,20 +831,38 @@ namespace DetentionManageApp
 
         private void ExportDataToWord(string templatePath, string exportPath, DataGridViewRow row)
         {
+            // Lấy chuỗi Ngày thụ lý từ DataGridView
+            string ngayThuLy = row.Cells["Ngày thụ lý"].Value?.ToString() ?? "";
+            string namThuLy = "";
+
+            // Parse ngày tháng (theo format dd/MM/yyyy đang dùng) để lấy năm an toàn
+            if (DateTime.TryParseExact(ngayThuLy, "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                namThuLy = parsedDate.Year.ToString();
+            }
+            else if (!string.IsNullOrWhiteSpace(ngayThuLy) && ngayThuLy.Contains("/"))
+            {
+                // Fallback: Cắt chuỗi thủ công lấy phần tử cuối nếu TryParse thất bại 
+                // (ví dụ chuỗi là "1/1/2024" thay vì "01/01/2024")
+                namThuLy = ngayThuLy.Split('/').LastOrDefault()?.Trim() ?? "";
+            }
+
             var mapping = new Dictionary<string, string>
             {
-                { "{{sogiam}}", row.Cells["Số giam"].Value.ToString() },
-                { "{{ngayquyetdinh}}", row.Cells["Ngày quyết định"].Value.ToString() },
-                { "{{sothuly}}", row.Cells["Số thụ lý"].Value.ToString() },
-                { "{{ngaythuly}}", row.Cells["Ngày thụ lý"].Value.ToString() },
-                { "{{hovaten}}", row.Cells["Họ và tên"].Value.ToString() },
-                { "{{namsinh}}", row.Cells["Năm sinh"].Value.ToString() },
-                { "{{gioitinh}}", row.Cells["Giới tính"].Value.ToString() },
-                { "{{diachi}}", row.Cells["Địa chỉ"].Value.ToString() },
-                { "{{toidanh}}", row.Cells["Tội danh"].Value.ToString() },
-                { "{{thoihantamgiam}}", row.Cells["Thời hạn tạm giam"].Value.ToString() },
-                { "{{ngaybatdau}}", row.Cells["Ngày bắt đầu"].Value.ToString() },
-                { "{{ngayhethan}}", row.Cells["Ngày hết hạn"].Value.ToString() }
+                { "{{sogiam}}", row.Cells["Số giam"].Value?.ToString() ?? "" },
+                { "{{ngayquyetdinh}}", row.Cells["Ngày quyết định"].Value?.ToString() ?? "" },
+                { "{{sothuly}}", row.Cells["Số thụ lý"].Value?.ToString() ?? "" },
+                { "{{ngaythuly}}", ngayThuLy },
+                { "{{namthuly}}", namThuLy },
+                { "{{hovaten}}", row.Cells["Họ và tên"].Value?.ToString() ?? "" },
+                { "{{namsinh}}", row.Cells["Năm sinh"].Value?.ToString() ?? "" },
+                { "{{gioitinh}}", row.Cells["Giới tính"].Value?.ToString() ?? "" },
+                { "{{diachi}}", row.Cells["Địa chỉ"].Value?.ToString() ?? "" },
+                { "{{toidanh}}", row.Cells["Tội danh"].Value?.ToString() ?? "" },
+                { "{{thoihantamgiam}}", row.Cells["Thời hạn tạm giam"].Value?.ToString() ?? "" },
+                { "{{ngaybatdau}}", row.Cells["Ngày bắt đầu"].Value?.ToString() ?? "" },
+                { "{{ngayhethan}}", row.Cells["Ngày hết hạn"].Value?.ToString() ?? "" },
+                { "{{diadiem}}", row.DataGridView.Columns.Contains("Địa điểm") && row.Cells["Địa điểm"].Value != null ? row.Cells["Địa điểm"].Value.ToString() : "" }
             };
 
             File.Copy(templatePath, exportPath, true);
@@ -892,6 +916,11 @@ namespace DetentionManageApp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            if (txtSearch.Text == placeholderText)
+            {
+                return; // Dừng lại không thực hiện tìm kiếm
+            }
+
             FilterData(txtSearch.Text);
         }
 
@@ -992,6 +1021,34 @@ namespace DetentionManageApp
             if (e.RowIndex >= 0)
             {
                 btnEdit_Click(sender, EventArgs.Empty);
+            }
+        }
+
+        private void btnLocations_Click(object sender, EventArgs e)
+        {
+            using (FormLocations formLocations = new FormLocations())
+            {
+                formLocations.ShowDialog();
+            }
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            // Nếu chữ trong ô đang là chữ gợi ý, thì xóa đi để người dùng nhập
+            if (txtSearch.Text == placeholderText)
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black; // Đổi màu chữ về đen bình thường
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            // Nếu người dùng không nhập gì cả mà click ra ngoài, thì hiện lại chữ gợi ý
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.Text = placeholderText;
+                txtSearch.ForeColor = Color.Gray; // Đổi màu chữ thành xám mờ
             }
         }
     }
