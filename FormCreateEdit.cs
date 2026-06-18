@@ -48,11 +48,52 @@ namespace DetentionManageApp
                 txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
                 dtpNgayBatDau.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
                 dtpNgayHetHan.Value = DateTime.Parse(selectedRow.Cells["Ngày hết hạn"].Value.ToString());
+                // 20260617 Update: Load location from selected row if exists
+                if (selectedRow.DataGridView.Columns.Contains("Địa điểm") && selectedRow.Cells["Địa điểm"].Value != null)
+                {
+                    string savedLocation = selectedRow.Cells["Địa điểm"].Value.ToString();
+                    if (!string.IsNullOrEmpty(savedLocation))
+                    {
+                        cbLocation.SelectedValue = savedLocation;
+                    }
+                    else
+                    {
+                        cbLocation.SelectedIndex = 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LoadLocationComboBox()
+        {
+            List<LocationItem> locations = new List<LocationItem>();
+            string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DetentionManage");
+            string locFilePath = Path.Combine(folderPath, "data-location.json");
+
+            if (File.Exists(locFilePath))
+            {
+                try
+                {
+                    string jsonContent = File.ReadAllText(locFilePath);
+                    var items = JsonConvert.DeserializeObject<List<LocationItem>>(jsonContent);
+                    if (items != null)
+                    {
+                        locations.AddRange(items);
+                    }
+                }
+                catch (Exception) { /* Bỏ qua nếu lỗi đọc file */ }
+            }
+
+            // Chèn option rỗng lên đầu
+            locations.Insert(0, new LocationItem { Id = "", Name = "-- Không chọn địa điểm --" });
+
+            cbLocation.DataSource = locations;
+            cbLocation.DisplayMember = "Name";
+            cbLocation.ValueMember = "Name"; // Dùng Name làm Value để lưu chữ vào file Excel
         }
 
         /// <summary>
@@ -162,6 +203,7 @@ namespace DetentionManageApp
         public FormCreateEdit(FormMode mode, string jsonFilePathFromFormList)
         {
             InitializeComponent();
+            LoadLocationComboBox();
             formMode = mode;
             jsonFilePath = jsonFilePathFromFormList;
 
@@ -243,6 +285,7 @@ namespace DetentionManageApp
                 detentionData.Columns.Add("Địa chỉ");
                 detentionData.Columns.Add("Ngày bắt đầu");
                 detentionData.Columns.Add("Ngày hết hạn");
+                detentionData.Columns.Add("Địa điểm");
 
                 DataRow row = detentionData.NewRow();
                 row["STT"] = txtStt.Text;
@@ -258,6 +301,12 @@ namespace DetentionManageApp
                 row["Địa chỉ"] = txtDiaChi.Text.Trim();
                 row["Ngày bắt đầu"] = dtpNgayBatDau.Value.ToString("dd/MM/yyyy");
                 row["Ngày hết hạn"] = dtpNgayHetHan.Value.ToString("dd/MM/yyyy");
+                string selectedLocation = cbLocation.SelectedValue?.ToString();
+                if (selectedLocation == "-- Không chọn địa điểm --" || string.IsNullOrEmpty(selectedLocation))
+                {
+                    selectedLocation = "";
+                }
+                row["Địa điểm"] = selectedLocation;
 
                 detentionData.Rows.Add(row);
 
