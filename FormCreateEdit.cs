@@ -37,17 +37,36 @@ namespace DetentionManageApp
             {
                 txtStt.Text = selectedRow.Cells["STT"].Value.ToString();
                 txtSoThuLy.Text = selectedRow.Cells["Số thụ lý"].Value.ToString();
-                txtNgayThuLy.Text = selectedRow.Cells["Ngày thụ lý"].Value.ToString();
+                if (DateTime.TryParse(selectedRow.Cells["Ngày thụ lý"].Value?.ToString(), out DateTime ngayThuLy))
+                    dtpNgayThuLy.Value = ngayThuLy;
                 txtHoVaTen.Text = selectedRow.Cells["Họ và tên"].Value.ToString();
                 txtNamSinh.Text = selectedRow.Cells["Năm sinh"].Value.ToString();
                 cbGioiTinh.SelectedItem = selectedRow.Cells["Giới tính"].Value.ToString();
                 txtToiDanh.Text = selectedRow.Cells["Tội danh"].Value.ToString();
                 txtSoGiam.Text = selectedRow.Cells["Số giam"].Value.ToString();
-                txtNgayQuyetDinh.Text = selectedRow.Cells["Ngày quyết định"].Value.ToString();
+                if (DateTime.TryParse(selectedRow.Cells["Ngày quyết định"].Value?.ToString(), out DateTime ngayQd))
+                    dtpNgayQuyetDinh.Value = ngayQd;
+                // Load Số ngày tạm giam
+                if (selectedRow.DataGridView.Columns.Contains("Số ngày tạm giam") && selectedRow.Cells["Số ngày tạm giam"].Value != null)
+                {
+                    cbSoNgayTamGiam.SelectedItem = selectedRow.Cells["Số ngày tạm giam"].Value.ToString();
+                }
                 txtThoiHanTamGiam.Text = selectedRow.Cells["Thời hạn tạm giam"].Value.ToString();
                 txtDiaChi.Text = selectedRow.Cells["Địa chỉ"].Value.ToString();
-                dtpNgayBatDau.Value = DateTime.Parse(selectedRow.Cells["Ngày bắt đầu"].Value.ToString());
-                dtpNgayHetHan.Value = DateTime.Parse(selectedRow.Cells["Ngày hết hạn"].Value.ToString());
+                if (DateTime.TryParse(selectedRow.Cells["Ngày bắt đầu"].Value?.ToString(), out DateTime ngayBatDau))
+                {
+                    // Nếu data cũ bị sai (Ngày bắt đầu < Ngày thụ lý), tự động sửa lại bằng mức tối thiểu
+                    if (ngayBatDau < dtpNgayBatDau.MinDate)
+                    {
+                        dtpNgayBatDau.Value = dtpNgayBatDau.MinDate;
+                    }
+                    else
+                    {
+                        dtpNgayBatDau.Value = ngayBatDau;
+                    }
+                }
+                if (DateTime.TryParse(selectedRow.Cells["Ngày hết hạn"].Value?.ToString(), out DateTime ngayHetHan))
+                    dtpNgayHetHan.Value = ngayHetHan;
                 // 20260617 Update: Load location from selected row if exists
                 if (selectedRow.DataGridView.Columns.Contains("Địa điểm") && selectedRow.Cells["Địa điểm"].Value != null)
                 {
@@ -222,9 +241,31 @@ namespace DetentionManageApp
             cbGioiTinh.Items.AddRange(new string[] { "Nam", "Nữ" });
             cbGioiTinh.SelectedIndex = 0; // Thiết lập giá trị mặc định
 
-            // Đặt giá trị mặc định cho dtpNgayThuLy
+            // Thiết lập giá trị ComboBox Số ngày tạm giam
+            cbSoNgayTamGiam.Items.AddRange(new string[] { "45", "60", "75", "105" });
+            cbSoNgayTamGiam.SelectedIndex = 0;
+
+            // Khóa 2 ô không cho nhập thủ công
+            txtThoiHanTamGiam.Enabled = false;
+            dtpNgayHetHan.Enabled = false;
+
+            // Đặt ngày mặc định
             dtpNgayBatDau.Value = DateTime.Now;
-            dtpNgayHetHan.Value = dtpNgayBatDau.Value.AddDays(1);
+            dtpNgayThuLy.Value = DateTime.Now;
+            dtpNgayQuyetDinh.Value = DateTime.Now;
+
+            // Đăng ký sự kiện
+            dtpNgayThuLy.ValueChanged += (s, e) => {
+                UpdateNgayBatDauConstraints(); // Cập nhật lại lịch Ngày bắt đầu trước
+                CalculateDetentionDates();     // Sau đó mới tính ngày hết hạn
+            };
+
+            cbSoNgayTamGiam.SelectedIndexChanged += (s, e) => CalculateDetentionDates();
+            dtpNgayBatDau.ValueChanged += (s, e) => CalculateDetentionDates();
+
+            // Chạy lần đầu lúc khởi tạo form
+            UpdateNgayBatDauConstraints();
+            CalculateDetentionDates();
 
             // Add color for button
             btnSave.BackColor = formMode == FormMode.Create ? Color.DarkGreen : Color.DarkBlue;
@@ -235,6 +276,47 @@ namespace DetentionManageApp
         public FormCreateEdit(FormMode mode, string jsonFilePathFromFormList, DataGridViewRow selectedRow) : this(mode, jsonFilePathFromFormList)
         {
             LoadData(selectedRow);
+        }
+
+        /// <summary>
+        /// Hàm tự động tính Ngày hết hạn và Thời hạn tạm giam
+        /// </summary>
+        private void CalculateDetentionDates()
+        {
+            if (cbSoNgayTamGiam.SelectedItem != null && int.TryParse(cbSoNgayTamGiam.SelectedItem.ToString(), out int soNgay))
+            {
+                // Ngày hết hạn = Ngày thụ lý + Số ngày tạm giam - 1
+                DateTime ngayHetHan = dtpNgayThuLy.Value.AddDays(soNgay - 1);
+                dtpNgayHetHan.Value = ngayHetHan;
+
+                // Thời hạn tạm giam = Ngày hết hạn - Ngày bắt đầu
+                int thoiHan = (ngayHetHan - dtpNgayBatDau.Value).Days + 1;
+
+                // Nếu người dùng chọn Ngày bắt đầu trễ hơn cả ngày hết hạn, số ngày sẽ âm (logic chặn lưu ở btnSave)
+                txtThoiHanTamGiam.Text = thoiHan.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Cập nhật giới hạn chọn lịch của Ngày bắt đầu dựa trên Ngày thụ lý
+        /// </summary>
+        private void UpdateNgayBatDauConstraints()
+        {
+            try
+            {
+                DateTime ngayThuLyDate = dtpNgayThuLy.Value.Date;
+
+                // BẮT BUỘC: Nếu Value hiện tại đang nhỏ hơn MinDate sắp thiết lập, 
+                // DateTimePicker sẽ văng lỗi. Nên ta phải dời Value lên trước.
+                if (dtpNgayBatDau.Value.Date < ngayThuLyDate)
+                {
+                    dtpNgayBatDau.Value = ngayThuLyDate;
+                }
+
+                // Khóa không cho chọn ngày trước Ngày thụ lý
+                dtpNgayBatDau.MinDate = ngayThuLyDate;
+            }
+            catch (Exception) { /* Bỏ qua lỗi lặt vặt nếu có lúc load form */ }
         }
 
         /// <summary>
@@ -286,17 +368,18 @@ namespace DetentionManageApp
                 detentionData.Columns.Add("Ngày bắt đầu");
                 detentionData.Columns.Add("Ngày hết hạn");
                 detentionData.Columns.Add("Địa điểm");
+                detentionData.Columns.Add("Số ngày tạm giam");
 
                 DataRow row = detentionData.NewRow();
                 row["STT"] = txtStt.Text;
                 row["Số thụ lý"] = txtSoThuLy.Text.Trim();
-                row["Ngày thụ lý"] = txtNgayThuLy.Text.Trim();
+                row["Ngày thụ lý"] = dtpNgayThuLy.Value.ToString("dd/MM/yyyy");
                 row["Họ và tên"] = txtHoVaTen.Text.Trim();
                 row["Năm sinh"] = txtNamSinh.Text.Trim();
                 row["Giới tính"] = cbGioiTinh.SelectedItem.ToString();
                 row["Tội danh"] = txtToiDanh.Text.Trim();
                 row["Số giam"] = txtSoGiam.Text.Trim();
-                row["Ngày quyết định"] = txtNgayQuyetDinh.Text.Trim();
+                row["Ngày quyết định"] = dtpNgayQuyetDinh.Value.ToString("dd/MM/yyyy");
                 row["Thời hạn tạm giam"] = txtThoiHanTamGiam.Text.Trim();
                 row["Địa chỉ"] = txtDiaChi.Text.Trim();
                 row["Ngày bắt đầu"] = dtpNgayBatDau.Value.ToString("dd/MM/yyyy");
@@ -307,6 +390,7 @@ namespace DetentionManageApp
                     selectedLocation = "";
                 }
                 row["Địa điểm"] = selectedLocation;
+                row["Số ngày tạm giam"] = cbSoNgayTamGiam.SelectedItem.ToString();
 
                 detentionData.Rows.Add(row);
 

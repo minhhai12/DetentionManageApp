@@ -272,6 +272,10 @@ namespace DetentionManageApp
             {
                 dataGridView1.Columns["Địa điểm"].Visible = false;
             }
+            if (dataGridView1.Columns.Contains("Số ngày tạm giam"))
+            {
+                dataGridView1.Columns["Số ngày tạm giam"].Visible = false;
+            }
         }
 
         private void SaveSortedDataToExcel()
@@ -546,6 +550,64 @@ namespace DetentionManageApp
 
             // Ẩn cột tạm thời
             dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"].Visible = false;
+        }
+
+        /// <summary>
+        /// Chuyển đổi số nguyên thành chữ tiếng Việt (hỗ trợ tới 9999)
+        /// </summary>
+        private string DocSoThanhChu(int number)
+        {
+            if (number == 0) return "không";
+
+            string[] mNumText = "không;một;hai;ba;bốn;năm;sáu;bảy;tám;chín".Split(';');
+            string result = "";
+
+            int thousand = number / 1000;
+            int remainder = number % 1000;
+
+            int hundred = remainder / 100;
+            int tenRemainder = remainder % 100;
+            int ten = tenRemainder / 10;
+            int unit = tenRemainder % 10;
+
+            // 1. Xử lý hàng nghìn
+            if (thousand > 0)
+            {
+                result += mNumText[thousand] + " nghìn ";
+            }
+
+            // 2. Xử lý hàng trăm
+            // Nếu có hàng trăm, HOẶC nếu có hàng nghìn mà phần dư > 0
+            if (hundred > 0 || (thousand > 0 && remainder > 0))
+            {
+                result += mNumText[hundred] + " trăm ";
+            }
+
+            // 3. Xử lý hàng chục
+            if (ten > 0)
+            {
+                if (ten == 1) result += "mười ";
+                else result += mNumText[ten] + " mươi ";
+            }
+            // Nếu không có hàng chục nhưng có hàng đơn vị (và phía trước có hàng trăm hoặc hàng nghìn) -> thêm chữ "lẻ"
+            else if ((hundred > 0 || thousand > 0) && unit > 0)
+            {
+                result += "lẻ ";
+            }
+
+            // 4. Xử lý hàng đơn vị
+            if (unit > 0)
+            {
+                if (ten > 1 && unit == 1) result += "mốt";
+                else if (ten > 0 && unit == 5) result += "lăm";
+                else if (ten > 1 && unit == 4) result += "tư";
+                else result += mNumText[unit];
+            }
+
+            // Format lại chuỗi cho đẹp (Xóa khoảng trắng thừa)
+            result = System.Text.RegularExpressions.Regex.Replace(result.Trim(), @"\s+", " ");
+
+            return result;
         }
 
         /// <summary>
@@ -847,10 +909,54 @@ namespace DetentionManageApp
                 namThuLy = ngayThuLy.Split('/').LastOrDefault()?.Trim() ?? "";
             }
 
+            // Convert Thời hạn tạm giam sang chữ tiếng Việt
+            // Lấy chuỗi số từ DataGridView hoặc DataTable
+            string thoiHanString = row.Cells["Thời hạn tạm giam"].Value?.ToString();
+
+            string textThoiHanGiamXuatWord = thoiHanString; // Giá trị mặc định phòng trường hợp lỗi parse
+
+            // Kiểm tra xem có phải là số hợp lệ không
+            if (int.TryParse(thoiHanString, out int soNgay))
+            {
+                // 3. Dịch sang chữ
+                string chuTiengViet = DocSoThanhChu(soNgay);
+
+                // 4. Ghép chuỗi theo đúng format bạn yêu cầu: "{Số} ({chữ}) ngày"
+                // Kết quả sẽ ra: "98 (chín mươi tám) ngày"
+                textThoiHanGiamXuatWord = $"{soNgay} ({chuTiengViet}) ngày";
+            }
+
+            // Convert Ngày quyết định sang format "ngày {dd} tháng {MM} năm {yyyy}"
+            // Lấy chuỗi Ngày quyết định gốc
+            string ngayQuyetDinhGoc = row.Cells["Ngày quyết định"].Value?.ToString();
+
+            // Biến lưu trữ kết quả cuối cùng để xuất Word
+            string textNgayQuyetDinhXuatWord = ngayQuyetDinhGoc; // Đặt mặc định là chuỗi gốc phòng hờ lỗi
+
+            // Kiểm tra và chuyển đổi định dạng
+            if (!string.IsNullOrEmpty(ngayQuyetDinhGoc))
+            {
+                // Cố gắng parse chuỗi theo đúng định dạng dd/MM/yyyy
+                if (DateTime.TryParseExact(ngayQuyetDinhGoc, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateObj))
+                {
+                    // Ghép chuỗi theo format yêu cầu
+                    textNgayQuyetDinhXuatWord = $"ngày {dateObj:dd} tháng {dateObj:MM} năm {dateObj:yyyy}";
+                }
+                else
+                {
+                    // Phương án dự phòng (Fallback): Lỡ data cũ không parse được bằng DateTime thì cắt chuỗi thủ công
+                    string[] parts = ngayQuyetDinhGoc.Split('/');
+                    if (parts.Length == 3)
+                    {
+                        textNgayQuyetDinhXuatWord = $"ngày {parts[0].PadLeft(2, '0')} tháng {parts[1].PadLeft(2, '0')} năm {parts[2]}";
+                    }
+                }
+            }
+
             var mapping = new Dictionary<string, string>
             {
                 { "{{sogiam}}", row.Cells["Số giam"].Value?.ToString() ?? "" },
-                { "{{ngayquyetdinh}}", row.Cells["Ngày quyết định"].Value?.ToString() ?? "" },
+                { "{{ngayquyetdinh}}", textNgayQuyetDinhXuatWord },
                 { "{{sothuly}}", row.Cells["Số thụ lý"].Value?.ToString() ?? "" },
                 { "{{ngaythuly}}", ngayThuLy },
                 { "{{namthuly}}", namThuLy },
@@ -859,7 +965,7 @@ namespace DetentionManageApp
                 { "{{gioitinh}}", row.Cells["Giới tính"].Value?.ToString() ?? "" },
                 { "{{diachi}}", row.Cells["Địa chỉ"].Value?.ToString() ?? "" },
                 { "{{toidanh}}", row.Cells["Tội danh"].Value?.ToString() ?? "" },
-                { "{{thoihantamgiam}}", row.Cells["Thời hạn tạm giam"].Value?.ToString() ?? "" },
+                { "{{thoihantamgiam}}", textThoiHanGiamXuatWord },
                 { "{{ngaybatdau}}", row.Cells["Ngày bắt đầu"].Value?.ToString() ?? "" },
                 { "{{ngayhethan}}", row.Cells["Ngày hết hạn"].Value?.ToString() ?? "" },
                 { "{{diadiem}}", row.DataGridView.Columns.Contains("Địa điểm") && row.Cells["Địa điểm"].Value != null ? row.Cells["Địa điểm"].Value.ToString() : "" }
