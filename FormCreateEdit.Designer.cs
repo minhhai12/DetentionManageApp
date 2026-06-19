@@ -56,12 +56,16 @@
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.lblThoiHanTamGiam = new System.Windows.Forms.Label();
             this.txtThoiHanTamGiam = new System.Windows.Forms.TextBox();
-            this.txtNgayThuLy = new System.Windows.Forms.TextBox();
-            this.txtNgayQuyetDinh = new System.Windows.Forms.TextBox();
             this.lblDiaDiem = new System.Windows.Forms.Label();
             this.cbLocation = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpNgayThuLy = new System.Windows.Forms.DateTimePicker();
+            this.dtpNgayQuyetDinh = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbSoNgayTamGiam = new System.Windows.Forms.ComboBox();
+            this.lblSoNgayTamGiam = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,16 +218,6 @@
             resources.ApplyResources(this.txtThoiHanTamGiam, "txtThoiHanTamGiam");
             this.txtThoiHanTamGiam.Name = "txtThoiHanTamGiam";
             // 
-            // txtNgayThuLy
-            // 
-            resources.ApplyResources(this.txtNgayThuLy, "txtNgayThuLy");
-            this.txtNgayThuLy.Name = "txtNgayThuLy";
-            // 
-            // txtNgayQuyetDinh
-            // 
-            resources.ApplyResources(this.txtNgayQuyetDinh, "txtNgayQuyetDinh");
-            this.txtNgayQuyetDinh.Name = "txtNgayQuyetDinh";
-            // 
             // lblDiaDiem
             // 
             resources.ApplyResources(this.lblDiaDiem, "lblDiaDiem");
@@ -241,7 +235,38 @@
             // 
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.cbSoNgayTamGiam);
+            this.panel1.Controls.Add(this.dtpNgayThuLy);
+            this.panel1.Controls.Add(this.dtpNgayHetHan);
+            this.panel1.Controls.Add(this.dtpNgayQuyetDinh);
+            this.panel1.Controls.Add(this.txtSoThuLy);
+            this.panel1.Controls.Add(this.lblNgayThuLy);
+            this.panel1.Controls.Add(this.lblSoThuLy);
+            this.panel1.Controls.Add(this.lblThoiHanTamGiam);
+            this.panel1.Controls.Add(this.lblSoNgayTamGiam);
+            this.panel1.Controls.Add(this.txtStt);
+            this.panel1.Controls.Add(this.lblNgayHetHan);
             this.panel1.Name = "panel1";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // dtpNgayThuLy
+            // 
+            this.dtpNgayThuLy.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayThuLy, "dtpNgayThuLy");
+            this.dtpNgayThuLy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayThuLy.Name = "dtpNgayThuLy";
+            // 
+            // dtpNgayQuyetDinh
+            // 
+            this.dtpNgayQuyetDinh.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayQuyetDinh, "dtpNgayQuyetDinh");
+            this.dtpNgayQuyetDinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayQuyetDinh.Name = "dtpNgayQuyetDinh";
             // 
             // panel2
             // 
@@ -251,6 +276,19 @@
             this.panel2.Controls.Add(this.btnSave);
             this.panel2.Name = "panel2";
             // 
+            // cbSoNgayTamGiam
+            // 
+            this.cbSoNgayTamGiam.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbSoNgayTamGiam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbSoNgayTamGiam, "cbSoNgayTamGiam");
+            this.cbSoNgayTamGiam.FormattingEnabled = true;
+            this.cbSoNgayTamGiam.Name = "cbSoNgayTamGiam";
+            // 
+            // lblSoNgayTamGiam
+            // 
+            resources.ApplyResources(this.lblSoNgayTamGiam, "lblSoNgayTamGiam");
+            this.lblSoNgayTamGiam.Name = "lblSoNgayTamGiam";
+            // 
             // FormCreateEdit
             // 
             resources.ApplyResources(this, "$this");
@@ -258,31 +296,22 @@
             this.ControlBox = false;
             this.Controls.Add(this.cbLocation);
             this.Controls.Add(this.cbGioiTinh);
-            this.Controls.Add(this.dtpNgayHetHan);
             this.Controls.Add(this.dtpNgayBatDau);
-            this.Controls.Add(this.txtNgayQuyetDinh);
             this.Controls.Add(this.txtThoiHanTamGiam);
             this.Controls.Add(this.txtDiaChi);
-            this.Controls.Add(this.lblThoiHanTamGiam);
             this.Controls.Add(this.lblDiaDiem);
             this.Controls.Add(this.txtSoGiam);
             this.Controls.Add(this.lblDiaChi);
             this.Controls.Add(this.lblSoGiam);
             this.Controls.Add(this.lblNgayQuyetDinh);
-            this.Controls.Add(this.lblNgayThuLy);
-            this.Controls.Add(this.lblNgayHetHan);
             this.Controls.Add(this.lblNgayBatDau);
             this.Controls.Add(this.txtHoVaTen);
             this.Controls.Add(this.lblHoVaTen);
             this.Controls.Add(this.txtToiDanh);
             this.Controls.Add(this.lblGioiTinh);
             this.Controls.Add(this.lblToiDanh);
-            this.Controls.Add(this.txtNgayThuLy);
             this.Controls.Add(this.txtNamSinh);
             this.Controls.Add(this.lblNamSinh);
-            this.Controls.Add(this.txtSoThuLy);
-            this.Controls.Add(this.lblSoThuLy);
-            this.Controls.Add(this.txtStt);
             this.Controls.Add(this.lblTitleThongTin);
             this.Controls.Add(this.lblStt);
             this.Controls.Add(this.panel1);
@@ -291,6 +320,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCreateEdit";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -326,12 +357,15 @@
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Label lblThoiHanTamGiam;
         private System.Windows.Forms.TextBox txtThoiHanTamGiam;
-        private System.Windows.Forms.TextBox txtNgayThuLy;
-        private System.Windows.Forms.TextBox txtNgayQuyetDinh;
         private System.Windows.Forms.Label lblDiaDiem;
         private System.Windows.Forms.ComboBox cbLocation;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DateTimePicker dtpNgayThuLy;
+        private System.Windows.Forms.DateTimePicker dtpNgayQuyetDinh;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbSoNgayTamGiam;
+        private System.Windows.Forms.Label lblSoNgayTamGiam;
     }
 }
 
