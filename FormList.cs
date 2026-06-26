@@ -20,6 +20,7 @@ namespace DetentionManageApp
     {
         private string excelFilePath;
         private string templateFilePath;
+        private string templateFilePathTrichXuat;
         private DataTable dataTable;
         private BindingSource bindingSource = new BindingSource();
 
@@ -45,7 +46,8 @@ namespace DetentionManageApp
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             btnEdit.Visible = false;
             btnDelete.Visible = false;
-            btnFileExport.Visible = false;
+            btnFileExportTamGiam.Visible = false;
+            btnFileExportTrichXuat.Visible = false;
             LoadFilePath();
             LoadDataFromExcel();
             //btnChooseFile.BackColor = Color.Green;
@@ -86,6 +88,11 @@ namespace DetentionManageApp
                     dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
                     excelFilePath = jsonData.ExcelFilePath;
                     templateFilePath = jsonData.WordTemplateFilePath;
+
+                    if (jsonData.WordTemplateTrichXuatFilePath != null)
+                    {
+                        templateFilePathTrichXuat = jsonData.WordTemplateTrichXuatFilePath;
+                    }
                 }
             }
             catch (Exception ex)
@@ -103,7 +110,10 @@ namespace DetentionManageApp
             try
             {
                 string jsonFilePath = GetJsonFilePath();
-                dynamic jsonData = new { ExcelFilePath = String.IsNullOrEmpty(excelFilePath) ? "":excelFilePath, WordTemplateFilePath = String.IsNullOrEmpty(templateFilePath) ? "":templateFilePath };
+                dynamic jsonData = new { ExcelFilePath = String.IsNullOrEmpty(excelFilePath) ? "":excelFilePath, 
+                    WordTemplateFilePath = String.IsNullOrEmpty(templateFilePath) ? "":templateFilePath,
+                    WordTemplateTrichXuatFilePath = String.IsNullOrEmpty(templateFilePathTrichXuat) ? "" : templateFilePathTrichXuat
+                };
                 string jsonContent = JsonConvert.SerializeObject(jsonData);
                 File.WriteAllText(jsonFilePath, jsonContent);
             }
@@ -141,22 +151,20 @@ namespace DetentionManageApp
                     if (worksheet == null || worksheet.Dimension == null)
                     {
                         MessageBox.Show("File Excel không có dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                        // Xóa dữ liệu từ BindingSource
                         bindingSource.DataSource = null;
                         dataGridView1.DataSource = bindingSource;
-
                         return;
                     }
 
                     dataTable = new DataTable();
 
+                    // Nạp các cột tiêu đề từ file Excel vào DataTable
                     foreach (var firstRowCell in worksheet.Cells[1, 1, 1, worksheet.Dimension.End.Column])
                     {
                         dataTable.Columns.Add(firstRowCell.Text);
                     }
 
-                    // Thêm cột tạm thời để lưu trữ DateTime cho việc sắp xếp
+                    // Thêm 2 cột tạm thời để lưu trữ cấu trúc DateTime chuẩn phục vụ việc sắp xếp hệ thống
                     if (!IsColumnExists(dataTable, "Ngày hết hạn (For calculate and sort)"))
                     {
                         dataTable.Columns.Add("Ngày hết hạn (For calculate and sort)", typeof(DateTime));
@@ -166,6 +174,7 @@ namespace DetentionManageApp
                         dataTable.Columns.Add("Ngày bắt đầu (For calculate and sort)", typeof(DateTime));
                     }
 
+                    // Đọc dữ liệu từ dòng 2 trở đi
                     for (var rowNumber = 2; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                     {
                         var row = worksheet.Cells[rowNumber, 1, rowNumber, worksheet.Dimension.End.Column];
@@ -175,13 +184,50 @@ namespace DetentionManageApp
                             newRow[cell.Start.Column - 1] = cell.Text;
                         }
 
-                        // Chuyển đổi "Ngày hết hạn" thành DateTime
+                        // 1. LẤY THÔNG TIN SỐ LẦN ĐỂ KIỂM TRA LUỒNG HIỂN THỊ
+                        string soLan = dataTable.Columns.Contains("Số lần") ? newRow["Số lần"].ToString() : "Lần 1";
+                        bool isLan2 = (soLan == "Lần 2");
+
+                        // 2. ĐỒNG BỘ HIỂN THỊ TRÊN GRIDVIEW CHO LẦN 2
+                        // Nếu dữ liệu trong Excel ghi nhận là Lần 2, ta tiến hành bốc ngày Lần 2 đè lên cột hiển thị chính
+                        if (isLan2)
+                        {
+                            // Giữ lại giá trị Lần 1 TRƯỚC KHI ghi đè để dùng cho việc tính toán thời hạn bên dưới
+                            string strNgayBatDauL1 = dataTable.Columns.Contains("Ngày bắt đầu") ? newRow["Ngày bắt đầu"].ToString() : "";
+                            string strNgayHetHanL1 = dataTable.Columns.Contains("Ngày hết hạn") ? newRow["Ngày hết hạn"].ToString() : "";
+
+                            // Ghi đè hiển thị ngày tháng
+                            if (dataTable.Columns.Contains("Ngày bắt đầu lần 2") && !string.IsNullOrEmpty(newRow["Ngày bắt đầu lần 2"].ToString()))
+                            {
+                                newRow["Ngày bắt đầu"] = newRow["Ngày bắt đầu lần 2"];
+                            }
+                            if (dataTable.Columns.Contains("Ngày hết hạn lần 2") && !string.IsNullOrEmpty(newRow["Ngày hết hạn lần 2"].ToString()))
+                            {
+                                newRow["Ngày hết hạn"] = newRow["Ngày hết hạn lần 2"];
+                            }
+
+                            // Thay đổi luôn hiển thị của ô Thời hạn tạm giam trên lưới dựa theo thời hạn thực tế của Lần 2
+                            if (dataTable.Columns.Contains("Gia hạn") && dataTable.Columns.Contains("Thời hạn tạm giam"))
+                            {
+                                if (int.TryParse(newRow["Gia hạn"].ToString(), out int totalGiaHan))
+                                {
+                                    // Tính toán sử dụng chuỗi ngày Lần 1 đã được giữ lại ở trên (không dùng thư viện Excel nữa)
+                                    if (DateTime.TryParseExact(strNgayHetHanL1, "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime nh1) &&
+                                        DateTime.TryParseExact(strNgayBatDauL1, "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime nb1))
+                                    {
+                                        int thoiHanL1ThucTe = (nh1 - nb1).Days + 1;
+                                        newRow["Thời hạn tạm giam"] = (totalGiaHan - thoiHanL1ThucTe).ToString();
+                                    }
+                                }
+                            }
+                        }
+
+                        // 3. ĐƯA DỮ LIỆU CHUẨN VÀO CỘT SẮP XẾP ẢO (Giúp hệ thống Click Header Mouse Sort không bị lỗi chuỗi)
                         if (DateTime.TryParseExact(newRow["Ngày hết hạn"].ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
                         {
                             newRow["Ngày hết hạn (For calculate and sort)"] = endDate;
                         }
 
-                        // Chuyển đổi "Ngày bắt đầu" thành DateTime
                         if (DateTime.TryParseExact(newRow["Ngày bắt đầu"].ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime startDate))
                         {
                             newRow["Ngày bắt đầu (For calculate and sort)"] = startDate;
@@ -193,35 +239,30 @@ namespace DetentionManageApp
                     if (dataTable.Rows.Count == 0)
                     {
                         MessageBox.Show("File Excel không có dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                        // Xóa dữ liệu từ BindingSource
                         bindingSource.DataSource = null;
                         dataGridView1.DataSource = bindingSource;
-
                         return;
                     }
 
                     dataGridView1.DataSource = dataTable;
 
-                    // Customize column width
+                    // Định dạng độ rộng và ẩn các trường thông tin bổ sung
                     CustomizeGridView();
 
-                    // Sort and highlight rows
+                    // Sắp xếp mặc định theo ngày hết hạn tăng dần và thực hiện tô màu cảnh báo nguy hiểm
                     dataGridView1.Sort(dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"], ListSortDirection.Ascending);
                     HighlightRows();
                     dataGridView1.ClearSelection();
 
-                    // Ẩn cột tạm thời
+                    // Ẩn 2 cột sắp xếp ảo khỏi mắt người dùng
                     dataGridView1.Columns["Ngày bắt đầu (For calculate and sort)"].Visible = false;
                     dataGridView1.Columns["Ngày hết hạn (For calculate and sort)"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
-                // Xóa dữ liệu từ BindingSource
                 bindingSource.DataSource = null;
                 dataGridView1.DataSource = bindingSource;
-
                 MessageBox.Show("Lỗi dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -235,7 +276,15 @@ namespace DetentionManageApp
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    var cellValue = row.Cells["Ngày hết hạn"].Value;
+                    // Kiểm tra xem record này là Lần 1 hay Lần 2
+                    string soLan = row.DataGridView.Columns.Contains("Số lần") && row.Cells["Số lần"].Value != null
+                                   ? row.Cells["Số lần"].Value.ToString() : "";
+
+                    // Chọn ô Ngày hết hạn tương ứng
+                    var cellValue = (soLan == "Lần 2" && row.DataGridView.Columns.Contains("Ngày hết hạn lần 2"))
+                                    ? row.Cells["Ngày hết hạn lần 2"].Value
+                                    : row.Cells["Ngày hết hạn"].Value;
+
                     if (cellValue != null && DateTime.TryParseExact(cellValue.ToString(), "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime endDate))
                     {
                         if (endDate < DateTime.Today)
@@ -268,13 +317,15 @@ namespace DetentionManageApp
             dataGridView1.Columns["Ngày quyết định"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày bắt đầu"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             dataGridView1.Columns["Ngày hết hạn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            if (dataGridView1.Columns.Contains("Địa điểm"))
+
+            // Tạo danh sách các cột cần ẩn
+            string[] hiddenColumns = { "Nghề nghiệp", "Số ngày tạm giam", "Địa điểm", "Số lần", "Gia hạn", "Ngày bắt đầu lần 2", "Ngày hết hạn lần 2", "Nội dung", "Số lệnh trích xuất", "Thời gian", "Điều khoản" };
+            foreach (string colName in hiddenColumns)
             {
-                dataGridView1.Columns["Địa điểm"].Visible = false;
-            }
-            if (dataGridView1.Columns.Contains("Số ngày tạm giam"))
-            {
-                dataGridView1.Columns["Số ngày tạm giam"].Visible = false;
+                if (dataGridView1.Columns.Contains(colName))
+                {
+                    dataGridView1.Columns[colName].Visible = false;
+                }
             }
         }
 
@@ -333,34 +384,40 @@ namespace DetentionManageApp
             int columns = sortedDataTable.Columns.Count;
 
             var cellHeader = worksheet.Cells[1, 1, 1, columns]; // Dòng tiêu đề
-            //cellHeader.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
             cellHeader.Style.Font.Bold = true;
 
             for (int row = 0; row < rows; row++)
             {
-                var expiryDate = Convert.ToDateTime(sortedDataTable.Rows[row]["Ngày hết hạn"]);
-                var cell = worksheet.Cells[row + 2, 1, row + 2, columns]; // Dòng hiện tại
+                var cell = worksheet.Cells[row + 2, 1, row + 2, columns]; // Dòng hiện tại trong Excel (bắt đầu từ dòng 2)
 
+                // 1. Kiểm tra xem dòng này đang lưu là Lần 1 hay Lần 2
+                string soLan = sortedDataTable.Columns.Contains("Số lần") && sortedDataTable.Rows[row]["Số lần"] != DBNull.Value
+                               ? sortedDataTable.Rows[row]["Số lần"].ToString()
+                               : "";
 
-                if (expiryDate < DateTime.Today)
+                // 2. Lấy chuỗi Ngày hết hạn ưu tiên theo Lần 2
+                string strNgayHetHan = (soLan == "Lần 2" && sortedDataTable.Columns.Contains("Ngày hết hạn lần 2"))
+                                        ? sortedDataTable.Rows[row]["Ngày hết hạn lần 2"].ToString()
+                                        : sortedDataTable.Rows[row]["Ngày hết hạn"].ToString();
+
+                // 3. Phân tích chuỗi ngày và tiến hành tô màu
+                if (DateTime.TryParseExact(strNgayHetHan, "dd/MM/yyyy", null, DateTimeStyles.None, out DateTime expiryDate))
                 {
-                    // Hết hạn
-                    cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                    cell.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                    if (expiryDate < DateTime.Today)
+                    {
+                        // Quá hạn -> Tô màu xám
+                        cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        cell.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                    }
+                    else if (expiryDate < DateTime.Today.AddDays(7))
+                    {
+                        // Sắp hết hạn (dưới 7 ngày) -> Tô nền đỏ, chữ trắng
+                        cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        cell.Style.Fill.BackgroundColor.SetColor(Color.DarkRed);
+                        cell.Style.Font.Color.SetColor(Color.White);
+                    }
+                    // else: Còn hạn dài -> Giữ nguyên nền trắng
                 }
-                else if (expiryDate < DateTime.Today.AddDays(7))
-                {
-                    // Hết hạn trong vòng 7 ngày
-                    cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                    cell.Style.Fill.BackgroundColor.SetColor(Color.DarkRed);
-                    cell.Style.Font.Color.SetColor(Color.White);
-                }
-                //else
-                //{
-                //    // Còn hạn
-                //    cell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                //    cell.Style.Fill.BackgroundColor.SetColor(Color.LightGreen);
-                //}
             }
         }
 
@@ -660,7 +717,7 @@ namespace DetentionManageApp
                         else
                         {
                             templateFilePath = selectedPath;
-                            MessageBox.Show($"Đã chọn file word mẫu.\nĐường dẫn file: {selectedPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Đã chọn mẫu Tạm giam.\nĐường dẫn file: {selectedPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         SaveFilePath();
                     }
@@ -670,6 +727,36 @@ namespace DetentionManageApp
             {
                 MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnChooseWordFileTrichXuat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = string.IsNullOrEmpty(templateFilePathTrichXuat) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : Path.GetDirectoryName(templateFilePathTrichXuat);
+                    openFileDialog.Filter = "Word Document (*.doc;*.docx)|*.doc;*.docx";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedPath = openFileDialog.FileName;
+                        if (Path.GetExtension(selectedPath).ToLower() == ".doc")
+                        {
+                            string newPath = Path.ChangeExtension(selectedPath, ".docx");
+                            ConvertDocToDocx(selectedPath, newPath);
+                            templateFilePathTrichXuat = newPath;
+                            MessageBox.Show($"File word .doc đã được chuyển thành .docx để phù hợp với ứng dụng.\nĐường dẫn file: {newPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            templateFilePathTrichXuat = selectedPath;
+                            MessageBox.Show($"Đã chọn mẫu Trích xuất.\nĐường dẫn file: {selectedPath}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        SaveFilePath();
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Lỗi file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void ConvertDocToDocx(string inputFile, string outputFile)
@@ -891,6 +978,87 @@ namespace DetentionManageApp
             }
         }
 
+        private void btnFileExportTrichXuat_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(templateFilePathTrichXuat))
+            {
+                MessageBox.Show("Bạn chưa chọn file mẫu Trích xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Hãy chọn ít nhất 1 dòng trong danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Logic xuất y hệt lệnh Tạm giam, chỉ thay đổi truyền templateFilePathTrichXuat vào hàm ExportDataToWord
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var row = dataGridView1.SelectedRows[0];
+                string rawName = row.Cells["Số thụ lý"].Value?.ToString() ?? "Exported";
+                string safeName = string.Concat(rawName.Split(Path.GetInvalidFileNameChars()));
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Word Document (*.docx)|*.docx";
+                sfd.FileName = $"LenhTrichXuat_{safeName}.docx"; // Thêm chữ LenhTrichXuat_ cho dễ phân biệt
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Dùng chung hàm Export, chỉ đổi đường dẫn Template
+                        ExportDataToWord(templateFilePathTrichXuat, sfd.FileName, row);
+                        MessageBox.Show($"Xuất Lệnh trích xuất thành công.\nĐường dẫn file: {sfd.FileName}", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex) { MessageBox.Show("Lỗi khi xuất file word: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                }
+            }
+            else
+            {
+                // Nếu chọn nhiều row
+                DialogResult confirm = MessageBox.Show(
+                    $"Bạn có chắc chắn muốn xuất {dataGridView1.SelectedRows.Count} file word?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+                    {
+                        if (fbd.ShowDialog() == DialogResult.OK)
+                        {
+                            string folderPath = fbd.SelectedPath;
+                            int successCount = 0;
+                            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                            {
+                                try
+                                {
+                                    string rawName = row.Cells["Số thụ lý"].Value?.ToString() ?? "Exported";
+                                    string safeName = string.Concat(rawName.Split(Path.GetInvalidFileNameChars()));
+                                    string exportPath = Path.Combine(folderPath, $"LenhTrichXuat_{safeName}.docx");
+
+                                    ExportDataToWord(templateFilePathTrichXuat, exportPath, row);
+                                    successCount++;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+
+                            MessageBox.Show($"Xuất thành công {successCount}/{dataGridView1.SelectedRows.Count} file word.\nThư mục: {folderPath}",
+                                "Kết quả",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+        }
+
         private void ExportDataToWord(string templatePath, string exportPath, DataGridViewRow row)
         {
             // Lấy chuỗi Ngày thụ lý từ DataGridView
@@ -953,22 +1121,90 @@ namespace DetentionManageApp
                 }
             }
 
+            // Convert Ngày thụ lý sang format "ngày {dd} tháng {MM} năm {yyyy}"
+            string ngayThuLyGoc = row.Cells["Ngày thụ lý"].Value?.ToString();
+
+            // Biến lưu trữ kết quả cuối cùng để xuất Word
+            string textNgayThuLyXuatWord = ngayThuLyGoc; // Đặt mặc định là chuỗi gốc phòng hờ lỗi
+
+            // Kiểm tra và chuyển đổi định dạng
+            if (!string.IsNullOrEmpty(ngayThuLyGoc))
+            {
+                // Cố gắng parse chuỗi theo đúng định dạng dd/MM/yyyy
+                if (DateTime.TryParseExact(ngayThuLyGoc, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateObj))
+                {
+                    // Ghép chuỗi theo format yêu cầu
+                    textNgayThuLyXuatWord = $"ngày {dateObj:dd} tháng {dateObj:MM} năm {dateObj:yyyy}";
+                }
+                else
+                {
+                    // Phương án dự phòng (Fallback): Lỡ data cũ không parse được bằng DateTime thì cắt chuỗi thủ công
+                    string[] parts = ngayThuLyGoc.Split('/');
+                    if (parts.Length == 3)
+                    {
+                        textNgayThuLyXuatWord = $"ngày {parts[0].PadLeft(2, '0')} tháng {parts[1].PadLeft(2, '0')} năm {parts[2]}";
+                    }
+                }
+            }
+
+            // Convert Thời gian sang format "HH giờ mm phút ngày dd tháng MM năm yyyy"
+            // Xử lý định dạng Thời gian trích xuất
+            string thoiGianTrichXuatGoc = row.DataGridView.Columns.Contains("Thời gian") && row.Cells["Thời gian"].Value != null
+                                          ? row.Cells["Thời gian"].Value.ToString()
+                                          : "";
+
+            string textThoiGianTrichXuatXuatWord = thoiGianTrichXuatGoc; // Đặt mặc định là chuỗi gốc
+
+            if (!string.IsNullOrEmpty(thoiGianTrichXuatGoc))
+            {
+                // Thử parse theo đúng định dạng ngày giờ đã lưu (dd/MM/yyyy HH:mm)
+                if (DateTime.TryParseExact(thoiGianTrichXuatGoc, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime tgObj))
+                {
+                    textThoiGianTrichXuatXuatWord = $"{tgObj:HH} giờ {tgObj:mm} phút ngày {tgObj:dd} tháng {tgObj:MM} năm {tgObj:yyyy}";
+                }
+                // Fallback: nếu lỡ parse thất bại thì dùng hàm TryParse mặc định của hệ thống
+                else if (DateTime.TryParse(thoiGianTrichXuatGoc, out DateTime tgFallback))
+                {
+                    textThoiGianTrichXuatXuatWord = $"{tgFallback:HH} giờ {tgFallback:mm} phút ngày {tgFallback:dd} tháng {tgFallback:MM} năm {tgFallback:yyyy}";
+                }
+            }
+
+            // Vì xài chung template cho cả Lần 1 và Lần 2 nên cần gộp biến Ngày bắt đầu và Ngày hết hạn
+            // Lấy thông tin Số lần của dòng đang chọn
+            string soLan = row.DataGridView.Columns.Contains("Số lần") && row.Cells["Số lần"].Value != null
+                           ? row.Cells["Số lần"].Value.ToString() : "Lần 1";
+
+            // Logic gộp biến Ngày bắt đầu: Nếu là Lần 2 thì lấy cột Lần 2, ngược lại lấy Lần 1
+            string ngayBatDauXuatWord = (soLan == "Lần 2" && row.DataGridView.Columns.Contains("Ngày bắt đầu lần 2"))
+                                        ? row.Cells["Ngày bắt đầu lần 2"].Value?.ToString() ?? ""
+                                        : row.Cells["Ngày bắt đầu"].Value?.ToString() ?? "";
+
+            // Logic gộp biến Ngày hết hạn: Nếu là Lần 2 thì lấy cột Lần 2, ngược lại lấy Lần 1
+            string ngayHetHanXuatWord = (soLan == "Lần 2" && row.DataGridView.Columns.Contains("Ngày hết hạn lần 2"))
+                                        ? row.Cells["Ngày hết hạn lần 2"].Value?.ToString() ?? ""
+                                        : row.Cells["Ngày hết hạn"].Value?.ToString() ?? "";
+
             var mapping = new Dictionary<string, string>
             {
                 { "{{sogiam}}", row.Cells["Số giam"].Value?.ToString() ?? "" },
                 { "{{ngayquyetdinh}}", textNgayQuyetDinhXuatWord },
                 { "{{sothuly}}", row.Cells["Số thụ lý"].Value?.ToString() ?? "" },
-                { "{{ngaythuly}}", ngayThuLy },
+                { "{{ngaythuly}}", textNgayThuLyXuatWord },
                 { "{{namthuly}}", namThuLy },
                 { "{{hovaten}}", row.Cells["Họ và tên"].Value?.ToString() ?? "" },
                 { "{{namsinh}}", row.Cells["Năm sinh"].Value?.ToString() ?? "" },
                 { "{{gioitinh}}", row.Cells["Giới tính"].Value?.ToString() ?? "" },
+                { "{{nghenghiep}}", row.DataGridView.Columns.Contains("Nghề nghiệp") && row.Cells["Nghề nghiệp"].Value != null ? row.Cells["Nghề nghiệp"].Value.ToString() : "" },
                 { "{{diachi}}", row.Cells["Địa chỉ"].Value?.ToString() ?? "" },
                 { "{{toidanh}}", row.Cells["Tội danh"].Value?.ToString() ?? "" },
+                { "{{dieukhoan}}", row.DataGridView.Columns.Contains("Điều khoản") && row.Cells["Điều khoản"].Value != null ? row.Cells["Điều khoản"].Value.ToString() : "" },
                 { "{{thoihantamgiam}}", textThoiHanGiamXuatWord },
-                { "{{ngaybatdau}}", row.Cells["Ngày bắt đầu"].Value?.ToString() ?? "" },
-                { "{{ngayhethan}}", row.Cells["Ngày hết hạn"].Value?.ToString() ?? "" },
-                { "{{diadiem}}", row.DataGridView.Columns.Contains("Địa điểm") && row.Cells["Địa điểm"].Value != null ? row.Cells["Địa điểm"].Value.ToString() : "" }
+                { "{{ngaybatdau}}", ngayBatDauXuatWord },
+                { "{{ngayhethan}}", ngayHetHanXuatWord },
+                { "{{diadiem}}", row.DataGridView.Columns.Contains("Địa điểm") && row.Cells["Địa điểm"].Value != null ? row.Cells["Địa điểm"].Value.ToString() : "" },
+                { "{{solenhtrichxuat}}", row.DataGridView.Columns.Contains("Số lệnh trích xuất") && row.Cells["Số lệnh trích xuất"].Value != null ? row.Cells["Số lệnh trích xuất"].Value.ToString() : "" },
+                { "{{thoigian}}", textThoiGianTrichXuatXuatWord },
+                { "{{noidung}}", row.DataGridView.Columns.Contains("Nội dung") && row.Cells["Nội dung"].Value != null ? row.Cells["Nội dung"].Value.ToString() : "" },
             };
 
             File.Copy(templatePath, exportPath, true);
@@ -993,13 +1229,38 @@ namespace DetentionManageApp
             {
                 btnEdit.Visible = true;
                 btnDelete.Visible = true;
-                btnFileExport.Visible = true;
+                btnFileExportTamGiam.Visible = true; // Mặc định luôn hiện nút xuất Tạm giam
+
+                // Kiểm tra xem tất cả các dòng đang được chọn có "Số lệnh trích xuất" hay không
+                bool hopLeDeTrichXuat = true;
+                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                    if (row.DataGridView.Columns.Contains("Số lệnh trích xuất"))
+                    {
+                        string soLenh = row.Cells["Số lệnh trích xuất"].Value?.ToString();
+                        if (string.IsNullOrWhiteSpace(soLenh))
+                        {
+                            hopLeDeTrichXuat = false;
+                            break; // Chỉ cần 1 dòng không có số lệnh thì dừng kiểm tra và ẩn nút
+                        }
+                    }
+                    else
+                    {
+                        hopLeDeTrichXuat = false;
+                        break;
+                    }
+                }
+
+                // Chỉ hiện nút xuất Trích xuất nếu dữ liệu hợp lệ
+                btnFileExportTrichXuat.Visible = hopLeDeTrichXuat;
             }
             else
             {
+                // Khi không chọn dòng nào thì ẩn tất cả
                 btnEdit.Visible = false;
                 btnDelete.Visible = false;
-                btnFileExport.Visible = false;
+                btnFileExportTamGiam.Visible = false;
+                btnFileExportTrichXuat.Visible = false;
             }
         }
 
