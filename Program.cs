@@ -53,44 +53,54 @@ namespace DetentionManageApp
                         return;
                     }
 
-                    // 1. Tìm chính xác cột chứa "Ngày hết hạn"
+                    // 1. Tìm chính xác các cột cần thiết
                     int ngayHetHanColIndex = -1;
+                    int ngayHetHanLan2ColIndex = -1;
+                    int soLanColIndex = -1;
+
                     int maxCol = worksheet.Dimension.End.Column;
 
                     for (int col = 1; col <= maxCol; col++)
                     {
                         string headerText = worksheet.Cells[1, col].Text.Trim();
-                        if (headerText.Equals("Ngày hết hạn", StringComparison.OrdinalIgnoreCase))
+                        if (headerText.Equals("Ngày hết hạn", StringComparison.OrdinalIgnoreCase)) ngayHetHanColIndex = col;
+                        if (headerText.Equals("Ngày hết hạn lần 2", StringComparison.OrdinalIgnoreCase)) ngayHetHanLan2ColIndex = col;
+                        if (headerText.Equals("Số lần", StringComparison.OrdinalIgnoreCase)) soLanColIndex = col;
+                    }
+
+                    // Nếu không tìm thấy cột Ngày hết hạn gốc thì thoát
+                    if (ngayHetHanColIndex == -1) return;
+
+                    // 2. Duyệt qua từng dòng dữ liệu
+                    int maxRow = worksheet.Dimension.End.Row;
+                    var dateCells = new System.Collections.Generic.List<DateTime>();
+
+                    for (int row = 2; row <= maxRow; row++)
+                    {
+                        string soLan = soLanColIndex != -1 ? worksheet.Cells[row, soLanColIndex].Text.Trim() : "";
+                        string dateText = "";
+
+                        // Ưu tiên lấy Ngày hết hạn Lần 2 nếu đang ở chế độ Lần 2
+                        if (soLan == "Lần 2" && ngayHetHanLan2ColIndex != -1)
                         {
-                            ngayHetHanColIndex = col;
-                            break;
+                            dateText = worksheet.Cells[row, ngayHetHanLan2ColIndex].Text.Trim();
+                        }
+                        else
+                        {
+                            dateText = worksheet.Cells[row, ngayHetHanColIndex].Text.Trim();
+                        }
+
+                        if (DateTime.TryParseExact(dateText, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                        {
+                            dateCells.Add(parsedDate);
                         }
                     }
 
-                    // Nếu không tìm thấy cột Ngày hết hạn thì thoát để tránh lỗi
-                    if (ngayHetHanColIndex == -1)
-                    {
-                        return;
-                    }
-
-                    // 2. Chỉ truy vấn trên đúng cột "Ngày hết hạn" đã tìm thấy, bỏ qua dòng tiêu đề (bắt đầu từ dòng 2)
-                    int maxRow = worksheet.Dimension.End.Row;
-
-                    var dateCells = worksheet.Cells[2, ngayHetHanColIndex, maxRow, ngayHetHanColIndex]
-                        .Select(cell => cell.Text)
-                        .Where(text => !string.IsNullOrEmpty(text))
-                        .Select(text =>
-                        {
-                            DateTime.TryParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate);
-                            return parsedDate;
-                        })
-                        .Where(date => date != DateTime.MinValue); // Bỏ qua các ô không parse được ngày
-
-                    // Tính toán số lượng
+                    // 3. Tính toán số lượng
                     var nearEndCount = dateCells.Count(endDate => endDate >= DateTime.Today && endDate < DateTime.Today.AddDays(7));
                     var overEndCount = dateCells.Count(endDate => endDate < DateTime.Today);
 
-                    // 3. Hiển thị thông báo
+                    // 4. Hiển thị thông báo
                     if (nearEndCount > 0 || overEndCount > 0)
                     {
                         string message = $"Có [ {nearEndCount} ] người có Ngày hết hạn tạm giam dưới 7 ngày.\n Và [ {overEndCount} ] người có Ngày hết hạn tạm giam quá hạn.";

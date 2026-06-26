@@ -58,15 +58,38 @@
             this.txtThoiHanTamGiam = new System.Windows.Forms.TextBox();
             this.lblDiaDiem = new System.Windows.Forms.Label();
             this.cbLocation = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pnLenhTamGiam = new System.Windows.Forms.Panel();
             this.dtpNgayThuLy = new System.Windows.Forms.DateTimePicker();
+            this.lblNgheNghiep = new System.Windows.Forms.Label();
+            this.txtNgheNghiep = new System.Windows.Forms.TextBox();
+            this.lblDieuKhoan = new System.Windows.Forms.Label();
+            this.txtDieuKhoan = new System.Windows.Forms.TextBox();
             this.dtpNgayQuyetDinh = new System.Windows.Forms.DateTimePicker();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cbSoNgayTamGiam = new System.Windows.Forms.ComboBox();
             this.lblSoNgayTamGiam = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.cbSoNgayTamGiam = new System.Windows.Forms.ComboBox();
+            this.lblTitleNgay1 = new System.Windows.Forms.Label();
+            this.lblTitleNgay2 = new System.Windows.Forms.Label();
+            this.lblNgayBatDauLan2 = new System.Windows.Forms.Label();
+            this.dtpNgayBatDauLan2 = new System.Windows.Forms.DateTimePicker();
+            this.lblNgayHetHanLan2 = new System.Windows.Forms.Label();
+            this.dtpNgayHetHanLan2 = new System.Windows.Forms.DateTimePicker();
+            this.lblGiaHan = new System.Windows.Forms.Label();
+            this.txtGiaHan = new System.Windows.Forms.TextBox();
+            this.lblTiTleNgay3 = new System.Windows.Forms.Label();
+            this.lblNoiDung = new System.Windows.Forms.Label();
+            this.txtNoiDung = new System.Windows.Forms.TextBox();
+            this.pnButton = new System.Windows.Forms.Panel();
+            this.cbSoLan = new System.Windows.Forms.ComboBox();
+            this.lblForPanel1 = new System.Windows.Forms.Label();
+            this.pnLenhTrichXuat = new System.Windows.Forms.Panel();
+            this.lblSoLenhTrichXuat = new System.Windows.Forms.Label();
+            this.txtSoLenhTrichXuat = new System.Windows.Forms.TextBox();
+            this.lblThoiGianTrichXuat = new System.Windows.Forms.Label();
+            this.dtpThoiGianTrichXuat = new System.Windows.Forms.DateTimePicker();
+            this.lblForPanel3 = new System.Windows.Forms.Label();
+            this.pnLenhTamGiam.SuspendLayout();
+            this.pnButton.SuspendLayout();
+            this.pnLenhTrichXuat.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblStt
@@ -231,28 +254,56 @@
             this.cbLocation.FormattingEnabled = true;
             this.cbLocation.Name = "cbLocation";
             // 
-            // panel1
+            // pnLenhTamGiam
             // 
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cbSoNgayTamGiam);
-            this.panel1.Controls.Add(this.dtpNgayThuLy);
-            this.panel1.Controls.Add(this.dtpNgayHetHan);
-            this.panel1.Controls.Add(this.dtpNgayQuyetDinh);
-            this.panel1.Controls.Add(this.txtSoThuLy);
-            this.panel1.Controls.Add(this.lblNgayThuLy);
-            this.panel1.Controls.Add(this.lblSoThuLy);
-            this.panel1.Controls.Add(this.lblThoiHanTamGiam);
-            this.panel1.Controls.Add(this.lblSoNgayTamGiam);
-            this.panel1.Controls.Add(this.txtStt);
-            this.panel1.Controls.Add(this.lblNgayHetHan);
-            this.panel1.Name = "panel1";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.pnLenhTamGiam, "pnLenhTamGiam");
+            this.pnLenhTamGiam.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnLenhTamGiam.Controls.Add(this.txtStt);
+            this.pnLenhTamGiam.Controls.Add(this.lblStt);
+            this.pnLenhTamGiam.Controls.Add(this.lblSoThuLy);
+            this.pnLenhTamGiam.Controls.Add(this.txtSoThuLy);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayThuLy);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayThuLy);
+            this.pnLenhTamGiam.Controls.Add(this.lblHoVaTen);
+            this.pnLenhTamGiam.Controls.Add(this.txtHoVaTen);
+            this.pnLenhTamGiam.Controls.Add(this.lblNamSinh);
+            this.pnLenhTamGiam.Controls.Add(this.txtNamSinh);
+            this.pnLenhTamGiam.Controls.Add(this.lblGioiTinh);
+            this.pnLenhTamGiam.Controls.Add(this.cbGioiTinh);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgheNghiep);
+            this.pnLenhTamGiam.Controls.Add(this.txtNgheNghiep);
+            this.pnLenhTamGiam.Controls.Add(this.lblDiaChi);
+            this.pnLenhTamGiam.Controls.Add(this.txtDiaChi);
+            this.pnLenhTamGiam.Controls.Add(this.lblToiDanh);
+            this.pnLenhTamGiam.Controls.Add(this.txtToiDanh);
+            this.pnLenhTamGiam.Controls.Add(this.lblDieuKhoan);
+            this.pnLenhTamGiam.Controls.Add(this.txtDieuKhoan);
+            this.pnLenhTamGiam.Controls.Add(this.txtSoGiam);
+            this.pnLenhTamGiam.Controls.Add(this.lblSoGiam);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayQuyetDinh);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayQuyetDinh);
+            this.pnLenhTamGiam.Controls.Add(this.lblSoNgayTamGiam);
+            this.pnLenhTamGiam.Controls.Add(this.cbSoNgayTamGiam);
+            this.pnLenhTamGiam.Controls.Add(this.lblTitleNgay1);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayBatDau);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayBatDau);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayHetHan);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayHetHan);
+            this.pnLenhTamGiam.Controls.Add(this.lblThoiHanTamGiam);
+            this.pnLenhTamGiam.Controls.Add(this.txtThoiHanTamGiam);
+            this.pnLenhTamGiam.Controls.Add(this.lblTitleNgay2);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayBatDauLan2);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayBatDauLan2);
+            this.pnLenhTamGiam.Controls.Add(this.lblNgayHetHanLan2);
+            this.pnLenhTamGiam.Controls.Add(this.dtpNgayHetHanLan2);
+            this.pnLenhTamGiam.Controls.Add(this.lblGiaHan);
+            this.pnLenhTamGiam.Controls.Add(this.txtGiaHan);
+            this.pnLenhTamGiam.Controls.Add(this.lblTiTleNgay3);
+            this.pnLenhTamGiam.Controls.Add(this.lblDiaDiem);
+            this.pnLenhTamGiam.Controls.Add(this.cbLocation);
+            this.pnLenhTamGiam.Controls.Add(this.lblNoiDung);
+            this.pnLenhTamGiam.Controls.Add(this.txtNoiDung);
+            this.pnLenhTamGiam.Name = "pnLenhTamGiam";
             // 
             // dtpNgayThuLy
             // 
@@ -261,6 +312,26 @@
             this.dtpNgayThuLy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgayThuLy.Name = "dtpNgayThuLy";
             // 
+            // lblNgheNghiep
+            // 
+            resources.ApplyResources(this.lblNgheNghiep, "lblNgheNghiep");
+            this.lblNgheNghiep.Name = "lblNgheNghiep";
+            // 
+            // txtNgheNghiep
+            // 
+            resources.ApplyResources(this.txtNgheNghiep, "txtNgheNghiep");
+            this.txtNgheNghiep.Name = "txtNgheNghiep";
+            // 
+            // lblDieuKhoan
+            // 
+            resources.ApplyResources(this.lblDieuKhoan, "lblDieuKhoan");
+            this.lblDieuKhoan.Name = "lblDieuKhoan";
+            // 
+            // txtDieuKhoan
+            // 
+            resources.ApplyResources(this.txtDieuKhoan, "txtDieuKhoan");
+            this.txtDieuKhoan.Name = "txtDieuKhoan";
+            // 
             // dtpNgayQuyetDinh
             // 
             this.dtpNgayQuyetDinh.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -268,13 +339,10 @@
             this.dtpNgayQuyetDinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgayQuyetDinh.Name = "dtpNgayQuyetDinh";
             // 
-            // panel2
+            // lblSoNgayTamGiam
             // 
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Name = "panel2";
+            resources.ApplyResources(this.lblSoNgayTamGiam, "lblSoNgayTamGiam");
+            this.lblSoNgayTamGiam.Name = "lblSoNgayTamGiam";
             // 
             // cbSoNgayTamGiam
             // 
@@ -284,45 +352,145 @@
             this.cbSoNgayTamGiam.FormattingEnabled = true;
             this.cbSoNgayTamGiam.Name = "cbSoNgayTamGiam";
             // 
-            // lblSoNgayTamGiam
+            // lblTitleNgay1
             // 
-            resources.ApplyResources(this.lblSoNgayTamGiam, "lblSoNgayTamGiam");
-            this.lblSoNgayTamGiam.Name = "lblSoNgayTamGiam";
+            resources.ApplyResources(this.lblTitleNgay1, "lblTitleNgay1");
+            this.lblTitleNgay1.Name = "lblTitleNgay1";
+            // 
+            // lblTitleNgay2
+            // 
+            resources.ApplyResources(this.lblTitleNgay2, "lblTitleNgay2");
+            this.lblTitleNgay2.Name = "lblTitleNgay2";
+            // 
+            // lblNgayBatDauLan2
+            // 
+            resources.ApplyResources(this.lblNgayBatDauLan2, "lblNgayBatDauLan2");
+            this.lblNgayBatDauLan2.Name = "lblNgayBatDauLan2";
+            // 
+            // dtpNgayBatDauLan2
+            // 
+            this.dtpNgayBatDauLan2.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayBatDauLan2, "dtpNgayBatDauLan2");
+            this.dtpNgayBatDauLan2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayBatDauLan2.Name = "dtpNgayBatDauLan2";
+            // 
+            // lblNgayHetHanLan2
+            // 
+            resources.ApplyResources(this.lblNgayHetHanLan2, "lblNgayHetHanLan2");
+            this.lblNgayHetHanLan2.Name = "lblNgayHetHanLan2";
+            // 
+            // dtpNgayHetHanLan2
+            // 
+            this.dtpNgayHetHanLan2.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpNgayHetHanLan2, "dtpNgayHetHanLan2");
+            this.dtpNgayHetHanLan2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayHetHanLan2.Name = "dtpNgayHetHanLan2";
+            // 
+            // lblGiaHan
+            // 
+            resources.ApplyResources(this.lblGiaHan, "lblGiaHan");
+            this.lblGiaHan.Name = "lblGiaHan";
+            // 
+            // txtGiaHan
+            // 
+            resources.ApplyResources(this.txtGiaHan, "txtGiaHan");
+            this.txtGiaHan.Name = "txtGiaHan";
+            // 
+            // lblTiTleNgay3
+            // 
+            resources.ApplyResources(this.lblTiTleNgay3, "lblTiTleNgay3");
+            this.lblTiTleNgay3.Name = "lblTiTleNgay3";
+            // 
+            // lblNoiDung
+            // 
+            resources.ApplyResources(this.lblNoiDung, "lblNoiDung");
+            this.lblNoiDung.Name = "lblNoiDung";
+            // 
+            // txtNoiDung
+            // 
+            resources.ApplyResources(this.txtNoiDung, "txtNoiDung");
+            this.txtNoiDung.Name = "txtNoiDung";
+            // 
+            // pnButton
+            // 
+            resources.ApplyResources(this.pnButton, "pnButton");
+            this.pnButton.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnButton.Controls.Add(this.btnCancel);
+            this.pnButton.Controls.Add(this.btnSave);
+            this.pnButton.Name = "pnButton";
+            // 
+            // cbSoLan
+            // 
+            this.cbSoLan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbSoLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cbSoLan, "cbSoLan");
+            this.cbSoLan.FormattingEnabled = true;
+            this.cbSoLan.Name = "cbSoLan";
+            // 
+            // lblForPanel1
+            // 
+            resources.ApplyResources(this.lblForPanel1, "lblForPanel1");
+            this.lblForPanel1.Name = "lblForPanel1";
+            // 
+            // pnLenhTrichXuat
+            // 
+            resources.ApplyResources(this.pnLenhTrichXuat, "pnLenhTrichXuat");
+            this.pnLenhTrichXuat.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnLenhTrichXuat.Controls.Add(this.lblSoLenhTrichXuat);
+            this.pnLenhTrichXuat.Controls.Add(this.txtSoLenhTrichXuat);
+            this.pnLenhTrichXuat.Controls.Add(this.lblThoiGianTrichXuat);
+            this.pnLenhTrichXuat.Controls.Add(this.dtpThoiGianTrichXuat);
+            this.pnLenhTrichXuat.Name = "pnLenhTrichXuat";
+            // 
+            // lblSoLenhTrichXuat
+            // 
+            resources.ApplyResources(this.lblSoLenhTrichXuat, "lblSoLenhTrichXuat");
+            this.lblSoLenhTrichXuat.Name = "lblSoLenhTrichXuat";
+            // 
+            // txtSoLenhTrichXuat
+            // 
+            resources.ApplyResources(this.txtSoLenhTrichXuat, "txtSoLenhTrichXuat");
+            this.txtSoLenhTrichXuat.Name = "txtSoLenhTrichXuat";
+            this.txtSoLenhTrichXuat.Leave += new System.EventHandler(this.txtHoVaTen_Leave);
+            // 
+            // lblThoiGianTrichXuat
+            // 
+            resources.ApplyResources(this.lblThoiGianTrichXuat, "lblThoiGianTrichXuat");
+            this.lblThoiGianTrichXuat.Name = "lblThoiGianTrichXuat";
+            // 
+            // dtpThoiGianTrichXuat
+            // 
+            this.dtpThoiGianTrichXuat.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.dtpThoiGianTrichXuat, "dtpThoiGianTrichXuat");
+            this.dtpThoiGianTrichXuat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpThoiGianTrichXuat.Name = "dtpThoiGianTrichXuat";
+            // 
+            // lblForPanel3
+            // 
+            resources.ApplyResources(this.lblForPanel3, "lblForPanel3");
+            this.lblForPanel3.Name = "lblForPanel3";
             // 
             // FormCreateEdit
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
-            this.Controls.Add(this.cbLocation);
-            this.Controls.Add(this.cbGioiTinh);
-            this.Controls.Add(this.dtpNgayBatDau);
-            this.Controls.Add(this.txtThoiHanTamGiam);
-            this.Controls.Add(this.txtDiaChi);
-            this.Controls.Add(this.lblDiaDiem);
-            this.Controls.Add(this.txtSoGiam);
-            this.Controls.Add(this.lblDiaChi);
-            this.Controls.Add(this.lblSoGiam);
-            this.Controls.Add(this.lblNgayQuyetDinh);
-            this.Controls.Add(this.lblNgayBatDau);
-            this.Controls.Add(this.txtHoVaTen);
-            this.Controls.Add(this.lblHoVaTen);
-            this.Controls.Add(this.txtToiDanh);
-            this.Controls.Add(this.lblGioiTinh);
-            this.Controls.Add(this.lblToiDanh);
-            this.Controls.Add(this.txtNamSinh);
-            this.Controls.Add(this.lblNamSinh);
+            this.Controls.Add(this.lblForPanel3);
+            this.Controls.Add(this.lblForPanel1);
+            this.Controls.Add(this.cbSoLan);
             this.Controls.Add(this.lblTitleThongTin);
-            this.Controls.Add(this.lblStt);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnLenhTamGiam);
+            this.Controls.Add(this.pnButton);
+            this.Controls.Add(this.pnLenhTrichXuat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCreateEdit";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.pnLenhTamGiam.ResumeLayout(false);
+            this.pnLenhTamGiam.PerformLayout();
+            this.pnButton.ResumeLayout(false);
+            this.pnLenhTrichXuat.ResumeLayout(false);
+            this.pnLenhTrichXuat.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,13 +527,35 @@
         private System.Windows.Forms.TextBox txtThoiHanTamGiam;
         private System.Windows.Forms.Label lblDiaDiem;
         private System.Windows.Forms.ComboBox cbLocation;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnLenhTamGiam;
+        private System.Windows.Forms.Panel pnButton;
         private System.Windows.Forms.DateTimePicker dtpNgayThuLy;
         private System.Windows.Forms.DateTimePicker dtpNgayQuyetDinh;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitleNgay2;
         private System.Windows.Forms.ComboBox cbSoNgayTamGiam;
         private System.Windows.Forms.Label lblSoNgayTamGiam;
+        private System.Windows.Forms.ComboBox cbSoLan;
+        private System.Windows.Forms.TextBox txtNoiDung;
+        private System.Windows.Forms.Label lblNoiDung;
+        private System.Windows.Forms.Label lblForPanel1;
+        private System.Windows.Forms.Panel pnLenhTrichXuat;
+        private System.Windows.Forms.TextBox txtSoLenhTrichXuat;
+        private System.Windows.Forms.Label lblThoiGianTrichXuat;
+        private System.Windows.Forms.Label lblSoLenhTrichXuat;
+        private System.Windows.Forms.DateTimePicker dtpThoiGianTrichXuat;
+        private System.Windows.Forms.Label lblForPanel3;
+        private System.Windows.Forms.Label lblTiTleNgay3;
+        private System.Windows.Forms.TextBox txtGiaHan;
+        private System.Windows.Forms.Label lblGiaHan;
+        private System.Windows.Forms.DateTimePicker dtpNgayHetHanLan2;
+        private System.Windows.Forms.Label lblNgayHetHanLan2;
+        private System.Windows.Forms.Label lblNgayBatDauLan2;
+        private System.Windows.Forms.DateTimePicker dtpNgayBatDauLan2;
+        private System.Windows.Forms.Label lblTitleNgay1;
+        private System.Windows.Forms.Label lblNgheNghiep;
+        private System.Windows.Forms.TextBox txtNgheNghiep;
+        private System.Windows.Forms.Label lblDieuKhoan;
+        private System.Windows.Forms.TextBox txtDieuKhoan;
     }
 }
 

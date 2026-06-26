@@ -301,8 +301,7 @@ namespace DetentionManageApp
                 // Vẽ nền của nút (giữ lại hiệu ứng khi di chuột / click) nhưng bỏ qua phần chữ mặc định
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
 
-                // Lấy icon từ Resources (Lưu ý: Thay 'icon_delete' bằng đúng tên file ảnh của bạn)
-                Image icon = Properties.Resources.icon_delete;
+                Image icon = Properties.Resources.icon_trash_bin;
 
                 if (icon != null)
                 {
