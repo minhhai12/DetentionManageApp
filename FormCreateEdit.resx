@@ -126,7 +126,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblStt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 80</value>
+    <value>39, 22</value>
   </data>
   <data name="lblStt.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 22</value>
@@ -144,10 +144,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblStt.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblStt.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>1</value>
   </data>
   <data name="txtStt.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
@@ -156,7 +156,7 @@
     <value>36, 50</value>
   </data>
   <data name="txtStt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 29</value>
+    <value>130, 29</value>
   </data>
   <data name="txtStt.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -172,10 +172,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtStt.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtStt.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>0</value>
   </data>
   <data name="lblSoThuLy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -184,7 +184,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblSoThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>267, 22</value>
+    <value>337, 22</value>
   </data>
   <data name="lblSoThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 22</value>
@@ -202,19 +202,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSoThuLy.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblSoThuLy.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="txtSoThuLy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtSoThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 50</value>
+    <value>206, 50</value>
   </data>
   <data name="txtSoThuLy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 29</value>
+    <value>358, 29</value>
   </data>
   <data name="txtSoThuLy.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -229,10 +229,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtSoThuLy.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtSoThuLy.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="lblNamSinh.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -241,7 +241,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNamSinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>444, 155</value>
+    <value>401, 97</value>
   </data>
   <data name="lblNamSinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 22</value>
@@ -259,19 +259,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNamSinh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblNamSinh.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>8</value>
   </data>
   <data name="txtNamSinh.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtNamSinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 183</value>
+    <value>399, 125</value>
   </data>
   <data name="txtNamSinh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 29</value>
+    <value>140, 29</value>
   </data>
   <data name="txtNamSinh.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -286,10 +286,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtNamSinh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtNamSinh.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>9</value>
   </data>
   <data name="lblToiDanh.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -298,7 +298,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblToiDanh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 233</value>
+    <value>519, 175</value>
   </data>
   <data name="lblToiDanh.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 22</value>
@@ -316,22 +316,25 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblToiDanh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblToiDanh.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="txtToiDanh.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtToiDanh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 261</value>
+    <value>518, 200</value>
+  </data>
+  <data name="txtToiDanh.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="txtToiDanh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 29</value>
+    <value>174, 58</value>
   </data>
   <data name="txtToiDanh.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;txtToiDanh.Name" xml:space="preserve">
     <value>txtToiDanh</value>
@@ -340,10 +343,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtToiDanh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtToiDanh.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>17</value>
   </data>
   <data name="lblHoVaTen.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -352,7 +355,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblHoVaTen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 155</value>
+    <value>40, 97</value>
   </data>
   <data name="lblHoVaTen.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 22</value>
@@ -370,19 +373,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblHoVaTen.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblHoVaTen.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>6</value>
   </data>
   <data name="txtHoVaTen.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtHoVaTen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 183</value>
+    <value>36, 125</value>
   </data>
   <data name="txtHoVaTen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 29</value>
+    <value>332, 29</value>
   </data>
   <data name="txtHoVaTen.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -394,10 +397,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtHoVaTen.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtHoVaTen.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="lblNgayBatDau.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -406,7 +409,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayBatDau.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 466</value>
+    <value>38, 361</value>
   </data>
   <data name="lblNgayBatDau.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 22</value>
@@ -424,10 +427,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNgayBatDau.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblNgayBatDau.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>27</value>
   </data>
   <data name="lblNgayHetHan.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -436,7 +439,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 408</value>
+    <value>361, 361</value>
   </data>
   <data name="lblNgayHetHan.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 22</value>
@@ -454,10 +457,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNgayHetHan.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblNgayHetHan.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>29</value>
   </data>
   <data name="lblSoGiam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -466,7 +469,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblSoGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 389</value>
+    <value>361, 282</value>
   </data>
   <data name="lblSoGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 22</value>
@@ -484,22 +487,22 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSoGiam.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblSoGiam.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>21</value>
   </data>
   <data name="txtSoGiam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtSoGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 417</value>
+    <value>358, 310</value>
   </data>
   <data name="txtSoGiam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 29</value>
+    <value>290, 29</value>
   </data>
   <data name="txtSoGiam.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="txtSoGiam.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -511,10 +514,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtSoGiam.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtSoGiam.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>20</value>
   </data>
   <data name="dtpNgayBatDau.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -523,13 +526,13 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayBatDau.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 495</value>
+    <value>36, 390</value>
   </data>
   <data name="dtpNgayBatDau.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 29</value>
+    <value>290, 29</value>
   </data>
   <data name="dtpNgayBatDau.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;dtpNgayBatDau.Name" xml:space="preserve">
     <value>dtpNgayBatDau</value>
@@ -538,28 +541,25 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dtpNgayBatDau.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;dtpNgayBatDau.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>28</value>
   </data>
   <data name="dtpNgayHetHan.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
-  </data>
-  <data name="dtpNgayHetHan.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="dtpNgayHetHan.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 437</value>
+    <value>358, 390</value>
   </data>
   <data name="dtpNgayHetHan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 29</value>
+    <value>290, 29</value>
   </data>
   <data name="dtpNgayHetHan.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;dtpNgayHetHan.Name" xml:space="preserve">
     <value>dtpNgayHetHan</value>
@@ -568,22 +568,22 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dtpNgayHetHan.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;dtpNgayHetHan.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>30</value>
   </data>
   <data name="btnSave.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 11</value>
+    <value>206, 11</value>
   </data>
   <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 50</value>
   </data>
   <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>0</value>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
     <value>SAVE</value>
@@ -595,7 +595,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>pnButton</value>
   </data>
   <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -604,13 +604,13 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 11</value>
+    <value>545, 11</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 50</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>1</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>CANCEL</value>
@@ -622,7 +622,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>pnButton</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -655,7 +655,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblTitleThongTin.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>3</value>
   </data>
   <data name="lblNgayThuLy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -664,7 +664,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblNgayThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>527, 22</value>
+    <value>612, 22</value>
   </data>
   <data name="lblNgayThuLy.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 22</value>
@@ -682,10 +682,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNgayThuLy.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblNgayThuLy.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="cbGioiTinh.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -694,10 +694,10 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="cbGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>636, 183</value>
+    <value>569, 125</value>
   </data>
   <data name="cbGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 29</value>
+    <value>84, 29</value>
   </data>
   <data name="cbGioiTinh.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -709,10 +709,10 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbGioiTinh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;cbGioiTinh.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>11</value>
   </data>
   <data name="lblGioiTinh.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -721,7 +721,7 @@
     <value>Times New Roman, 14.25pt, style=Bold</value>
   </data>
   <data name="lblGioiTinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>639, 155</value>
+    <value>571, 97</value>
   </data>
   <data name="lblGioiTinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 22</value>
@@ -739,10 +739,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblGioiTinh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblGioiTinh.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>10</value>
   </data>
   <data name="lblNgayQuyetDinh.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -754,7 +754,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblNgayQuyetDinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 389</value>
+    <value>38, 282</value>
   </data>
   <data name="lblNgayQuyetDinh.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
@@ -772,10 +772,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNgayQuyetDinh.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblNgayQuyetDinh.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>22</value>
   </data>
   <data name="lblDiaChi.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -787,7 +787,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiaChi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 312</value>
+    <value>40, 175</value>
   </data>
   <data name="lblDiaChi.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 22</value>
@@ -805,19 +805,22 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDiaChi.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblDiaChi.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>14</value>
   </data>
   <data name="txtDiaChi.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtDiaChi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 340</value>
+    <value>36, 203</value>
+  </data>
+  <data name="txtDiaChi.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="txtDiaChi.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 29</value>
+    <value>452, 58</value>
   </data>
   <data name="txtDiaChi.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -829,10 +832,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtDiaChi.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtDiaChi.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>15</value>
   </data>
   <data name="lblThoiHanTamGiam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -844,7 +847,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblThoiHanTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>564, 408</value>
+    <value>686, 361</value>
   </data>
   <data name="lblThoiHanTamGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 22</value>
@@ -862,25 +865,22 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblThoiHanTamGiam.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblThoiHanTamGiam.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="txtThoiHanTamGiam.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+    <value>31</value>
   </data>
   <data name="txtThoiHanTamGiam.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="txtThoiHanTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>574, 495</value>
+    <value>682, 390</value>
   </data>
   <data name="txtThoiHanTamGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 29</value>
   </data>
   <data name="txtThoiHanTamGiam.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="txtThoiHanTamGiam.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -892,10 +892,10 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtThoiHanTamGiam.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;txtThoiHanTamGiam.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>32</value>
   </data>
   <data name="lblDiaDiem.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -907,7 +907,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiaDiem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 549</value>
+    <value>39, 515</value>
   </data>
   <data name="lblDiaDiem.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 22</value>
@@ -925,22 +925,22 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDiaDiem.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblDiaDiem.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>41</value>
   </data>
   <data name="cbLocation.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="cbLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 576</value>
+    <value>36, 542</value>
   </data>
   <data name="cbLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 29</value>
+    <value>864, 29</value>
   </data>
   <data name="cbLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>19</value>
   </data>
   <data name="&gt;&gt;cbLocation.Name" xml:space="preserve">
     <value>cbLocation</value>
@@ -949,124 +949,13 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbLocation.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;cbLocation.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>42</value>
   </data>
-  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="pnLenhTamGiam.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Name" xml:space="preserve">
-    <value>cbSoNgayTamGiam</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayThuLy.Name" xml:space="preserve">
-    <value>dtpNgayThuLy</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayThuLy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayThuLy.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayThuLy.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayQuyetDinh.Name" xml:space="preserve">
-    <value>dtpNgayQuyetDinh</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayQuyetDinh.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayQuyetDinh.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;dtpNgayQuyetDinh.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblSoNgayTamGiam.Name" xml:space="preserve">
-    <value>lblSoNgayTamGiam</value>
-  </data>
-  <data name="&gt;&gt;lblSoNgayTamGiam.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSoNgayTamGiam.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lblSoNgayTamGiam.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 56</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>823, 571</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Times New Roman, 12pt</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>745, 444</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 19</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>ngày</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="dtpNgayThuLy.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -1075,10 +964,10 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayThuLy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>524, 50</value>
+    <value>610, 50</value>
   </data>
   <data name="dtpNgayThuLy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 29</value>
+    <value>290, 29</value>
   </data>
   <data name="dtpNgayThuLy.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1090,10 +979,130 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dtpNgayThuLy.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;dtpNgayThuLy.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
+  </data>
+  <data name="lblNgheNghiep.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgheNghiep.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgheNghiep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNgheNghiep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>684, 97</value>
+  </data>
+  <data name="lblNgheNghiep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 22</value>
+  </data>
+  <data name="lblNgheNghiep.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgheNghiep.Text" xml:space="preserve">
+    <value>Nghề nghiệp</value>
+  </data>
+  <data name="&gt;&gt;lblNgheNghiep.Name" xml:space="preserve">
+    <value>lblNgheNghiep</value>
+  </data>
+  <data name="&gt;&gt;lblNgheNghiep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgheNghiep.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNgheNghiep.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtNgheNghiep.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtNgheNghiep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>682, 125</value>
+  </data>
+  <data name="txtNgheNghiep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 29</value>
+  </data>
+  <data name="txtNgheNghiep.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="txtNgheNghiep.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;txtNgheNghiep.Name" xml:space="preserve">
+    <value>txtNgheNghiep</value>
+  </data>
+  <data name="&gt;&gt;txtNgheNghiep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtNgheNghiep.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;txtNgheNghiep.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lblDieuKhoan.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDieuKhoan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblDieuKhoan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDieuKhoan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>726, 175</value>
+  </data>
+  <data name="lblDieuKhoan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 22</value>
+  </data>
+  <data name="lblDieuKhoan.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDieuKhoan.Text" xml:space="preserve">
+    <value>Điều khoản</value>
+  </data>
+  <data name="&gt;&gt;lblDieuKhoan.Name" xml:space="preserve">
+    <value>lblDieuKhoan</value>
+  </data>
+  <data name="&gt;&gt;lblDieuKhoan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDieuKhoan.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblDieuKhoan.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="txtDieuKhoan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtDieuKhoan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>725, 200</value>
+  </data>
+  <data name="txtDieuKhoan.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDieuKhoan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 58</value>
+  </data>
+  <data name="txtDieuKhoan.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtDieuKhoan.Name" xml:space="preserve">
+    <value>txtDieuKhoan</value>
+  </data>
+  <data name="&gt;&gt;txtDieuKhoan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDieuKhoan.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;txtDieuKhoan.ZOrder" xml:space="preserve">
+    <value>19</value>
   </data>
   <data name="dtpNgayQuyetDinh.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy</value>
@@ -1102,13 +1111,13 @@
     <value>Times New Roman, 14.25pt</value>
   </data>
   <data name="dtpNgayQuyetDinh.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 359</value>
+    <value>36, 310</value>
   </data>
   <data name="dtpNgayQuyetDinh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 29</value>
+    <value>290, 29</value>
   </data>
   <data name="dtpNgayQuyetDinh.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;dtpNgayQuyetDinh.Name" xml:space="preserve">
     <value>dtpNgayQuyetDinh</value>
@@ -1117,58 +1126,10 @@
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dtpNgayQuyetDinh.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;dtpNgayQuyetDinh.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 633</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>823, 73</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="cbSoNgayTamGiam.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Times New Roman, 14.25pt</value>
-  </data>
-  <data name="cbSoNgayTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>560, 359</value>
-  </data>
-  <data name="cbSoNgayTamGiam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 29</value>
-  </data>
-  <data name="cbSoNgayTamGiam.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Name" xml:space="preserve">
-    <value>cbSoNgayTamGiam</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cbSoNgayTamGiam.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>23</value>
   </data>
   <data name="lblSoNgayTamGiam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1180,7 +1141,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSoNgayTamGiam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>562, 331</value>
+    <value>684, 282</value>
   </data>
   <data name="lblSoNgayTamGiam.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 22</value>
@@ -1198,10 +1159,643 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSoNgayTamGiam.Parent" xml:space="preserve">
-    <value>panel1</value>
+    <value>pnLenhTamGiam</value>
   </data>
   <data name="&gt;&gt;lblSoNgayTamGiam.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>24</value>
+  </data>
+  <data name="cbSoNgayTamGiam.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="cbSoNgayTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>682, 310</value>
+  </data>
+  <data name="cbSoNgayTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 29</value>
+  </data>
+  <data name="cbSoNgayTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;cbSoNgayTamGiam.Name" xml:space="preserve">
+    <value>cbSoNgayTamGiam</value>
+  </data>
+  <data name="&gt;&gt;cbSoNgayTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbSoNgayTamGiam.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;cbSoNgayTamGiam.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="lblTitleNgay1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTitleNgay1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="lblTitleNgay1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTitleNgay1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>863, 317</value>
+  </data>
+  <data name="lblTitleNgay1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 19</value>
+  </data>
+  <data name="lblTitleNgay1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTitleNgay1.Text" xml:space="preserve">
+    <value>ngày</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay1.Name" xml:space="preserve">
+    <value>lblTitleNgay1</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay1.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay1.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="lblTitleNgay2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTitleNgay2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="lblTitleNgay2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>863, 397</value>
+  </data>
+  <data name="lblTitleNgay2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 19</value>
+  </data>
+  <data name="lblTitleNgay2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTitleNgay2.Text" xml:space="preserve">
+    <value>ngày</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay2.Name" xml:space="preserve">
+    <value>lblTitleNgay2</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay2.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblTitleNgay2.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="lblNgayBatDauLan2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgayBatDauLan2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgayBatDauLan2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNgayBatDauLan2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 438</value>
+  </data>
+  <data name="lblNgayBatDauLan2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 22</value>
+  </data>
+  <data name="lblNgayBatDauLan2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgayBatDauLan2.Text" xml:space="preserve">
+    <value>Ngày bắt đầu lần 2</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauLan2.Name" xml:space="preserve">
+    <value>lblNgayBatDauLan2</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauLan2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauLan2.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayBatDauLan2.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="dtpNgayBatDauLan2.CustomFormat" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="dtpNgayBatDauLan2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpNgayBatDauLan2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 465</value>
+  </data>
+  <data name="dtpNgayBatDauLan2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 29</value>
+  </data>
+  <data name="dtpNgayBatDauLan2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauLan2.Name" xml:space="preserve">
+    <value>dtpNgayBatDauLan2</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauLan2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauLan2.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayBatDauLan2.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="lblNgayHetHanLan2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNgayHetHanLan2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNgayHetHanLan2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNgayHetHanLan2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>361, 438</value>
+  </data>
+  <data name="lblNgayHetHanLan2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 22</value>
+  </data>
+  <data name="lblNgayHetHanLan2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNgayHetHanLan2.Text" xml:space="preserve">
+    <value>Ngày hết hạn lần 2</value>
+  </data>
+  <data name="&gt;&gt;lblNgayHetHanLan2.Name" xml:space="preserve">
+    <value>lblNgayHetHanLan2</value>
+  </data>
+  <data name="&gt;&gt;lblNgayHetHanLan2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNgayHetHanLan2.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNgayHetHanLan2.ZOrder" xml:space="preserve">
+    <value>36</value>
+  </data>
+  <data name="dtpNgayHetHanLan2.CustomFormat" xml:space="preserve">
+    <value>dd/MM/yyyy</value>
+  </data>
+  <data name="dtpNgayHetHanLan2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpNgayHetHanLan2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 465</value>
+  </data>
+  <data name="dtpNgayHetHanLan2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 29</value>
+  </data>
+  <data name="dtpNgayHetHanLan2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayHetHanLan2.Name" xml:space="preserve">
+    <value>dtpNgayHetHanLan2</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayHetHanLan2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayHetHanLan2.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;dtpNgayHetHanLan2.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="lblGiaHan.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblGiaHan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblGiaHan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblGiaHan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>684, 438</value>
+  </data>
+  <data name="lblGiaHan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 22</value>
+  </data>
+  <data name="lblGiaHan.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblGiaHan.Text" xml:space="preserve">
+    <value>Gia hạn</value>
+  </data>
+  <data name="&gt;&gt;lblGiaHan.Name" xml:space="preserve">
+    <value>lblGiaHan</value>
+  </data>
+  <data name="&gt;&gt;lblGiaHan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblGiaHan.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblGiaHan.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="txtGiaHan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtGiaHan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>682, 465</value>
+  </data>
+  <data name="txtGiaHan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 29</value>
+  </data>
+  <data name="txtGiaHan.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="txtGiaHan.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;txtGiaHan.Name" xml:space="preserve">
+    <value>txtGiaHan</value>
+  </data>
+  <data name="&gt;&gt;txtGiaHan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtGiaHan.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;txtGiaHan.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
+  <data name="lblTiTleNgay3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTiTleNgay3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="lblTiTleNgay3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTiTleNgay3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>863, 472</value>
+  </data>
+  <data name="lblTiTleNgay3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 19</value>
+  </data>
+  <data name="lblTiTleNgay3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblTiTleNgay3.Text" xml:space="preserve">
+    <value>ngày</value>
+  </data>
+  <data name="&gt;&gt;lblTiTleNgay3.Name" xml:space="preserve">
+    <value>lblTiTleNgay3</value>
+  </data>
+  <data name="&gt;&gt;lblTiTleNgay3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTiTleNgay3.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblTiTleNgay3.ZOrder" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="lblNoiDung.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNoiDung.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblNoiDung.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNoiDung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 589</value>
+  </data>
+  <data name="lblNoiDung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 22</value>
+  </data>
+  <data name="lblNoiDung.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblNoiDung.Text" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="&gt;&gt;lblNoiDung.Name" xml:space="preserve">
+    <value>lblNoiDung</value>
+  </data>
+  <data name="&gt;&gt;lblNoiDung.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNoiDung.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;lblNoiDung.ZOrder" xml:space="preserve">
+    <value>43</value>
+  </data>
+  <data name="txtNoiDung.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtNoiDung.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 617</value>
+  </data>
+  <data name="txtNoiDung.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtNoiDung.Size" type="System.Drawing.Size, System.Drawing">
+    <value>864, 39</value>
+  </data>
+  <data name="txtNoiDung.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;txtNoiDung.Name" xml:space="preserve">
+    <value>txtNoiDung</value>
+  </data>
+  <data name="&gt;&gt;txtNoiDung.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtNoiDung.Parent" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;txtNoiDung.ZOrder" xml:space="preserve">
+    <value>44</value>
+  </data>
+  <data name="pnLenhTamGiam.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 56</value>
+  </data>
+  <data name="pnLenhTamGiam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>938, 684</value>
+  </data>
+  <data name="pnLenhTamGiam.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTamGiam.Name" xml:space="preserve">
+    <value>pnLenhTamGiam</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTamGiam.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTamGiam.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTamGiam.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="pnButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="pnButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 863</value>
+  </data>
+  <data name="pnButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>938, 76</value>
+  </data>
+  <data name="pnButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pnButton.Name" xml:space="preserve">
+    <value>pnButton</value>
+  </data>
+  <data name="&gt;&gt;pnButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cbSoLan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="cbSoLan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>830, 16</value>
+  </data>
+  <data name="cbSoLan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 29</value>
+  </data>
+  <data name="cbSoLan.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cbSoLan.Name" xml:space="preserve">
+    <value>cbSoLan</value>
+  </data>
+  <data name="&gt;&gt;cbSoLan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbSoLan.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbSoLan.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblForPanel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblForPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="lblForPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 46</value>
+  </data>
+  <data name="lblForPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 19</value>
+  </data>
+  <data name="lblForPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblForPanel1.Text" xml:space="preserve">
+    <value>Lệnh tạm giam</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel1.Name" xml:space="preserve">
+    <value>lblForPanel1</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnLenhTrichXuat.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 22</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblSoLenhTrichXuat.Text" xml:space="preserve">
+    <value>Số lệnh trích xuất</value>
+  </data>
+  <data name="&gt;&gt;lblSoLenhTrichXuat.Name" xml:space="preserve">
+    <value>lblSoLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;lblSoLenhTrichXuat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSoLenhTrichXuat.Parent" xml:space="preserve">
+    <value>pnLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;lblSoLenhTrichXuat.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtSoLenhTrichXuat.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="txtSoLenhTrichXuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 48</value>
+  </data>
+  <data name="txtSoLenhTrichXuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>510, 29</value>
+  </data>
+  <data name="txtSoLenhTrichXuat.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtSoLenhTrichXuat.Name" xml:space="preserve">
+    <value>txtSoLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;txtSoLenhTrichXuat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtSoLenhTrichXuat.Parent" xml:space="preserve">
+    <value>pnLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;txtSoLenhTrichXuat.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt, style=Bold</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>592, 22</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 22</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblThoiGianTrichXuat.Text" xml:space="preserve">
+    <value>Thời gian</value>
+  </data>
+  <data name="&gt;&gt;lblThoiGianTrichXuat.Name" xml:space="preserve">
+    <value>lblThoiGianTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;lblThoiGianTrichXuat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblThoiGianTrichXuat.Parent" xml:space="preserve">
+    <value>pnLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;lblThoiGianTrichXuat.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="dtpThoiGianTrichXuat.CustomFormat" xml:space="preserve">
+    <value>dd/MM/yyyy HH:mm</value>
+  </data>
+  <data name="dtpThoiGianTrichXuat.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="dtpThoiGianTrichXuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>591, 48</value>
+  </data>
+  <data name="dtpThoiGianTrichXuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 29</value>
+  </data>
+  <data name="dtpThoiGianTrichXuat.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dtpThoiGianTrichXuat.Name" xml:space="preserve">
+    <value>dtpThoiGianTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;dtpThoiGianTrichXuat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpThoiGianTrichXuat.Parent" xml:space="preserve">
+    <value>pnLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;dtpThoiGianTrichXuat.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="pnLenhTrichXuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 752</value>
+  </data>
+  <data name="pnLenhTrichXuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>938, 99</value>
+  </data>
+  <data name="pnLenhTrichXuat.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTrichXuat.Name" xml:space="preserve">
+    <value>pnLenhTrichXuat</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTrichXuat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTrichXuat.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnLenhTrichXuat.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lblForPanel3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblForPanel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 12pt</value>
+  </data>
+  <data name="lblForPanel3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblForPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 743</value>
+  </data>
+  <data name="lblForPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 19</value>
+  </data>
+  <data name="lblForPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblForPanel3.Text" xml:space="preserve">
+    <value>Lệnh trích xuất - Thông tin bổ sung</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel3.Name" xml:space="preserve">
+    <value>lblForPanel3</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblForPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1210,7 +1804,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>847, 718</value>
+    <value>962, 951</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
