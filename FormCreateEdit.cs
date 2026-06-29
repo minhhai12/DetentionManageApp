@@ -302,6 +302,21 @@ namespace DetentionManageApp
         public FormCreateEdit(FormMode mode, string jsonFilePathFromFormList)
         {
             InitializeComponent();
+
+            pnLenhTamGiam.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            pnLenhTrichXuat.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            pnButton.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+            // Giới hạn chiều cao Form không vượt quá màn hình hiện tại
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height; // Lấy chiều cao vùng làm việc (đã trừ Taskbar)
+            if (this.Height > screenHeight - 20) // Trừ hao thêm 20px cho viền
+            {
+                this.Height = screenHeight - 20;
+            }
+
+            // Đảm bảo Form luôn căn giữa màn hình
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             LoadLocationComboBox();
             formMode = mode;
             jsonFilePath = jsonFilePathFromFormList;

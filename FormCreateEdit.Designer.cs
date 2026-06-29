@@ -482,9 +482,10 @@
             this.Controls.Add(this.pnLenhTamGiam);
             this.Controls.Add(this.pnButton);
             this.Controls.Add(this.pnLenhTrichXuat);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.MinimizeBox = false;
+            this.AutoScroll = true;
             this.Name = "FormCreateEdit";
             this.pnLenhTamGiam.ResumeLayout(false);
             this.pnLenhTamGiam.PerformLayout();
