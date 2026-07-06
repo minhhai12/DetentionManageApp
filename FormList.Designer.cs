@@ -93,7 +93,7 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(1140, 552);
+            this.dataGridView1.Size = new System.Drawing.Size(940, 232);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -104,7 +104,7 @@
             // 
             this.lblTitleDanhSach.AutoSize = true;
             this.lblTitleDanhSach.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleDanhSach.Location = new System.Drawing.Point(388, 43);
+            this.lblTitleDanhSach.Location = new System.Drawing.Point(280, 43);
             this.lblTitleDanhSach.Name = "lblTitleDanhSach";
             this.lblTitleDanhSach.Size = new System.Drawing.Size(423, 40);
             this.lblTitleDanhSach.TabIndex = 0;
@@ -115,7 +115,7 @@
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtSearch.Location = new System.Drawing.Point(776, 25);
+            this.txtSearch.Location = new System.Drawing.Point(576, 25);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(330, 29);
             this.txtSearch.TabIndex = 3;
@@ -136,7 +136,7 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Location = new System.Drawing.Point(12, 133);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1160, 79);
+            this.panel1.Size = new System.Drawing.Size(960, 79);
             this.panel1.TabIndex = 4;
             // 
             // btnCreate
@@ -160,7 +160,7 @@
             this.btnClearSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearSearch.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnClearSearch.Image")));
-            this.btnClearSearch.Location = new System.Drawing.Point(1100, 23);
+            this.btnClearSearch.Location = new System.Drawing.Point(900, 23);
             this.btnClearSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(47, 33);
@@ -208,7 +208,7 @@
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 218);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1160, 572);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(960, 252);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // panel2
@@ -219,9 +219,9 @@
             this.panel2.Controls.Add(this.btnFileExportTrichXuat);
             this.panel2.Controls.Add(this.btnFileExportTamGiam);
             this.panel2.Controls.Add(this.btnLocations);
-            this.panel2.Location = new System.Drawing.Point(12, 796);
+            this.panel2.Location = new System.Drawing.Point(12, 476);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1160, 73);
+            this.panel2.Size = new System.Drawing.Size(960, 73);
             this.panel2.TabIndex = 7;
             // 
             // btnFileExportTrichXuat
@@ -264,7 +264,7 @@
             this.btnLocations.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLocations.Image = global::DetentionManageApp.Properties.Resources.icon_user;
             this.btnLocations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLocations.Location = new System.Drawing.Point(986, 10);
+            this.btnLocations.Location = new System.Drawing.Point(786, 10);
             this.btnLocations.Name = "btnLocations";
             this.btnLocations.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnLocations.Size = new System.Drawing.Size(161, 50);
@@ -310,7 +310,7 @@
             this.btnChooseFile.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChooseFile.Image = ((System.Drawing.Image)(resources.GetObject("btnChooseFile.Image")));
             this.btnChooseFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChooseFile.Location = new System.Drawing.Point(938, 33);
+            this.btnChooseFile.Location = new System.Drawing.Point(738, 33);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnChooseFile.Size = new System.Drawing.Size(234, 50);
@@ -325,7 +325,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1184, 881);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblTitleDanhSach);
