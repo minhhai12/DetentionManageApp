@@ -42,6 +42,25 @@ namespace DetentionManageApp
         public FormList()
         {
             InitializeComponent();
+
+            // 1. Neo lưới DataGridView co giãn 4 chiều (Bám chặt 4 góc Form)
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+            // 2. Neo các nút bấm ở dưới bám sát vào đáy Form (Bottom) thay vì Top
+            btnFileExportTamGiam.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnFileExportTrichXuat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnLocations.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            // 3. Ép kích thước Form khởi tạo không được to vượt quá màn hình máy tính hiện tại
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+
+            if (this.Height > screenHeight - 20) this.Height = screenHeight - 20;
+            if (this.Width > screenWidth - 20) this.Width = screenWidth - 20;
+
+            // Đảm bảo Form mở lên nằm ngay giữa màn hình
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             btnEdit.Visible = false;

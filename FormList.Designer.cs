@@ -226,6 +226,7 @@
             // 
             // btnFileExportTrichXuat
             // 
+            this.btnFileExportTrichXuat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFileExportTrichXuat.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnFileExportTrichXuat.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFileExportTrichXuat.Image = global::DetentionManageApp.Properties.Resources.icon_export_yellow;
@@ -242,6 +243,7 @@
             // 
             // btnFileExportTamGiam
             // 
+            this.btnFileExportTamGiam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFileExportTamGiam.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnFileExportTamGiam.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFileExportTamGiam.Image = ((System.Drawing.Image)(resources.GetObject("btnFileExportTamGiam.Image")));
@@ -258,7 +260,7 @@
             // 
             // btnLocations
             // 
-            this.btnLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLocations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLocations.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLocations.Image = global::DetentionManageApp.Properties.Resources.icon_user;
             this.btnLocations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
